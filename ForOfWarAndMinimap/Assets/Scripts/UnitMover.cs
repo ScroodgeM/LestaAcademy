@@ -12,9 +12,9 @@ public class UnitMover : MonoBehaviour
         transform.position += Time.deltaTime * moveDirection.normalized * moveSpeed;
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        GameObject otherObject = collision.gameObject;
+        GameObject otherObject = other.gameObject;
 
         UnitMover otherObjectAsUnitMover = otherObject.GetComponent<UnitMover>();
 
@@ -26,7 +26,7 @@ public class UnitMover : MonoBehaviour
             {
                 //ally - move away to avoid colliding
 
-                transform.position += collision.contacts[0].normal.normalized * moveSpeed;
+                transform.position += (transform.position - other.transform.position).normalized * Time.deltaTime * moveSpeed;
             }
             else
             {
