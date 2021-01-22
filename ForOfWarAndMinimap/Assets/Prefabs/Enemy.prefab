@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 466106}
   - component: {fileID: 13754242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Moose_Female_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428264}
   - component: {fileID: 13791392}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Moose_Male_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 467844}
   - component: {fileID: 13790522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Moose_Male_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404750}
   - component: {fileID: 13756056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Stag_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417078}
   - component: {fileID: 13727622}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Moose_Male_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 4138239548639075069}
   - component: {fileID: 1205008128754723265}
   - component: {fileID: -5323625895099940905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,6 +456,7 @@ Transform:
   - {fileID: 404144}
   - {fileID: 404750}
   - {fileID: 452370}
+  - {fileID: 1019571358913853306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -533,7 +534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 451232}
   - component: {fileID: 13767560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Doe_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457666}
   - component: {fileID: 13720578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Moose_Female_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404144}
   - component: {fileID: 13710374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Stag_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 452370}
   - component: {fileID: 13793822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Stag_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +866,7 @@ GameObject:
   m_Component:
   - component: {fileID: 462432}
   - component: {fileID: 13787190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SM_Doe_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,3 +939,85 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000007450581, y: -0.008504167, z: 0.11530784}
     m_Extent: {x: 0.053151757, y: 0.18348412, z: 0.19990173}
   m_DirtyAABB: 0
+--- !u!1 &98778699416537862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1019571358913853306}
+  - component: {fileID: 8407881965742797593}
+  m_Layer: 10
+  m_Name: MiniMapMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1019571358913853306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98778699416537862}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 431108}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &8407881965742797593
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98778699416537862}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.2, y: 0.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

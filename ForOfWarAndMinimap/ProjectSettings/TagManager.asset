@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Units
+  - Environment
+  - MiniMapMarkers
+  - FogOfWarMarkers
+  - FogOfWarRenderer
   - 
   - 
   - 
