@@ -13,17 +13,28 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) == true)
         {
-            Ray mouseRay = worldCamera.ScreenPointToRay(Input.mousePosition);
+            Spawn();
+        }
 
-            //assume we spawn in Y=0 surface
+        // mass spawn hack 8)
+        if (Input.GetMouseButton(0) == true && Input.GetKey(KeyCode.LeftShift) == true)
+        {
+            Spawn();
+        }
+    }
 
-            Vector3 spawnPoint = mouseRay.origin - mouseRay.direction / mouseRay.direction.y * mouseRay.origin.y;
+    private void Spawn()
+    {
+        Ray mouseRay = worldCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (playerSpawnZone.Contains(spawnPoint) == true)
-            {
-                GameObject instance = Instantiate(spawnObject, spawnPoint, spawnObject.transform.rotation, spawnRoot);
-                instance.name = $"player_{++spawnObjectsCount}";
-            }
+        //assume we spawn in Y=0 surface
+
+        Vector3 spawnPoint = mouseRay.origin - mouseRay.direction / mouseRay.direction.y * mouseRay.origin.y;
+
+        if (playerSpawnZone.Contains(spawnPoint) == true)
+        {
+            GameObject instance = Instantiate(spawnObject, spawnPoint, spawnObject.transform.rotation, spawnRoot);
+            instance.name = $"player_{++spawnObjectsCount}";
         }
     }
 }

@@ -6,10 +6,11 @@ public class UnitMover : MonoBehaviour
     [SerializeField] private Vector3 moveDirection;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float goalPositionX;
+    [SerializeField] private Bounds walkZone;
 
     void Update()
     {
-        transform.position += Time.deltaTime * moveDirection.normalized * moveSpeed;
+        transform.position = walkZone.ClosestPoint(transform.position + Time.deltaTime * moveDirection.normalized * moveSpeed);
     }
 
     private void OnTriggerStay(Collider other)
