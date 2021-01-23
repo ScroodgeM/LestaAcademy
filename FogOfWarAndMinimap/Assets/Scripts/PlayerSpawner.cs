@@ -13,17 +13,19 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) == true)
         {
-            Spawn();
-        }
-
-        // mass spawn hack 8)
-        if (Input.GetMouseButton(0) == true && Input.GetKey(KeyCode.LeftShift) == true)
-        {
-            Spawn();
+            // mass spawn hack 8)
+            if (Input.GetKey(KeyCode.LeftShift) == true)
+            {
+                Spawn(100);
+            }
+            else
+            {
+                Spawn(1);
+            }
         }
     }
 
-    private void Spawn()
+    private void Spawn(int count)
     {
         Ray mouseRay = worldCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -33,8 +35,14 @@ public class PlayerSpawner : MonoBehaviour
 
         if (playerSpawnZone.Contains(spawnPoint) == true)
         {
-            GameObject instance = Instantiate(spawnObject, spawnPoint, spawnObject.transform.rotation, spawnRoot);
-            instance.name = $"player_{++spawnObjectsCount}";
+            for (int i = 0; i < count; i++)
+            {
+                Vector3 offset = Random.onUnitSphere;
+                offset.y = 0f;
+
+                GameObject instance = Instantiate(spawnObject, spawnPoint + offset, spawnObject.transform.rotation, spawnRoot);
+                instance.name = $"player_{++spawnObjectsCount}";
+            }
         }
     }
 }
