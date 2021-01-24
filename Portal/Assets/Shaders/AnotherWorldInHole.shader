@@ -7,8 +7,7 @@ Shader "WGA/AnotherWorldInHole"
 
     SubShader
     {
-        Tags { "RenderType" = "Opaque" "Queue" = "Geometry"}
-        LOD 100
+        Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
 
         Pass
         {
@@ -20,6 +19,7 @@ Shader "WGA/AnotherWorldInHole"
 
             ZTest Always
             Blend DstColor Zero
+            Cull Off
 
             CGPROGRAM
 

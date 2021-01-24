@@ -1,20 +1,24 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class DrawAnotherWorld : MonoBehaviour
 {
-    [SerializeField] private Texture anotherWorldTexture;
-    [SerializeField] private Shader shader;
+    [SerializeField] private Material material;
 
-    private Material material;
-
-    private void Awake()
+    public void OnPostRender()
     {
-        material = new Material(shader);
-    }
+        GL.PushMatrix();
+        GL.LoadOrtho();
 
-    private void OnPostRender()
-    {
-        Graphics.Blit(anotherWorldTexture, material, -1);
+        // activate the first shader pass (in this case we know it is the only pass)
+        material.SetPass(0);
+        // draw a quad over whole screen
+        GL.Begin(GL.QUADS);
+        GL.Vertex3(0, 0, 0);
+        GL.Vertex3(1, 0, 0);
+        GL.Vertex3(1, 1, 0);
+        GL.Vertex3(0, 1, 0);
+        GL.End();
+
+        GL.PopMatrix();
     }
 }
