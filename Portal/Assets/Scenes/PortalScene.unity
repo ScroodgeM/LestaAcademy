@@ -732,7 +732,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.5
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1067,9 +1067,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0
     y: 0
-    width: 0.5
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -3713,6 +3713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2051572246}
   - component: {fileID: 2051572244}
+  - component: {fileID: 2051572245}
   m_Layer: 11
   m_Name: Camera
   m_TagString: Untagged
@@ -3728,6 +3729,32 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051572243}
   m_Enabled: 1
+--- !u!114 &2051572245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051572243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef321bc80274cb649a2c353420c2455e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 385402515}
+  camera2: {fileID: 412533891}
+  world1Layers:
+    serializedVersion: 2
+    m_Bits: 640
+  world2Layers:
+    serializedVersion: 2
+    m_Bits: 1280
+  sharedLayers:
+    serializedVersion: 2
+    m_Bits: 2048
+  anotherWorldTexture: {fileID: 8400000, guid: ccd8d8cbb41639c4aa188acddb81a03f, type: 2}
+  drawAnotherWorldOnCamera1: {fileID: 385402517}
+  drawAnotherWorldOnCamera2: {fileID: 412533893}
 --- !u!4 &2051572246
 Transform:
   m_ObjectHideFlags: 0
