@@ -689,6 +689,7 @@ GameObject:
   - component: {fileID: 385402514}
   - component: {fileID: 385402515}
   - component: {fileID: 385402516}
+  - component: {fileID: 385402517}
   m_Layer: 11
   m_Name: World1Camera
   m_TagString: Untagged
@@ -762,6 +763,20 @@ Skybox:
   m_GameObject: {fileID: 385402513}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 617d9be015db68348a623b01ea51a8c5, type: 2}
+--- !u!114 &385402517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385402513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fc4f10974cc5e40bf04ea1851ac802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anotherWorldTexture: {fileID: 2800000, guid: 86cb957541c7c8542a6306ffb82e6833, type: 3}
+  shader: {fileID: 4800000, guid: 5927e8d184588054e96977d9dc9e37dc, type: 3}
 --- !u!1 &389384751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1027,7 @@ GameObject:
   - component: {fileID: 412533890}
   - component: {fileID: 412533891}
   - component: {fileID: 412533892}
+  - component: {fileID: 412533893}
   m_Layer: 11
   m_Name: World2Camera
   m_TagString: Untagged
@@ -1085,6 +1101,20 @@ Skybox:
   m_GameObject: {fileID: 412533889}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: ceb0a3ed2cb53a94fa21843cc958c52b, type: 2}
+--- !u!114 &412533893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412533889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fc4f10974cc5e40bf04ea1851ac802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anotherWorldTexture: {fileID: 2800000, guid: 86cb957541c7c8542a6306ffb82e6833, type: 3}
+  shader: {fileID: 4800000, guid: 5927e8d184588054e96977d9dc9e37dc, type: 3}
 --- !u!1 &475985833
 GameObject:
   m_ObjectHideFlags: 0
