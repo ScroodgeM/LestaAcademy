@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Time.realtimeSinceStartup > spawnInterval * spawnObjectsCount)
+        if (Time.time > spawnInterval * spawnObjectsCount)
         {
             Vector3 position = new Vector3(
                 Random.Range(spawnZone.min.x, spawnZone.max.x),

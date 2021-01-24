@@ -496,8 +496,8 @@ MonoBehaviour:
   moveSpeed: 3
   goalPositionX: -50
   walkZone:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 250, y: 0, z: 25}
+    m_Center: {x: 5, y: 0, z: 0}
+    m_Extent: {x: 260, y: 0, z: 25}
 --- !u!65 &1205008128754723265
 BoxCollider:
   m_ObjectHideFlags: 0

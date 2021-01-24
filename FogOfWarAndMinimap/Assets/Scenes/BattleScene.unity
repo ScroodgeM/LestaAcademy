@@ -155,8 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRoot: {fileID: 389384754}
   spawnZone:
-    m_Center: {x: 200, y: 0, z: 0}
-    m_Extent: {x: 50, y: 0.1, z: 25}
+    m_Center: {x: 255, y: 0, z: 0}
+    m_Extent: {x: 10, y: 0.1, z: 25}
   spawnInterval: 0.2
   spawnObject: {fileID: 148086, guid: 7a9ed5ae7b700bc45ba1f4711d89be72, type: 3}
 --- !u!114 &389384753
@@ -174,8 +174,8 @@ MonoBehaviour:
   spawnRoot: {fileID: 389384754}
   worldCamera: {fileID: 2051572245}
   playerSpawnZone:
-    m_Center: {x: -200, y: 0, z: 0}
-    m_Extent: {x: 50, y: 0.1, z: 25}
+    m_Center: {x: -255, y: 0, z: 0}
+    m_Extent: {x: 10, y: 0.1, z: 25}
   spawnObject: {fileID: 139514, guid: d52c742fd6504ae4ebbf93796a8a4b13, type: 3}
 --- !u!4 &389384754
 Transform:
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformToFollow: {fileID: 1359487953}
   transformMatrix:
-    e00: -0.053
+    e00: -0.055
     e01: 0
     e02: 0
     e03: 0
