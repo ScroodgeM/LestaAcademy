@@ -7,8 +7,8 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private RenderTexture anotherWorldTexture;
     [SerializeField] private DrawAnotherWorld drawAnotherWorldOnCamera1;
     [SerializeField] private DrawAnotherWorld drawAnotherWorldOnCamera2;
-    [SerializeField] private Transform portal1ForNearClipPlane;
-    [SerializeField] private Transform portal2ForNearClipPlane;
+    [SerializeField] private Portal portal1;
+    [SerializeField] private Portal portal2;
     [SerializeField] private float defaultNearClipPlane;
 
     private int currentWorld = 0;
@@ -16,6 +16,9 @@ public class CameraSwitcher : MonoBehaviour
     private void Awake()
     {
         SetWorld(1);
+
+        portal1.OnPlayerEnterPortal += () => { SetWorld(2); };
+        portal2.OnPlayerEnterPortal += () => { SetWorld(1); };
     }
 
     private void Update()
@@ -30,8 +33,8 @@ public class CameraSwitcher : MonoBehaviour
             SetWorld(2);
         }
 
-        camera1.nearClipPlane = currentWorld == 1 ? defaultNearClipPlane : (camera1.transform.position - portal1ForNearClipPlane.position).magnitude;
-        camera2.nearClipPlane = currentWorld == 2 ? defaultNearClipPlane : (camera2.transform.position - portal2ForNearClipPlane.position).magnitude;
+        camera1.nearClipPlane = currentWorld == 1 ? defaultNearClipPlane : (camera1.transform.position - portal1.transform.position).magnitude;
+        camera2.nearClipPlane = currentWorld == 2 ? defaultNearClipPlane : (camera2.transform.position - portal2.transform.position).magnitude;
     }
 
     private void SetWorld(int world)
@@ -43,5 +46,8 @@ public class CameraSwitcher : MonoBehaviour
         drawAnotherWorldOnCamera2.enabled = world == 2;
 
         currentWorld = world;
+
+        portal1.SetActive(currentWorld == 1);
+        portal2.SetActive(currentWorld == 2);
     }
 }

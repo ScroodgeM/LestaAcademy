@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 385402515}
   - component: {fileID: 385402516}
   - component: {fileID: 385402517}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: World1Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 412533891}
   - component: {fileID: 412533892}
   - component: {fileID: 412533893}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: World2Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,6 +1486,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 670737253}
   Animation_int: 4
+--- !u!114 &687885972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087853996021399868, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1168656269}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8ccee7b38c9814b8eadec33d40b2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807893235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1545,8 @@ GameObject:
   - component: {fileID: 883876590}
   - component: {fileID: 883876589}
   - component: {fileID: 883876594}
-  m_Layer: 11
+  - component: {fileID: 883876595}
+  m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1650,6 +1663,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 883876589}
   moveSpeed: 5
+--- !u!114 &883876595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883876588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdaf4cbbfc8ba0840b1ded264ba71c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatorX: {fileID: 2051572246}
+  rotatorY: {fileID: 883876593}
+  mouseSensitivity: 200
 --- !u!1 &904507561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100046, guid: 2af1fa464b69e4c4cb1a408373c7d971,
@@ -2518,6 +2546,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1136081443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8087853996021399868, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+    type: 3}
+  m_PrefabInstance: {fileID: 1875311653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8ccee7b38c9814b8eadec33d40b2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1168656269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2536,6 +2576,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5392389343118825045, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909110935404114620, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120727944766286270, guid: fd24da7dc77d12e4ab7dc22ed1722947,
         type: 3}
       propertyPath: m_Layer
       value: 10
@@ -3571,6 +3621,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7909110935404114620, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120727944766286270, guid: fd24da7dc77d12e4ab7dc22ed1722947,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8728164488083375644, guid: fd24da7dc77d12e4ab7dc22ed1722947,
         type: 3}
       propertyPath: m_Name
@@ -3847,7 +3907,7 @@ GameObject:
   - component: {fileID: 2051572246}
   - component: {fileID: 2051572244}
   - component: {fileID: 2051572245}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3876,18 +3936,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera1: {fileID: 385402515}
   camera2: {fileID: 412533891}
-  world1Layers:
-    serializedVersion: 2
-    m_Bits: 640
-  world2Layers:
-    serializedVersion: 2
-    m_Bits: 1280
-  sharedLayers:
-    serializedVersion: 2
-    m_Bits: 2048
   anotherWorldTexture: {fileID: 8400000, guid: ccd8d8cbb41639c4aa188acddb81a03f, type: 2}
   drawAnotherWorldOnCamera1: {fileID: 385402517}
   drawAnotherWorldOnCamera2: {fileID: 412533893}
+  portal1: {fileID: 1136081443}
+  portal2: {fileID: 687885972}
+  defaultNearClipPlane: 0.01
 --- !u!4 &2051572246
 Transform:
   m_ObjectHideFlags: 0
