@@ -4,12 +4,12 @@ public class CameraSwitcher : MonoBehaviour
 {
     [SerializeField] private Camera camera1;
     [SerializeField] private Camera camera2;
-    [SerializeField] private LayerMask world1Layers;
-    [SerializeField] private LayerMask world2Layers;
-    [SerializeField] private LayerMask sharedLayers;
     [SerializeField] private RenderTexture anotherWorldTexture;
     [SerializeField] private DrawAnotherWorld drawAnotherWorldOnCamera1;
     [SerializeField] private DrawAnotherWorld drawAnotherWorldOnCamera2;
+    [SerializeField] private Transform portal1ForNearClipPlane;
+    [SerializeField] private Transform portal2ForNearClipPlane;
+    [SerializeField] private float defaultNearClipPlane;
 
     private int currentWorld = 0;
 
@@ -29,15 +29,15 @@ public class CameraSwitcher : MonoBehaviour
         {
             SetWorld(2);
         }
+
+        camera1.nearClipPlane = currentWorld == 1 ? defaultNearClipPlane : (camera1.transform.position - portal1ForNearClipPlane.position).magnitude;
+        camera2.nearClipPlane = currentWorld == 2 ? defaultNearClipPlane : (camera2.transform.position - portal2ForNearClipPlane.position).magnitude;
     }
 
     private void SetWorld(int world)
     {
         camera1.targetTexture = world == 1 ? null : anotherWorldTexture;
         camera2.targetTexture = world == 2 ? null : anotherWorldTexture;
-
-        camera1.cullingMask = world1Layers | ((world == 1) ? sharedLayers : (LayerMask)0);
-        camera2.cullingMask = world2Layers | ((world == 2) ? sharedLayers : (LayerMask)0);
 
         drawAnotherWorldOnCamera1.enabled = world == 1;
         drawAnotherWorldOnCamera2.enabled = world == 2;

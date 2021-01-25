@@ -10,6 +10,6 @@ public class CharacterMover : MonoBehaviour
         Vector3 moveCommandNormalized = Vector3.zero;
         moveCommandNormalized.z = Input.GetAxis("Vertical");
         moveCommandNormalized.x = Input.GetAxis("Horizontal");
-        characterController.SimpleMove(moveCommandNormalized * moveSpeed);
+        characterController.SimpleMove(transform.rotation * moveCommandNormalized * moveSpeed);
     }
 }
