@@ -987,7 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 1163880809}
-  rotationSpeed: 100
+  rotationSpeed: 180
 --- !u!1 &1293899881
 GameObject:
   m_ObjectHideFlags: 0
