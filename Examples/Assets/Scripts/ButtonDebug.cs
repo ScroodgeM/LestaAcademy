@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using TMPro;
 using UnityEngine;
 
 public class ButtonDebug : MonoBehaviour
 {
-    
-    
-    void Start()
+    [SerializeField] private KeyCode keyToListen;
+    [SerializeField] private TMP_Text keyToListenLabel;
+    [SerializeField] private GameObject pressedStateIndicator;
+
+    private void Awake()
     {
-        
+        keyToListenLabel.text = keyToListen.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        bool keyPressed = Input.GetKey(keyToListen);
+        pressedStateIndicator.SetActive(keyPressed);
     }
 }
