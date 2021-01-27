@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxis("Jump") > 0)
         {
+            // stop moving
+            characterAnimator.SetFloat("Speed_f", 0f);
             // play jump animation
             characterAnimator.SetBool("Jump_b", true);
             return;
@@ -19,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetAxis("Fire1") > 0)
         {
+            // stop moving
+            characterAnimator.SetFloat("Speed_f", 0f);
             // play fire animation
             characterAnimator.SetInteger("Animation_int", 10);
             return;
@@ -33,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveCommand != Vector3.zero)
         {
-            characterAnimator.SetFloat("Speed_f", 0.3f);
+            characterAnimator.SetFloat("Speed_f", 1f);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(moveCommand), Time.deltaTime * rotationSpeed);
         }
         else
