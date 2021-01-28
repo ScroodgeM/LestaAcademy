@@ -1283,8 +1283,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   lookDownDistanceFromPlayerToCheck: 2
-  lookDownCameraOffset: {x: 0, y: 4, z: -0.5}
-  lookDownCameraRotationRelative: {x: -60, y: 0, z: 0}
+  lookDownCameraOffset: {x: 0, y: 7, z: -1}
+  lookDownCameraRotationRelative: {x: -20, y: 0, z: 0}
   lookUpDistanceFromPlayerToCheck: 3
   lookUpCameraOffset: {x: 0, y: 7, z: -5}
   lookUpCameraRotationRelative: {x: -30, y: 0, z: 0}
