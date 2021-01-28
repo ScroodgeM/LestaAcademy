@@ -810,7 +810,7 @@ MonoBehaviour:
   spawnZone:
     m_Center: {x: 125, y: 0, z: 0}
     m_Extent: {x: 125, y: 0.1, z: 125}
-  spawnInterval: 0.1
+  spawnInterval: 1
   spawnObject: {fileID: 148086, guid: 7a9ed5ae7b700bc45ba1f4711d89be72, type: 3}
 --- !u!114 &389384753
 MonoBehaviour:
@@ -828,7 +828,7 @@ MonoBehaviour:
   spawnZone:
     m_Center: {x: -125, y: 0, z: 0}
     m_Extent: {x: 125, y: 0.1, z: 125}
-  spawnInterval: 0.1
+  spawnInterval: 1
   spawnObject: {fileID: 139514, guid: d52c742fd6504ae4ebbf93796a8a4b13, type: 3}
 --- !u!4 &389384754
 Transform:
