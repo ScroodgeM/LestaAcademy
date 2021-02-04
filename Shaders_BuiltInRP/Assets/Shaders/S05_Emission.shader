@@ -1,14 +1,7 @@
-// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-// Upgrade NOTE: commented out 'float3 _WorldSpaceCameraPos', a built-in variable
-
-Shader "Final Exodus/Ship Shader Shielded New"
+Shader "Final Exodus/S05"
 {
 	Properties
 	{
-		//copy-paste from Ship Shader (not shielded)
-		
 		_BumpMap				("BumpMap (tile/offset works here)",						2D)						= "bump" { }
 
 		_SurfacesMaskTex		("Surfaces mask (RGBA) (tile/offset from BumpMap)",			2D)						= "black" { }
@@ -51,24 +44,10 @@ Shader "Final Exodus/Ship Shader Shielded New"
 		_Cube					("Reflection Cubemap",										CUBE)					= "" { }
 		_ReflectionPowerDirect	("Reflection Power Direct",									Range(0.00, 3.00))		= 0.5
 		_ReflectionPowerEdges	("Reflection Power Edges",									Range(0.00, 3.00))		= 0.0
-
-		//eof copy-paste
-
-		_PowerShieldOffset		("Power shield offset",										Range(-10, 10))			= 2
-		_PowerShieldRefColor	("Power shield reflect color",								Color)					= (0.0, 1.0, 0.0, 1.0)
-		_PowerShieldEdgeColor	("Power shield edge color",									Color)					= (0.0, 0.0, 1.0, 1.0)
-		_PowerShieldEdgeOffset	("Power shield edge offset",								Range(0, 1))			= 0.5
-		_PowerColorsBlur		("Power shield blur",										Range(0.5, 50))			= 10
-		_PowerWavesColor		("Power waves color",										Color)					= (1.0, 0.0, 0.0, 1.0)
-		_PowerWavesFrequency	("Power waves frequency",									Range(0.01, 3))			= 2
-		_PowerHitPoint			("Power hit point",											Vector)					= (0.0, 0.0, 200.0, 0.0)
-		_PowerHitTime			("Power hit time",											Float)					= 0.0
-		_PowerHitWavesRamp		("Power hit waves ramp (near->far)",						2D)						= "black"
 	}
 
 	SubShader
 	{
-		//copy-paste from Ship Shader (not shielded)
 		Tags
 		{
 			"Queue"="Transparent"
@@ -204,103 +183,5 @@ Shader "Final Exodus/Ship Shader Shielded New"
 		}
 
 		ENDCG
-		//eof copy-paste
-
-		//shield pass
-		Pass
-		{
-			Blend OneMinusDstColor One
-			
-			Cull Back
-
-			Offset -1, -1
-
-			Lighting Off
-			
-			ZWrite Off
-		
-			CGPROGRAM
-
-			#pragma vertex vert
-			#pragma fragment frag
-			#pragma target 3.0
-
-			float _PowerShieldOffset;
-			fixed4 _PowerShieldRefColor;
-			fixed4 _PowerShieldEdgeColor;
-			float _PowerShieldEdgeOffset;
-			float _PowerColorsBlur;
-			fixed4 _PowerWavesColor;
-			float _PowerWavesFrequency;
-			float4 _PowerHitPoint;
-			float _PowerHitTime;
-			sampler2D _PowerHitWavesRamp;
-
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float3 normal : NORMAL;
-			};
-
-			struct v2f
-			{
-				float4 pos : SV_POSITION; // project view position
-				float4 wPos : TEXCOORD0; // world-based position
-				float4 wNor : TEXCOORD1; // world-based normal
-				float4 lPos : TEXCOORD2;
-				float3 lNor : TEXCOORD3;
-			};
-
-			v2f vert(appdata v)
-			{
-				v2f o;
-
-				v.vertex.xyz += pow(2, _PowerShieldOffset) * v.normal;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.lPos = v.vertex;
-				o.lNor = v.normal;
-				o.wPos = mul(unity_ObjectToWorld, v.vertex);
-				o.wNor = mul(unity_ObjectToWorld, float4(v.normal.xyz, 0));
-
-				return o;
-			}
-
-			half4 frag(v2f i) : COLOR
-			{
-				float3 worldNormal = normalize(i.wNor.xyz);
-				float3 worldToCameraDirection = normalize(_WorldSpaceCameraPos - i.wPos.xyz);
-				float angleViewToNormal = acos(dot(worldNormal, worldToCameraDirection)) * 0.63661977236758134307553505349006;
-				// 2/PI = 0.63661977236758134307553505349006 - so we got angleViewToNormal = 0 at 0 angle (codirectional), 1 at 90 degress angle, 2 at 180
-
-				float dotNormalToView = dot(worldNormal, worldToCameraDirection);
-				float dotNormalToShipForward = dot(normalize(i.lNor), float3(0.0, 0.0, 1.0));
-				
-				half4 answer = 0;
-				fixed colorPower;
-
-				float directKoef = 1 - angleViewToNormal;
-				colorPower = pow(directKoef, _PowerColorsBlur) * _PowerShieldRefColor.a;
-				answer.rgb += _PowerShieldRefColor.rgb * colorPower;
-
-				float edgeKoef = 1 - abs(1 - angleViewToNormal - _PowerShieldEdgeOffset);
-				colorPower = pow(edgeKoef, _PowerColorsBlur) * _PowerShieldEdgeColor.a;
-				answer.rgb += _PowerShieldEdgeColor.rgb * colorPower;
-
-				float ringKoef = abs(fmod(dotNormalToShipForward * _PowerWavesFrequency + _Time.z + 100, 2) - 1);
-				colorPower = pow(ringKoef, _PowerColorsBlur) * _PowerWavesColor.a;
-				answer.rgb += _PowerWavesColor.rgb * colorPower;
-				
-				float timeAfterHit = _Time.y - _PowerHitTime;
-				float distanceToHit = distance(_PowerHitPoint.xyz, i.lPos.xyz) * _PowerHitPoint.w;
-				//float hitKoef = abs(fmod((distance(_PowerHitPoint.xyz, i.lPos.xyz) + _Time.y) * _PowerHitPoint.w, 2) - 1);
-				float hitKoef = distanceToHit - timeAfterHit + 1;
-				answer.rgb += tex2D(_PowerHitWavesRamp, float2(hitKoef, hitKoef)).rgb * (hitKoef > 1 ? 0 : hitKoef < 0 ? 0 : 1) * saturate(2 - timeAfterHit);
-
-				answer.rgb *= saturate(directKoef);
-				return answer;
-			}
-
-			ENDCG
-		}
 	}
 }

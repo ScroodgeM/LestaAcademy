@@ -1,4 +1,4 @@
-Shader "Final Exodus/Ship Shader Shielded New"
+Shader "Final Exodus/S01"
 {
 	Properties
 	{

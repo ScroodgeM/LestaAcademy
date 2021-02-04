@@ -31,7 +31,7 @@ public class PresentationGUI : MonoBehaviour
         shipEngines.localRotation = Quaternion.identity;
 
         Camera.main.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-        Camera.main.transform.position = -Camera.main.transform.forward * 400f;
+        Camera.main.transform.position = -Camera.main.transform.forward * 300f;
 
         Vector3 sunPosition = new Vector3(-1000f, 200f, -1000f);
         Transform sun = Instantiate(Sun, sunPosition, Quaternion.LookRotation(ship.position - sunPosition));
@@ -47,6 +47,7 @@ public class PresentationGUI : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) { camMove += Vector3.up; }
         if (Input.GetKey(KeyCode.Z)) { camMove -= Vector3.forward; }
         if (Input.GetKey(KeyCode.X)) { camMove += Vector3.forward; }
-        Camera.main.transform.RotateAround(Vector3.zero, Camera.main.transform.TransformDirection(camMove), Time.deltaTime * 30f);
+        float rotationSpeed = Input.GetKey(KeyCode.LeftShift) == true ? 1f : 30f;
+        Camera.main.transform.RotateAround(Vector3.zero, Camera.main.transform.TransformDirection(camMove), Time.deltaTime * rotationSpeed);
     }
 }
