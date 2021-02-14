@@ -1238,7 +1238,7 @@ MonoBehaviour:
     drive: 1
     steer: 0
     graphics: {fileID: 2621402541387847287}
-  maxSteerAngle: 45
+  maxSteerAngle: 25
   enginePower: 7000
 --- !u!54 &4582277580998088773
 Rigidbody:
@@ -1267,7 +1267,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2, y: 0.69, z: 7.7}
+  m_Size: {x: 1.6, y: 0.32, z: 6.4}
   m_Center: {x: 0, y: 1.13, z: 0}
 --- !u!1 &3080184660350418397
 GameObject:
