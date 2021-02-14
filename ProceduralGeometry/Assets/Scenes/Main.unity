@@ -876,7 +876,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     density: 0.01
-    minMapping: -20
+    minMapping: -10
     maxMapping: 40
     color:
       serializedVersion: 2
@@ -1844,38 +1844,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
-        type: 3}
       propertyPath: m_LocalPosition.y
-      value: 70
+      value: 2.76
       objectReference: {fileID: 0}
     - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
+      value: 4.14
       objectReference: {fileID: 0}
     - target: {fileID: 2641946358875516899, guid: 61d6232845b548e47bfcd529a01315c1,
         type: 3}
