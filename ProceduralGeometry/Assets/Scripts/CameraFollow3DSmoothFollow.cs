@@ -7,7 +7,7 @@ public class CameraFollow3DSmoothFollow : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float followSpeed;
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 oldPos = transform.position;
         Vector3 newPos = target.position + target.rotation * cameraOffset;
