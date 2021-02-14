@@ -34,5 +34,5 @@ Material:
     - _RegularWavesScale: 0.2
     - _WaveSpeed: 0.5
     m_Colors:
-    - _WaterColor: {r: 0.18823528, g: 0.69092757, b: 0.84705883, a: 1}
+    - _WaterColor: {r: 0.18823528, g: 0.69092757, b: 0.84705883, a: 0.5529412}
   m_BuildTextureStacks: []

@@ -1240,6 +1240,10 @@ MonoBehaviour:
     graphics: {fileID: 2621402541387847287}
   maxSteerAngle: 25
   enginePower: 7000
+  gunTransform: {fileID: 8368207757901643984}
+  gunFireCooldown: 0.25
+  bullet1: {fileID: 9207049549376802439, guid: f86d360d015ddbe48b3d8f6a346e605a, type: 3}
+  bullet2: {fileID: 9207049549376802439, guid: eb8eef77867b71147b46e319a0a5e621, type: 3}
 --- !u!54 &4582277580998088773
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1424,6 +1428,7 @@ Transform:
   - {fileID: 2621402541387847265}
   - {fileID: 2621402541387847267}
   - {fileID: 2621402541387847293}
+  - {fileID: 8368207757901643984}
   m_Father: {fileID: 2641946358875516899}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1651,3 +1656,33 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_Enabled: 1
+--- !u!1 &8623913529048492152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8368207757901643984}
+  m_Layer: 0
+  m_Name: GunPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8368207757901643984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623913529048492152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.4578, z: 0.9478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7239365071433218493}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

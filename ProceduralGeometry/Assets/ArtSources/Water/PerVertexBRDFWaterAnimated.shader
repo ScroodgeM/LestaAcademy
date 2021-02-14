@@ -15,8 +15,10 @@ Shader "Custom/PerVertexBRDFWaterAnimated"
     }
         SubShader
         {
-            Tags { "RenderType" = "Opaque" }
+            Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
             LOD 100
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
             Pass
             {
                 CGPROGRAM
@@ -71,7 +73,9 @@ Shader "Custom/PerVertexBRDFWaterAnimated"
                     v2f o;
 
                     o.vertex = UnityObjectToClipPos(vDisplaced);
-                    fixed4 col = _WaterColor + (tex2Dlod(_BRDFTex, fixed4(NdotL * 0.5 + 0.5, saturate(NdotE), 0, 0)) * 2 - 1);
+                    fixed4 col;
+                    col.rgb = _WaterColor.rgb + (tex2Dlod(_BRDFTex, fixed4(NdotL * 0.5 + 0.5, saturate(NdotE), 0, 0)) * 2 - 1).rgb;
+                    col.a = _WaterColor.a;
                     UNITY_TRANSFER_FOG(o,o.vertex);
                     UNITY_APPLY_FOG(o.fogCoord, col);
                     o.color = col;

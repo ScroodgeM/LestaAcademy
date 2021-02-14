@@ -1,3 +1,4 @@
+using Battlegrounds;
 using System;
 using UnityEngine;
 
@@ -15,8 +16,13 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private Wheel[] wheels;
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float enginePower;
+    [SerializeField] private Transform gunTransform;
+    [SerializeField] private float gunFireCooldown;
+    [SerializeField] private Bullet bullet1;
+    [SerializeField] private Bullet bullet2;
 
     private float[] wheelsRotationsX;
+    private float nextGunFirePossibleTime;
 
     private void Awake()
     {
@@ -39,7 +45,26 @@ public class VehicleController : MonoBehaviour
                 wheel.graphics.localPosition = Vector3.down * wc.suspensionDistance;
             }
 
-            wheel.graphics.localRotation =  Quaternion.AngleAxis(wc.steerAngle, Vector3.up) * Quaternion.AngleAxis(wheelsRotationsX[i] * 360f, Vector3.right);
+            wheel.graphics.localRotation = Quaternion.AngleAxis(wc.steerAngle, Vector3.up) * Quaternion.AngleAxis(wheelsRotationsX[i] * 360f, Vector3.right);
+        }
+
+        if (Input.GetAxis("Fire1") > 0.5f)
+        {
+            FireWithBullet(bullet1);
+        }
+
+        if (Input.GetAxis("Fire2") > 0.5f)
+        {
+            FireWithBullet(bullet2);
+        }
+    }
+
+    private void FireWithBullet(Bullet bullet)
+    {
+        if (Time.time > nextGunFirePossibleTime)
+        {
+            nextGunFirePossibleTime = Time.time + gunFireCooldown;
+            Instantiate(bullet, gunTransform.position, gunTransform.rotation);
         }
     }
 
