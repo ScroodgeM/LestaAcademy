@@ -21,8 +21,9 @@ namespace Battlegrounds
         [SerializeField] private float cellSize = 0.5f;
         [SerializeField] private Vector2 terrainSize;
         [SerializeField] private Material terrainMaterial;
+        [SerializeField] private bool weldVertices;
 
-        protected List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
+        protected List<LowPolyTerrainChunk_Base> chunks = new List<LowPolyTerrainChunk_Base>();
 
         protected int totalCellsX;
         protected int totalCellsZ;
@@ -39,7 +40,7 @@ namespace Battlegrounds
 
         public void Clear()
         {
-            foreach (LowPolyTerrainChunk chunk in chunks)
+            foreach (LowPolyTerrainChunk_Base chunk in chunks)
             {
                 if (Application.isPlaying)
                 {
@@ -87,7 +88,7 @@ namespace Battlegrounds
 
         protected virtual void GenerateChunks()
         {
-            var chunk = CreateChunk(0, 0, int.MaxValue);
+            LowPolyTerrainChunk_Base chunk = CreateChunk(0, 0, int.MaxValue);
             chunk.ApplyGeometry(heights);
             chunk.ApplyColors(colorMapPixels);
             chunks.Add(chunk);
@@ -110,7 +111,7 @@ namespace Battlegrounds
             }
         }
 
-        protected LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
+        protected LowPolyTerrainChunk_Base CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
         {
             GameObject chunkGO = new GameObject
             {
@@ -130,16 +131,32 @@ namespace Battlegrounds
             MeshFilter meshFilter = chunkGO.AddComponent<MeshFilter>();
             MeshCollider meshCollider = chunkGO.AddComponent<MeshCollider>();
 
-            return new LowPolyTerrainChunk(
-                gameObject: chunkGO,
-                meshFilter: meshFilter,
-                meshCollider: meshCollider,
-                terrainScale: terrainScale,
-                chunkIndexX: chunkIndexX,
-                chunkIndexZ: chunkIndexZ,
-                chunkSize: chunkSize,
-                totalCellsX: totalCellsX,
-                totalCellsZ: totalCellsZ);
+            if (weldVertices == true)
+            {
+                return new LowPolyTerrainChunk_WeldingOn(
+                    gameObject: chunkGO,
+                    meshFilter: meshFilter,
+                    meshCollider: meshCollider,
+                    terrainScale: terrainScale,
+                    chunkIndexX: chunkIndexX,
+                    chunkIndexZ: chunkIndexZ,
+                    chunkSize: chunkSize,
+                    totalCellsX: totalCellsX,
+                    totalCellsZ: totalCellsZ);
+            }
+            else
+            {
+                return new LowPolyTerrainChunk_WeldingOff(
+                    gameObject: chunkGO,
+                    meshFilter: meshFilter,
+                    meshCollider: meshCollider,
+                    terrainScale: terrainScale,
+                    chunkIndexX: chunkIndexX,
+                    chunkIndexZ: chunkIndexZ,
+                    chunkSize: chunkSize,
+                    totalCellsX: totalCellsX,
+                    totalCellsZ: totalCellsZ);
+            }
 
             Vector3 GetChunkPosition()
             {

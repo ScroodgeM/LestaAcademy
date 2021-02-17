@@ -5,30 +5,22 @@ using UnityEngine.Assertions;
 namespace Battlegrounds
 {
     [Serializable]
-    public class LowPolyTerrainChunk
+    public class LowPolyTerrainChunk_WeldingOff : LowPolyTerrainChunk_Base
     {
-        public GameObject gameObject;
-
         private readonly MeshCollider meshCollider;
         private readonly Vector3 terrainScale;
 
         private readonly Mesh mesh;
         private readonly Vector3[] vertices;
-        private readonly Vector3[] normals;
         private readonly int[] triangles;
         private readonly Color[] colors;
-
-        internal int mapIndexXFrom { get; private set; }
-        internal int mapIndexXTo { get; private set; }
-        internal int mapIndexZFrom { get; private set; }
-        internal int mapIndexZTo { get; private set; }
 
         private bool trianglesApplied = false;
 
         private int cellsCountX { get { return (mapIndexXTo - mapIndexXFrom); } }
         private int cellsCountZ { get { return (mapIndexZTo - mapIndexZFrom); } }
 
-        public LowPolyTerrainChunk(
+        public LowPolyTerrainChunk_WeldingOff(
             GameObject gameObject,
             MeshFilter meshFilter,
             MeshCollider meshCollider,
@@ -37,9 +29,8 @@ namespace Battlegrounds
             int chunkIndexZ,
             int chunkSize,
             int totalCellsX,
-            int totalCellsZ)
+            int totalCellsZ) : base(gameObject, chunkIndexX, chunkIndexZ, chunkSize, totalCellsX, totalCellsZ)
         {
-            this.gameObject = gameObject;
             this.meshCollider = meshCollider;
             this.terrainScale = terrainScale;
 
@@ -47,34 +38,16 @@ namespace Battlegrounds
             meshFilter.mesh = mesh;
             meshCollider.sharedMesh = mesh;
 
-            this.mapIndexXFrom = chunkIndexX * chunkSize;
-            this.mapIndexXTo = Mathf.Min((chunkIndexX + 1) * chunkSize, totalCellsX);
-            this.mapIndexZFrom = chunkIndexZ * chunkSize;
-            this.mapIndexZTo = Mathf.Min((chunkIndexZ + 1) * chunkSize, totalCellsZ);
-
             Assert.IsTrue(cellsCountX > 0);
             Assert.IsTrue(cellsCountZ > 0);
 
             int vertexCount = 6 * cellsCountX * cellsCountZ;
             vertices = new Vector3[vertexCount];
-            normals = new Vector3[vertexCount];
             triangles = new int[vertexCount];
             colors = new Color[vertexCount];
         }
 
-        internal bool IsInRange(int xMin, int xMax, int zMin, int zMax)
-        {
-            return
-                xMin <= mapIndexXTo
-                &&
-                xMax >= mapIndexXFrom
-                &&
-                zMin <= mapIndexZTo
-                &&
-                zMax >= mapIndexZFrom;
-        }
-
-        internal void ApplyGeometry(float[,] heights)
+        internal override void ApplyGeometry(float[,] heights)
         {
             for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
             {
@@ -102,16 +75,6 @@ namespace Battlegrounds
                     vertices[meshVertexIndex4] = vertex11;
                     vertices[meshVertexIndex5] = vertex10;
 
-                    Vector3 normal000111 = Vector3.Cross(vertex01 - vertex00, vertex11 - vertex00).normalized;
-                    Vector3 normal001011 = Vector3.Cross(vertex11 - vertex00, vertex10 - vertex00).normalized;
-
-                    normals[meshVertexIndex0] = normal000111;
-                    normals[meshVertexIndex1] = normal000111;
-                    normals[meshVertexIndex2] = normal000111;
-                    normals[meshVertexIndex3] = normal001011;
-                    normals[meshVertexIndex4] = normal001011;
-                    normals[meshVertexIndex5] = normal001011;
-
                     if (!trianglesApplied)
                     {
                         triangles[meshVertexIndex0] = meshVertexIndex0;
@@ -123,18 +86,18 @@ namespace Battlegrounds
                     }
                 }
             }
+
             mesh.vertices = vertices;
-            mesh.normals = normals;
             if (!trianglesApplied)
             {
                 mesh.triangles = triangles;
             }
-            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
             meshCollider.sharedMesh = mesh;
             trianglesApplied = true;
         }
 
-        internal void ApplyColors(Color[,] colorMap)
+        internal override void ApplyColors(Color[,] colorMap)
         {
             for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
             {
