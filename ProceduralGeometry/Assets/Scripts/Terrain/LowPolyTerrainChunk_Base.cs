@@ -7,6 +7,9 @@ namespace Battlegrounds
     {
         internal readonly GameObject gameObject;
 
+        internal readonly int totalCellsX;
+        internal readonly int totalCellsZ;
+
         internal readonly int mapIndexXFrom;
         internal readonly int mapIndexXTo;
         internal readonly int mapIndexZFrom;
@@ -15,6 +18,9 @@ namespace Battlegrounds
         internal LowPolyTerrainChunk_Base(GameObject gameObject, int chunkIndexX, int chunkIndexZ, int chunkSize, int totalCellsX, int totalCellsZ)
         {
             this.gameObject = gameObject;
+
+            this.totalCellsX = totalCellsX;
+            this.totalCellsZ = totalCellsZ;
 
             this.mapIndexXFrom = chunkIndexX * chunkSize;
             this.mapIndexXTo = Mathf.Min((chunkIndexX + 1) * chunkSize, totalCellsX);

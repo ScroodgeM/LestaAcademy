@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,17 +6,6 @@ namespace Battlegrounds
 {
     public class LowPolyTerrain : MonoBehaviour
     {
-        [Serializable]
-        private struct TerrainLayer
-        {
-            public AnimationCurve heightsAffected;
-            public float density;
-            public float minMapping;
-            public float maxMapping;
-            public Gradient color;
-        }
-
-        [SerializeField] private TerrainLayer[] terrainLayers;
         [SerializeField] private float cellSize = 0.5f;
         [SerializeField] private Vector2 terrainSize;
         [SerializeField] private Material terrainMaterial;
@@ -94,21 +82,10 @@ namespace Battlegrounds
             chunks.Add(chunk);
         }
 
-        private void GetDataAtCell(int x, int z, out float height, out Color color)
+        protected virtual void GetDataAtCell(int x, int z, out float height, out Color color)
         {
-            height = 0;
-            color = Color.white;
-
-            foreach (TerrainLayer terrainLayer in terrainLayers)
-            {
-                float multiplier = terrainLayer.heightsAffected.Evaluate(height);
-
-                float layerValue = Mathf.PerlinNoise(x * terrainLayer.density * terrainScale.x, z * terrainLayer.density * terrainScale.z);
-                height += Mathf.Lerp(terrainLayer.minMapping, terrainLayer.maxMapping, layerValue * multiplier);
-
-                Color newColor = terrainLayer.color.Evaluate(layerValue);
-                color = Color.Lerp(color, newColor, newColor.a * multiplier);
-            }
+            height = (Mathf.Abs(x - totalCellsX / 2) + Mathf.Abs(z - totalCellsZ / 2)) * 3f;
+            color = new Color((float)x / totalCellsX, (float)z / totalCellsZ, 1f, 1f);
         }
 
         protected LowPolyTerrainChunk_Base CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)

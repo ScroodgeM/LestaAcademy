@@ -12,6 +12,7 @@ namespace Battlegrounds
 
         private readonly Mesh mesh;
         private readonly Vector3[] vertices;
+        private readonly Vector2[] uvs;
         private readonly int[] triangles;
         private readonly Color[] colors;
 
@@ -44,6 +45,7 @@ namespace Battlegrounds
             int vertexCount = (cellsCountX + 1) * (cellsCountZ + 1);
             int trianglesCount = 6 * cellsCountX * cellsCountZ;
             vertices = new Vector3[vertexCount];
+            uvs = new Vector2[vertexCount];
             triangles = new int[trianglesCount];
             colors = new Color[vertexCount];
         }
@@ -57,45 +59,43 @@ namespace Battlegrounds
                     int localX = x - mapIndexXFrom;
                     int localZ = z - mapIndexZFrom;
 
-                    int meshVertexIndex0 = GetVerticeIndex(localX + 0, localZ + 0);
-                    int meshVertexIndex1 = GetVerticeIndex(localX + 0, localZ + 1);
-                    int meshVertexIndex2 = GetVerticeIndex(localX + 1, localZ + 1);
-                    int meshVertexIndex3 = GetVerticeIndex(localX + 0, localZ + 0);
-                    int meshVertexIndex4 = GetVerticeIndex(localX + 1, localZ + 1);
-                    int meshVertexIndex5 = GetVerticeIndex(localX + 1, localZ + 0);
+                    int vertex00index = GetVerticeIndex(localX + 0, localZ + 0);
+                    int vertex01index = GetVerticeIndex(localX + 0, localZ + 1);
+                    int vertex11index = GetVerticeIndex(localX + 1, localZ + 1);
+                    int vertex10index = GetVerticeIndex(localX + 1, localZ + 0);
 
-                    Vector3 vertex00 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
-                    Vector3 vertex01 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
-                    Vector3 vertex10 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
-                    Vector3 vertex11 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
+                    vertices[vertex00index] = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
+                    vertices[vertex01index] = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
+                    vertices[vertex11index] = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
+                    vertices[vertex10index] = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
 
-                    vertices[meshVertexIndex0] = vertex00;
-                    vertices[meshVertexIndex1] = vertex01;
-                    vertices[meshVertexIndex2] = vertex11;
-                    vertices[meshVertexIndex3] = vertex00;
-                    vertices[meshVertexIndex4] = vertex11;
-                    vertices[meshVertexIndex5] = vertex10;
+                    Vector2 uv00 = new Vector2((float)(x + 0) / (float)(totalCellsX - 1), (float)(z + 0) / (float)(totalCellsZ - 1));
+                    Vector2 uv01 = new Vector2((float)(x + 0) / (float)(totalCellsX - 1), (float)(z + 1) / (float)(totalCellsZ - 1));
+                    Vector2 uv11 = new Vector2((float)(x + 1) / (float)(totalCellsX - 1), (float)(z + 1) / (float)(totalCellsZ - 1));
+                    Vector2 uv10 = new Vector2((float)(x + 1) / (float)(totalCellsX - 1), (float)(z + 0) / (float)(totalCellsZ - 1));
+
+                    uvs[vertex00index] = uv00;
+                    uvs[vertex01index] = uv01;
+                    uvs[vertex11index] = uv11;
+                    uvs[vertex10index] = uv10;
 
                     if (!trianglesApplied)
                     {
-                        int meshVertexIndex10 = 6 * (localX + localZ * cellsCountX);
-                        int meshVertexIndex11 = meshVertexIndex10 + 1;
-                        int meshVertexIndex12 = meshVertexIndex10 + 2;
-                        int meshVertexIndex13 = meshVertexIndex10 + 3;
-                        int meshVertexIndex14 = meshVertexIndex10 + 4;
-                        int meshVertexIndex15 = meshVertexIndex10 + 5;
+                        int index = 6 * (localX + localZ * cellsCountX);
 
-                        triangles[meshVertexIndex10] = meshVertexIndex0;
-                        triangles[meshVertexIndex11] = meshVertexIndex1;
-                        triangles[meshVertexIndex12] = meshVertexIndex2;
-                        triangles[meshVertexIndex13] = meshVertexIndex3;
-                        triangles[meshVertexIndex14] = meshVertexIndex4;
-                        triangles[meshVertexIndex15] = meshVertexIndex5;
+                        triangles[index + 0] = vertex00index;
+                        triangles[index + 1] = vertex01index;
+                        triangles[index + 2] = vertex11index;
+
+                        triangles[index + 3] = vertex00index;
+                        triangles[index + 4] = vertex11index;
+                        triangles[index + 5] = vertex10index;
                     }
                 }
             }
 
             mesh.vertices = vertices;
+            mesh.uv = uvs;
             if (!trianglesApplied)
             {
                 mesh.triangles = triangles;

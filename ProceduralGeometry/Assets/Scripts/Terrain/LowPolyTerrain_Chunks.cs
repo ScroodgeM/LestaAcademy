@@ -2,7 +2,7 @@
 
 namespace Battlegrounds
 {
-    public class LowPolyTerrain_Chunks : LowPolyTerrain
+    public class LowPolyTerrain_Chunks : LowPolyTerrain_Perlin
     {
         [SerializeField] private int chunkSize = 8;
 
