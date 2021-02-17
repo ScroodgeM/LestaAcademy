@@ -19,24 +19,14 @@ namespace Battlegrounds
 
         [SerializeField] private TerrainLayer[] terrainLayers;
         [SerializeField] private float cellSize = 0.5f;
-        [SerializeField] private int chunkSize = 32;
-
-        [Space]
-
         [SerializeField] private Vector2 terrainSize;
-
-        [Space]
-
         [SerializeField] private Material terrainMaterial;
-
-        [Space]
 
         protected List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
 
         protected int totalCellsX;
         protected int totalCellsZ;
-        private int totalChunksX;
-        private int totalChunksZ;
+
         protected Vector3 terrainScale;
 
         protected float[,] heights;
@@ -66,21 +56,14 @@ namespace Battlegrounds
         public void GenerateTerrain()
         {
             Clear();
+            GenerateMap();
+            GenerateChunks();
+        }
 
+        private void GenerateMap()
+        {
             totalCellsX = Mathf.FloorToInt(terrainSize.x / cellSize);
             totalCellsZ = Mathf.FloorToInt(terrainSize.y / cellSize);
-
-            totalChunksX = totalCellsX / chunkSize;
-            if (chunkSize * totalChunksX < totalCellsX)
-            {
-                totalChunksX++;
-            }
-
-            totalChunksZ = totalCellsZ / chunkSize;
-            if (chunkSize * totalChunksZ < totalCellsZ)
-            {
-                totalChunksZ++;
-            }
 
             terrainScale = new Vector3(
                 terrainSize.x / totalCellsX,
@@ -100,17 +83,14 @@ namespace Battlegrounds
                     colorMapPixels[x, z] = color;
                 }
             }
+        }
 
-            for (int x = 0; x < totalChunksX; x++)
-            {
-                for (int z = 0; z < totalChunksZ; z++)
-                {
-                    var chunk = CreateChunk(x, z);
-                    chunk.ApplyGeometry(heights);
-                    chunk.ApplyColors(colorMapPixels);
-                    chunks.Add(chunk);
-                }
-            }
+        protected virtual void GenerateChunks()
+        {
+            var chunk = CreateChunk(0, 0, int.MaxValue);
+            chunk.ApplyGeometry(heights);
+            chunk.ApplyColors(colorMapPixels);
+            chunks.Add(chunk);
         }
 
         private void GetDataAtCell(int x, int z, out float height, out Color color)
@@ -130,17 +110,17 @@ namespace Battlegrounds
             }
         }
 
-        private LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ)
+        protected LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
         {
             GameObject chunkGO = new GameObject
             {
-                name = string.Format("Chunk x{0} z{1}", chunkIndexX, chunkIndexZ),
-                layer = transform.gameObject.layer,
+                name = $"Chunk x{chunkIndexX} z{chunkIndexZ}",
+                layer = gameObject.layer,
                 hideFlags = HideFlags.DontSave,
             };
 
             chunkGO.transform.SetParent(transform, false);
-            chunkGO.transform.localPosition = GetChunkPosition(chunkIndexX, chunkIndexZ);
+            chunkGO.transform.localPosition = GetChunkPosition();
             chunkGO.transform.localRotation = Quaternion.identity;
             chunkGO.transform.localScale = Vector3.one;
 
@@ -160,11 +140,11 @@ namespace Battlegrounds
                 chunkSize: chunkSize,
                 totalCellsX: totalCellsX,
                 totalCellsZ: totalCellsZ);
-        }
 
-        private Vector3 GetChunkPosition(int chunkIndexX, int chunkIndexZ)
-        {
-            return new Vector3(chunkIndexX * terrainScale.x, 0f, chunkIndexZ * terrainScale.z) * chunkSize;
+            Vector3 GetChunkPosition()
+            {
+                return new Vector3(chunkIndexX * terrainScale.x, 0f, chunkIndexZ * terrainScale.z) * chunkSize;
+            }
         }
     }
 }

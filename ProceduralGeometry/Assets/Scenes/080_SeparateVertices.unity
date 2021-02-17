@@ -856,7 +856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054029983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9351c5beb85699e4597afd5deb4ab0a1, type: 3}
+  m_Script: {fileID: 11500000, guid: a8686bc6e43ceed478313f697d578e09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   terrainLayers:
@@ -1085,8 +1085,7 @@ MonoBehaviour:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 3
   cellSize: 1
-  chunkSize: 6
-  terrainSize: {x: 500, y: 500}
+  terrainSize: {x: 100, y: 100}
   terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
 --- !u!4 &1054029985
 Transform:
@@ -1096,7 +1095,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054029983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -250, y: 0, z: -250}
+  m_LocalPosition: {x: -50, y: 0, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

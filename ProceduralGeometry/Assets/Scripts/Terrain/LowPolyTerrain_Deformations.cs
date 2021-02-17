@@ -2,7 +2,7 @@
 
 namespace Battlegrounds
 {
-    public class LowPolyTerrain_Deformations : LowPolyTerrain
+    public class LowPolyTerrain_Deformations : LowPolyTerrain_Chunks
     {
         [SerializeField] private Color holeColor;
 
