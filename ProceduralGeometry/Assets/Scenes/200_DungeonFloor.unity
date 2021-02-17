@@ -679,7 +679,50 @@ MonoBehaviour:
   size: {x: 500, y: 500}
   steps: 2000
   seed: -540105823
-  cellRealSize: 15
+  cellRealSize: 10
+  floorRects:
+  - serializedVersion: 2
+    x: 0.5
+    y: 0
+    width: 0.125
+    height: 0.25
+  - serializedVersion: 2
+    x: 0.625
+    y: 0.25
+    width: 0.125
+    height: 0.25
+  - serializedVersion: 2
+    x: 0.25
+    y: 0.25
+    width: 0.125
+    height: 0.25
+  wallRects:
+  - serializedVersion: 2
+    x: 0.125
+    y: 0.75
+    width: 0.125
+    height: 0.25
+  - serializedVersion: 2
+    x: 0.125
+    y: 0.25
+    width: 0.125
+    height: 0.25
+  - serializedVersion: 2
+    x: 0.375
+    y: 0.5
+    width: 0.125
+    height: 0.25
+  roofRects:
+  - serializedVersion: 2
+    x: 0.5
+    y: 0.25
+    width: 0.125
+    height: 0.25
+  - serializedVersion: 2
+    x: 0
+    y: 0.5
+    width: 0.125
+    height: 0.25
 --- !u!4 &1054029985
 Transform:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ namespace Battlegrounds
         [SerializeField] private int steps;
         [SerializeField] private int seed;
         [SerializeField] private float cellRealSize;
+        [SerializeField] private Rect[] floorRects;
+        [SerializeField] private Rect[] wallRects;
+        [SerializeField] private Rect[] roofRects;
 
         private void Awake()
         {
@@ -58,48 +61,83 @@ namespace Battlegrounds
                             continue;
                         }
 
-                        int i0 = vertices.Count;
-                        int i1 = i0 + 1;
-                        int i2 = i0 + 2;
-                        int i3 = i0 + 3;
-                        int i4 = i0 + 4;
-                        int i5 = i0 + 5;
+                        AddSurface(x, z, floorRects[Random.Range(0, floorRects.Length)], Quaternion.identity);
 
-                        Vector2 centerOffset = (Vector2)size * (-cellRealSize * 0.5f);
-                        Vector2 v2_00 = new Vector2(x + 0, z + 0) * cellRealSize + centerOffset;
-                        Vector2 v2_01 = new Vector2(x + 0, z + 1) * cellRealSize + centerOffset;
-                        Vector2 v2_10 = new Vector2(x + 1, z + 0) * cellRealSize + centerOffset;
-                        Vector2 v2_11 = new Vector2(x + 1, z + 1) * cellRealSize + centerOffset;
+                        if (IsWalkable(x + 1, z) == false)
+                        {
+                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 90f));
+                        }
 
-                        vertices.Add(new Vector3(v2_00.x, 0f, v2_00.y));
-                        vertices.Add(new Vector3(v2_01.x, 0f, v2_01.y));
-                        vertices.Add(new Vector3(v2_11.x, 0f, v2_11.y));
-                        vertices.Add(new Vector3(v2_00.x, 0f, v2_00.y));
-                        vertices.Add(new Vector3(v2_11.x, 0f, v2_11.y));
-                        vertices.Add(new Vector3(v2_10.x, 0f, v2_10.y));
+                        if (IsWalkable(x - 1, z) == false)
+                        {
+                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, -90f));
+                        }
 
-                        uv.Add(Vector2.zero);
-                        uv.Add(Vector2.up);
-                        uv.Add(Vector2.one);
-                        uv.Add(Vector2.zero);
-                        uv.Add(Vector2.one);
-                        uv.Add(Vector2.right);
+                        if (IsWalkable(x, z + 1) == false)
+                        {
+                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 0f));
+                        }
 
-                        colors.Add(Color.white);
-                        colors.Add(Color.white);
-                        colors.Add(Color.white);
-                        colors.Add(Color.white);
-                        colors.Add(Color.white);
-                        colors.Add(Color.white);
+                        if (IsWalkable(x, z - 1) == false)
+                        {
+                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 180f));
+                        }
 
-                        triangles.Add(i0);
-                        triangles.Add(i1);
-                        triangles.Add(i2);
-                        triangles.Add(i3);
-                        triangles.Add(i4);
-                        triangles.Add(i5);
+                        AddSurface(x, z, roofRects[Random.Range(0, roofRects.Length)], Quaternion.Euler(0f, 0f, -180f));
                     }
                 }
+            }
+
+            void AddSurface(int x, int z, Rect uvRect, Quaternion rotation)
+            {
+                int i0 = vertices.Count;
+                int i1 = i0 + 1;
+                int i2 = i0 + 2;
+                int i3 = i0 + 3;
+                int i4 = i0 + 4;
+                int i5 = i0 + 5;
+
+                Vector3 geometricCenter = cellRealSize * (new Vector3(x + 0.5f, 0.5f, z + 0.5f) - new Vector3(size.x, 0, size.y) * 0.5f);
+
+                Vector3 v3_00 = rotation * new Vector3(-0.5f, -0.5f, -0.5f) * cellRealSize + geometricCenter;
+                Vector3 v3_01 = rotation * new Vector3(-0.5f, -0.5f, +0.5f) * cellRealSize + geometricCenter;
+                Vector3 v3_11 = rotation * new Vector3(+0.5f, -0.5f, +0.5f) * cellRealSize + geometricCenter;
+                Vector3 v3_10 = rotation * new Vector3(+0.5f, -0.5f, -0.5f) * cellRealSize + geometricCenter;
+
+                vertices.Add(v3_00);
+                vertices.Add(v3_01);
+                vertices.Add(v3_11);
+                vertices.Add(v3_00);
+                vertices.Add(v3_11);
+                vertices.Add(v3_10);
+
+                uv.Add(uvRect.min);
+                uv.Add(new Vector2(uvRect.xMin, uvRect.yMax));
+                uv.Add(uvRect.max);
+                uv.Add(uvRect.min);
+                uv.Add(uvRect.max);
+                uv.Add(new Vector2(uvRect.xMax, uvRect.yMin));
+
+                colors.Add(Color.white);
+                colors.Add(Color.white);
+                colors.Add(Color.white);
+                colors.Add(Color.white);
+                colors.Add(Color.white);
+                colors.Add(Color.white);
+
+                triangles.Add(i0);
+                triangles.Add(i1);
+                triangles.Add(i2);
+                triangles.Add(i3);
+                triangles.Add(i4);
+                triangles.Add(i5);
+            }
+
+            bool IsWalkable(int x, int z)
+            {
+                if (x < 0 || x >= size.x || z < 0 || z >= size.y) { return false; }
+
+                return map[x, z];
             }
         }
 
