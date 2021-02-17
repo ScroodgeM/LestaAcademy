@@ -859,6 +859,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a9612b68889f748921903e2afdb4aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellSize: 1
+  terrainSize: {x: 500, y: 500}
+  terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
+  weldVertices: 0
   terrainLayers:
   - heightsAffected:
       serializedVersion: 2
@@ -1084,10 +1088,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 3
-  cellSize: 1
   chunkSize: 6
-  terrainSize: {x: 500, y: 500}
-  terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
   holeColor: {r: 0.38679248, g: 0.08431764, b: 0.0018244971, a: 1}
 --- !u!4 &1054029985
 Transform:
