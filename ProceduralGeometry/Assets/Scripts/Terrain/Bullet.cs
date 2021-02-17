@@ -12,6 +12,15 @@ public class Bullet : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(transform.forward * startSpeed, ForceMode.VelocityChange);
     }
 
+    private void Update()
+    {
+        // in case we falling to nowhere
+        if (transform.position.y < -100)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         LowPolyTerrain terrain = collision.gameObject.GetComponentInParent<LowPolyTerrain>();

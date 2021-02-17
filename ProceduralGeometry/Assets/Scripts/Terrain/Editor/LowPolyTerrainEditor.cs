@@ -10,8 +10,6 @@ namespace Battlegrounds
         {
             base.OnInspectorGUI();
 
-            serializedObject.Update();
-
             EditorGUILayout.BeginHorizontal();
             {
                 if (GUILayout.Button("Clear"))
@@ -25,8 +23,6 @@ namespace Battlegrounds
                 }
             }
             EditorGUILayout.EndHorizontal();
-
-            serializedObject.ApplyModifiedProperties();
         }
     }
 }

@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   boomPower: 5
-  startSpeed: 100
+  startSpeed: 50
 --- !u!54 &-8809934358132188533
 Rigidbody:
   m_ObjectHideFlags: 0
