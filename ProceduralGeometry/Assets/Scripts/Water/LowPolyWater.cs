@@ -9,6 +9,8 @@ namespace Battlegrounds
 
         private void Awake()
         {
+            Clear();
+
             GenerateWater();
         }
 
@@ -22,6 +24,7 @@ namespace Battlegrounds
             int[] triangles = new int[vertexCount];
             Vector2[] uv1 = new Vector2[vertexCount];
             Vector2[] uv2 = new Vector2[vertexCount];
+
             GenerateVertices();
 
             Mesh mesh = new Mesh
@@ -35,7 +38,8 @@ namespace Battlegrounds
 
             mesh.RecalculateBounds();
 
-            GetComponent<MeshFilter>().mesh = mesh;
+            GetComponent<MeshFilter>().sharedMesh = mesh;
+            GetComponent<MeshCollider>().sharedMesh = mesh;
 
             void GenerateVertices()
             {
@@ -87,12 +91,17 @@ namespace Battlegrounds
             }
         }
 
-        private void OnDrawGizmosSelected()
+        public void Clear()
         {
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale);
+            var mesh = GetComponent<MeshFilter>().sharedMesh;
 
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireCube(Vector3.zero, new Vector3(waterSize.x, 0, waterSize.y));
+            if (mesh != null)
+            {
+                DestroyImmediate(mesh);
+            }
+
+            GetComponent<MeshFilter>().sharedMesh = null;
+            GetComponent<MeshCollider>().sharedMesh = null;
         }
     }
 }
