@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Battlegrounds
 {
-    [CustomEditor(typeof(LowPolyTerrain))]
+    [CustomEditor(typeof(LowPolyTerrain), true)]
     public class LowPolyTerrainEditor : Editor
     {
         public override void OnInspectorGUI()

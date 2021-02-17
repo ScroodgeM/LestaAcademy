@@ -34,6 +34,7 @@ namespace Battlegrounds
                 triangles = triangles,
                 uv = uv1,
                 uv2 = uv2,
+                hideFlags = HideFlags.DontSave,
             };
 
             mesh.RecalculateBounds();

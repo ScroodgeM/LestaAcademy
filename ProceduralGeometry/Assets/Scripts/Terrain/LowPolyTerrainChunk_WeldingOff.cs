@@ -12,7 +12,6 @@ namespace Battlegrounds
 
         private readonly Mesh mesh;
         private readonly Vector3[] vertices;
-        private readonly Vector2[] uvs;
         private readonly int[] triangles;
         private readonly Color[] colors;
 
@@ -35,7 +34,7 @@ namespace Battlegrounds
             this.meshCollider = meshCollider;
             this.terrainScale = terrainScale;
 
-            mesh = new Mesh { name = string.Format("Chunk x{0} z{1}", chunkIndexX, chunkIndexZ) };
+            mesh = new Mesh { name = string.Format("Chunk x{0} z{1}", chunkIndexX, chunkIndexZ), hideFlags = HideFlags.DontSave, };
             meshFilter.mesh = mesh;
             meshCollider.sharedMesh = mesh;
 
@@ -44,7 +43,6 @@ namespace Battlegrounds
 
             int vertexCount = 6 * cellsCountX * cellsCountZ;
             vertices = new Vector3[vertexCount];
-            uvs = new Vector2[vertexCount];
             triangles = new int[vertexCount];
             colors = new Color[vertexCount];
         }
@@ -77,18 +75,6 @@ namespace Battlegrounds
                     vertices[meshVertexIndex4] = vertex11;
                     vertices[meshVertexIndex5] = vertex10;
 
-                    Vector2 uv00 = new Vector2((float)(x + 0) / (float)(totalCellsX - 1), (float)(z + 0) / (float)(totalCellsZ - 1));
-                    Vector2 uv01 = new Vector2((float)(x + 0) / (float)(totalCellsX - 1), (float)(z + 1) / (float)(totalCellsZ - 1));
-                    Vector2 uv11 = new Vector2((float)(x + 1) / (float)(totalCellsX - 1), (float)(z + 1) / (float)(totalCellsZ - 1));
-                    Vector2 uv10 = new Vector2((float)(x + 1) / (float)(totalCellsX - 1), (float)(z + 0) / (float)(totalCellsZ - 1));
-
-                    uvs[meshVertexIndex0] = uv00;
-                    uvs[meshVertexIndex1] = uv01;
-                    uvs[meshVertexIndex2] = uv11;
-                    uvs[meshVertexIndex3] = uv00;
-                    uvs[meshVertexIndex4] = uv11;
-                    uvs[meshVertexIndex5] = uv10;
-
                     if (!trianglesApplied)
                     {
                         triangles[meshVertexIndex0] = meshVertexIndex0;
@@ -102,7 +88,6 @@ namespace Battlegrounds
             }
 
             mesh.vertices = vertices;
-            mesh.uv = uvs;
             if (!trianglesApplied)
             {
                 mesh.triangles = triangles;
