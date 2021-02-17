@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        LowPolyTerrain terrain = collision.gameObject.GetComponentInParent<LowPolyTerrain>();
+        LowPolyTerrain_Deformations terrain = collision.gameObject.GetComponentInParent<LowPolyTerrain_Deformations>();
         if (terrain != null)
         {
             terrain.Deformate(mode, collision.contacts[0].point, boomPower, boomPower);

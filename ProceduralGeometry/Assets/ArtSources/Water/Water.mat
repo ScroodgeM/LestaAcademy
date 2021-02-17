@@ -28,9 +28,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _RandomWavesAplitude: 1
+    - _RandomWavesAplitude: 2.11
     - _RandomWavesScale: 0.002
-    - _RegularWavesAplitude: 0.5
+    - _RegularWavesAplitude: 0.81
     - _RegularWavesScale: 0.2
     - _WaveSpeed: 0.5
     m_Colors:

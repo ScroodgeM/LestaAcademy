@@ -856,7 +856,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1054029983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a9612b68889f748921903e2afdb4aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9351c5beb85699e4597afd5deb4ab0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   terrainLayers:
@@ -1088,7 +1088,6 @@ MonoBehaviour:
   chunkSize: 6
   terrainSize: {x: 500, y: 500}
   terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
-  holeColor: {r: 0.38679248, g: 0.08431764, b: 0.0018244971, a: 1}
 --- !u!4 &1054029985
 Transform:
   m_ObjectHideFlags: 0
