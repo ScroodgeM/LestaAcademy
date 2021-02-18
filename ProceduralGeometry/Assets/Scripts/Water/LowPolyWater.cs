@@ -40,7 +40,6 @@ namespace Battlegrounds
             mesh.RecalculateBounds();
 
             GetComponent<MeshFilter>().sharedMesh = mesh;
-            GetComponent<MeshCollider>().sharedMesh = mesh;
 
             void GenerateVertices()
             {
@@ -102,7 +101,6 @@ namespace Battlegrounds
             }
 
             GetComponent<MeshFilter>().sharedMesh = null;
-            GetComponent<MeshCollider>().sharedMesh = null;
         }
     }
 }
