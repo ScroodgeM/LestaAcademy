@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageDrawerMaterial: {fileID: 2100000, guid: 887cd229c06a5f44ba2755a66bf1cc3d, type: 2}
-  renderSize: {x: 300, y: 300}
+  renderSize: {x: 500, y: 500}
 --- !u!114 &1607508174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,13 +610,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46382b697e8c39c47abec2f43fb89073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathToSaveImages: d:\temp
+  pathToSaveImages: C:\repositories\WGAcademyUnityDemo\
   preview: {fileID: 1429948841}
   doItButton: {fileID: 507874147}
   imageCombiner: {fileID: 1607508173}
   layers:
   - texture: {fileID: 2800000, guid: 41599b51dee6f8a42a35219c6bb70056, type: 3}
-    position: {x: 0, y: 0}
+    position: {x: -120, y: 80}
     size: {x: 100, y: 100}
     rotation: 20
   - texture: {fileID: 2800000, guid: c94832d7e42544b44869bf358799c212, type: 3}

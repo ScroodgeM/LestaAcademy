@@ -87,6 +87,7 @@ namespace Battlegrounds
             {
                 mesh.triangles = triangles;
             }
+            mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             meshCollider.sharedMesh = mesh;
             trianglesApplied = true;
