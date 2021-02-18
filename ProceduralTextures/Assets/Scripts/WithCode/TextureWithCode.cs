@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,6 @@ public class TextureWithCode : MonoBehaviour
 
         preview.texture = texture;
 
-        System.IO.File.WriteAllBytes($"{pathToSaveImages}/{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}.png", Texture2DExtensions.ToBytesPNG(texture));
+        File.WriteAllBytes(Path.Combine(pathToSaveImages, $"{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}.png"), Texture2DExtensions.ToBytesPNG(texture));
     }
 }
