@@ -1,0 +1,80 @@
+@startuml
+scale max 1920*1080
+class CameraController {
+}
+
+
+class Common #adff2f/fafad2 {
+}
+
+Unity.TextMeshPro <-- Common
+
+class ConfigManager {
+}
+
+
+class DiggerController {
+}
+
+
+class DTS #adff2f/fafad2 {
+}
+
+Common <-- DTS
+
+class Factory {
+}
+
+
+class Interfaces #adff2f/fafad2 {
+}
+
+Common <-- Interfaces
+DTS <-- Interfaces
+
+class LocalizationManager {
+}
+
+
+class MapController {
+}
+
+
+class PreviewStage {
+}
+
+
+class ProfileManager {
+}
+
+
+class Root {
+}
+
+Factory <-- Root
+
+class TutorialController {
+}
+
+
+class UserInterface {
+}
+
+Root <-- UserInterface
+Windows <-- UserInterface
+
+class Views {
+}
+
+Root <-- Views
+
+class Windows {
+}
+
+Root <-- Windows
+
+class FreeUIBuildPackage {
+}
+
+
+@enduml
