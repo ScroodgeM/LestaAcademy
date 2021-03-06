@@ -1,7 +1,27 @@
 using System.Collections.Generic;
 
-namespace WGADemo.Correct
+namespace WGADemo.DesignPrinciples.DontRepeatYourself.Correct
 {
+    public class Unit
+    {
+        public const float MaxHealth = 100f;
+
+        private float health;
+
+        public float GetHealth() => health;
+
+        public void HandleHeal(float healthPoints)
+        {
+            health += healthPoints;
+            if (health > MaxHealth) { health = MaxHealth; }
+        }
+
+        public void HandleAttack(float damagePoints)
+        {
+            health -= damagePoints;
+        }
+    }
+
     public abstract class UnitBehaviour
     {
         protected Unit GetLowestHealthUnit(List<Unit> units)
@@ -50,26 +70,6 @@ namespace WGADemo.Correct
         private void Heal(Unit unit)
         {
             unit.HandleHeal(10f);
-        }
-    }
-
-    public class Unit
-    {
-        public const float MaxHealth = 100f;
-
-        private float health;
-
-        public float GetHealth() => health;
-
-        public void HandleHeal(float healthPoints)
-        {
-            health += healthPoints;
-            if (health > MaxHealth) { health = MaxHealth; }
-        }
-
-        public void HandleAttack(float damagePoints)
-        {
-            health -= damagePoints;
         }
     }
 }

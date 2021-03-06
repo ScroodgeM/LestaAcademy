@@ -1,7 +1,25 @@
 using System.Collections.Generic;
 
-namespace WGADemo.Wrong
+namespace WGADemo.DesignPrinciples.DontRepeatYourself.Wrong
 {
+    public class Unit
+    {
+        private float health;
+
+        public float GetHealth() => health;
+
+        public void HandleHeal(float healthPoints)
+        {
+            health += healthPoints;
+            if (health > 100f) { health = 100f; }
+        }
+
+        public void HandleAttack(float damagePoints)
+        {
+            health -= damagePoints;
+        }
+    }
+
     public class AttackUnitBehaviour
     {
         public void UseSkill(List<Unit> allEnemies)
@@ -62,24 +80,6 @@ namespace WGADemo.Wrong
             }
 
             return result;
-        }
-    }
-
-    public class Unit
-    {
-        private float health;
-
-        public float GetHealth() => health;
-
-        public void HandleHeal(float healthPoints)
-        {
-            health += healthPoints;
-            if (health > 100f) { health = 100f; }
-        }
-
-        public void HandleAttack(float damagePoints)
-        {
-            health -= damagePoints;
         }
     }
 }
