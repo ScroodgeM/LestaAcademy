@@ -46,7 +46,7 @@ namespace WGADemo.DesignPrinciples.LiskovSubstitutionPrinciple.Wrong
 
         public override void Move()
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
