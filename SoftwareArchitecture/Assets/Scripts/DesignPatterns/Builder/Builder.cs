@@ -5,64 +5,66 @@ using WGADemo.DesignPatterns.Builder.Weapons;
 
 namespace WGADemo.DesignPatterns.Builder
 {
-    public class Builder
+    public static class Builder
     {
-        public IUnit CreateUnit(UnitType unitType, UnitRank unitRank)
+        public static Soldier CreateSoldier(UnitRank unitRank)
         {
-            IUnit unit;
+            Soldier soldierUnit = new Soldier();
 
-            switch (unitType)
+            switch (unitRank)
             {
-                case UnitType.Medic:
-                    unit = new Medic();
-                    switch (unitRank)
-                    {
-                        case UnitRank.Novice:
-                            unit.AttachWeapon(new Pistol());
-                            return unit;
+                case UnitRank.Novice:
+                    soldierUnit.AttachWeapon(new AssaultRifle());
+                    soldierUnit.AttackArmor(new LightArmor());
+                    return soldierUnit;
 
-                        case UnitRank.Veteran:
-                            unit.AttachWeapon(new AssaultRifle());
-                            unit.AttackArmor(new LightArmor());
-                            return unit;
-                    }
-                    break;
-
-                case UnitType.Sniper:
-                    unit = new Sniper();
-                    switch (unitRank)
-                    {
-                        case UnitRank.Novice:
-                            unit.AttachWeapon(new SniperRifle());
-                            return unit;
-
-                        case UnitRank.Veteran:
-                            unit.AttachWeapon(new SniperRifle());
-                            unit.AttachWeapon(new Pistol());
-                            unit.AttackArmor(new LightArmor());
-                            return unit;
-                    }
-                    break;
-
-                case UnitType.Soldier:
-                    unit = new Soldier();
-                    switch (unitRank)
-                    {
-                        case UnitRank.Novice:
-                            unit.AttachWeapon(new AssaultRifle());
-                            unit.AttackArmor(new LightArmor());
-                            return unit;
-
-                        case UnitRank.Veteran:
-                            unit.AttachWeapon(new AssaultRifle());
-                            unit.AttachWeapon(new Pistol());
-                            unit.AttackArmor(new HeavyArmor());
-                            return unit;
-                    }
-                    break;
+                case UnitRank.Veteran:
+                    soldierUnit.AttachWeapon(new AssaultRifle());
+                    soldierUnit.AttachWeapon(new Pistol());
+                    soldierUnit.AttackArmor(new HeavyArmor());
+                    return soldierUnit;
             }
 
-            throw new NotSupportedException($"unit of type {unitType} and rank {unitRank} not supported");
+            throw new NotSupportedException($"unit of type Soldier and rank {unitRank} not supported");
+        }
+
+        public static Sniper CreateSniper(UnitRank unitRank)
+        {
+            Sniper sniperUnit = new Sniper();
+
+            switch (unitRank)
+            {
+                case UnitRank.Novice:
+                    sniperUnit.AttachWeapon(new SniperRifle());
+                    return sniperUnit;
+
+                case UnitRank.Veteran:
+                    sniperUnit.AttachWeapon(new SniperRifle());
+                    sniperUnit.AttachWeapon(new Pistol());
+                    sniperUnit.AttackArmor(new LightArmor());
+                    return sniperUnit;
+            }
+
+            throw new NotSupportedException($"unit of type Sniper and rank {unitRank} not supported");
+        }
+
+        public static Medic CreateMedic(UnitRank unitRank)
+        {
+            Medic medicUnit = new Medic();
+
+            switch (unitRank)
+            {
+                case UnitRank.Novice:
+                    medicUnit.AttachWeapon(new Pistol());
+                    return medicUnit;
+
+                case UnitRank.Veteran:
+                    medicUnit.AttachWeapon(new AssaultRifle());
+                    medicUnit.AttackArmor(new LightArmor());
+                    return medicUnit;
+            }
+
+            throw new NotSupportedException($"unit of type Medic and rank {unitRank} not supported");
         }
     }
 }
