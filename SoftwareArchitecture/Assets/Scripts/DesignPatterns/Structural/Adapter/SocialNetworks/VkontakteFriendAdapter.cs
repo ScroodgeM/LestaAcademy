@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Structural.Adapter
+namespace WGADemo.DesignPatterns.Structural.Adapter.SocialNetworks
 {
     public class VkontakteFriendAdapter : ISocialNetworkFriend
     {
