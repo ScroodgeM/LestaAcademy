@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.FactoryMethod.Units;
+using WGADemo.DesignPatterns.Creational.FactoryMethod.Units;
 
-namespace WGADemo.DesignPatterns.FactoryMethod
+namespace WGADemo.DesignPatterns.Creational.FactoryMethod
 {
     public class GameController
     {

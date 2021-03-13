@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Prototype
+namespace WGADemo.DesignPatterns.Creational.Prototype
 {
     public class PrototypeSelector : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Builder.Units
+namespace WGADemo.DesignPatterns.Creational.Builder.Units
 {
     public class Sniper : IUnit
     {

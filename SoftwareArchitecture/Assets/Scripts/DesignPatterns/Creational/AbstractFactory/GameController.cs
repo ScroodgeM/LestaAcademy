@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.AbstractFactory
+namespace WGADemo.DesignPatterns.Creational.AbstractFactory
 {
     public class GameController
     {

@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.AbstractFactory.Units
+namespace WGADemo.DesignPatterns.Creational.AbstractFactory.Units
 {
     public class Soldier : IUnit
     {

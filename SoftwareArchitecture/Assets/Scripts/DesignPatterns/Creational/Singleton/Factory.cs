@@ -1,9 +1,10 @@
-﻿using System;
+﻿
+using System;
 using UnityEngine;
-using WGADemo.DesignPatterns.Singleton.Units;
-using WGADemo.DesignPatterns.Singleton.Weapons;
+using WGADemo.DesignPatterns.Creational.Singleton.Units;
+using WGADemo.DesignPatterns.Creational.Singleton.Weapons;
 
-namespace WGADemo.DesignPatterns.Singleton
+namespace WGADemo.DesignPatterns.Creational.Singleton
 {
     public class Factory : MonoBehaviour, IFactory
     {

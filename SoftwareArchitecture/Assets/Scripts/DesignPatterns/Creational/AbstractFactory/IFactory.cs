@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.AbstractFactory
+namespace WGADemo.DesignPatterns.Creational.AbstractFactory
 {
     public interface IFactory
     {

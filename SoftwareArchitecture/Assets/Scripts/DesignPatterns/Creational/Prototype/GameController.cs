@@ -1,7 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Prototype
+namespace WGADemo.DesignPatterns.Creational.Prototype
 {
     public class GameController
     {

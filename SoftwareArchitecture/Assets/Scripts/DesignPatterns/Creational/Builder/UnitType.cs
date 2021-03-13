@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Builder
+namespace WGADemo.DesignPatterns.Creational.Builder
 {
     public enum UnitType
     {

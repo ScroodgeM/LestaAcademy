@@ -1,6 +1,7 @@
-﻿using System;
+﻿
+using System;
 
-namespace WGADemo.DesignPatterns.Prototype.Armors
+namespace WGADemo.DesignPatterns.Creational.Prototype.Armors
 {
     public class LightArmor : IArmor
     {

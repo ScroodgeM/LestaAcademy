@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
-namespace WGADemo.DesignPatterns.LazyInitialization
+namespace WGADemo.DesignPatterns.Creational.LazyInitialization
 {
     public class EntryPoint : MonoBehaviour
     {

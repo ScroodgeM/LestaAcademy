@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Multiton
+namespace WGADemo.DesignPatterns.Creational.Multiton
 {
     public interface IUnit : IObjectPoolMember
     {

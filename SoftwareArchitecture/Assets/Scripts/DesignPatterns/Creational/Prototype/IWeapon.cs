@@ -1,4 +1,5 @@
-﻿namespace WGADemo.DesignPatterns.Prototype
+﻿
+namespace WGADemo.DesignPatterns.Creational.Prototype
 {
     public interface IWeapon
     {

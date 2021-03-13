@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Builder.Weapons
+namespace WGADemo.DesignPatterns.Creational.Builder.Weapons
 {
     public class SniperRifle : IWeapon
     {

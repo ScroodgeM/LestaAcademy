@@ -1,6 +1,7 @@
-﻿using System;
+﻿
+using System;
 
-namespace WGADemo.DesignPatterns.Builder.Armors
+namespace WGADemo.DesignPatterns.Creational.Builder.Armors
 {
     public class HeavyArmor : IArmor
     {

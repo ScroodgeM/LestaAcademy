@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.FactoryMethod
+namespace WGADemo.DesignPatterns.Creational.FactoryMethod
 {
     public enum UnitType
     {

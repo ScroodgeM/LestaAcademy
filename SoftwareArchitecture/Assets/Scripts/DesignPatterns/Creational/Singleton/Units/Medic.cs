@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Singleton.Units
+namespace WGADemo.DesignPatterns.Creational.Singleton.Units
 {
     public class Medic : IUnit
     {

@@ -1,8 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.Multiton.Units;
+using WGADemo.DesignPatterns.Creational.Multiton.Units;
 
-namespace WGADemo.DesignPatterns.Multiton
+namespace WGADemo.DesignPatterns.Creational.Multiton
 {
     public class GameController
     {

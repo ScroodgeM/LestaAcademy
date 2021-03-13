@@ -1,8 +1,9 @@
-﻿using System;
-using WGADemo.DesignPatterns.AbstractFactory.Units;
-using WGADemo.DesignPatterns.AbstractFactory.Weapons;
+﻿
+using System;
+using WGADemo.DesignPatterns.Creational.AbstractFactory.Units;
+using WGADemo.DesignPatterns.Creational.AbstractFactory.Weapons;
 
-namespace WGADemo.DesignPatterns.AbstractFactory
+namespace WGADemo.DesignPatterns.Creational.AbstractFactory
 {
     public class Factory : IFactory
     {

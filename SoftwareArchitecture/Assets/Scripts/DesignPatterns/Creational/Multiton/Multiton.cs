@@ -1,7 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Multiton
+namespace WGADemo.DesignPatterns.Creational.Multiton
 {
     public class Multiton<T, TI>
     {

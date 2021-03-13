@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.ObjectPool
+namespace WGADemo.DesignPatterns.Creational.ObjectPool
 {
     public enum UnitType
     {

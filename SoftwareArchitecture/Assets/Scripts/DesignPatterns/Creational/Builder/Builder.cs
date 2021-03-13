@@ -1,9 +1,10 @@
-﻿using System;
-using WGADemo.DesignPatterns.Builder.Armors;
-using WGADemo.DesignPatterns.Builder.Units;
-using WGADemo.DesignPatterns.Builder.Weapons;
+﻿
+using System;
+using WGADemo.DesignPatterns.Creational.Builder.Armors;
+using WGADemo.DesignPatterns.Creational.Builder.Units;
+using WGADemo.DesignPatterns.Creational.Builder.Weapons;
 
-namespace WGADemo.DesignPatterns.Builder
+namespace WGADemo.DesignPatterns.Creational.Builder
 {
     public static class Builder
     {

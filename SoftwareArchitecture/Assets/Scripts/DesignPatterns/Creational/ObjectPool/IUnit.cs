@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.ObjectPool
+namespace WGADemo.DesignPatterns.Creational.ObjectPool
 {
     public interface IUnit : IObjectPoolMember<UnitType>
     {

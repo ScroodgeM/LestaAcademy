@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Singleton
+namespace WGADemo.DesignPatterns.Creational.Singleton
 {
     public class EntryPoint : MonoBehaviour
     {

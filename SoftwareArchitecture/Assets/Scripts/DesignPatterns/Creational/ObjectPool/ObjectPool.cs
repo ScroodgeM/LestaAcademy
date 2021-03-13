@@ -1,7 +1,8 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.ObjectPool
+namespace WGADemo.DesignPatterns.Creational.ObjectPool
 {
     public class ObjectPool<T, TI> where T : IObjectPoolMember<TI>
     {

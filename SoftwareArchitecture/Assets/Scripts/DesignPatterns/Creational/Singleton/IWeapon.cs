@@ -1,4 +1,5 @@
-﻿namespace WGADemo.DesignPatterns.Singleton
+﻿
+namespace WGADemo.DesignPatterns.Creational.Singleton
 {
     public interface IWeapon
     {

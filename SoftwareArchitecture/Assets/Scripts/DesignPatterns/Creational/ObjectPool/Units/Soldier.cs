@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.ObjectPool.Units
+namespace WGADemo.DesignPatterns.Creational.ObjectPool.Units
 {
     public class Soldier : Unit
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.AbstractFactory.Weapons
+namespace WGADemo.DesignPatterns.Creational.AbstractFactory.Weapons
 {
     public class AssaultRifle : IWeapon
     {
