@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Structural.Decorator
 {

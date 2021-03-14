@@ -16,13 +16,13 @@ namespace WGADemo.DesignPatterns.Creational.Builder
             {
                 case UnitRank.Novice:
                     soldierUnit.AttachWeapon(new AssaultRifle());
-                    soldierUnit.AttackArmor(new LightArmor());
+                    soldierUnit.AttachArmor(new LightArmor());
                     return soldierUnit;
 
                 case UnitRank.Veteran:
                     soldierUnit.AttachWeapon(new AssaultRifle());
                     soldierUnit.AttachWeapon(new Pistol());
-                    soldierUnit.AttackArmor(new HeavyArmor());
+                    soldierUnit.AttachArmor(new HeavyArmor());
                     return soldierUnit;
             }
 
@@ -42,7 +42,7 @@ namespace WGADemo.DesignPatterns.Creational.Builder
                 case UnitRank.Veteran:
                     sniperUnit.AttachWeapon(new SniperRifle());
                     sniperUnit.AttachWeapon(new Pistol());
-                    sniperUnit.AttackArmor(new LightArmor());
+                    sniperUnit.AttachArmor(new LightArmor());
                     return sniperUnit;
             }
 
@@ -61,7 +61,7 @@ namespace WGADemo.DesignPatterns.Creational.Builder
 
                 case UnitRank.Veteran:
                     medicUnit.AttachWeapon(new AssaultRifle());
-                    medicUnit.AttackArmor(new LightArmor());
+                    medicUnit.AttachArmor(new LightArmor());
                     return medicUnit;
             }
 

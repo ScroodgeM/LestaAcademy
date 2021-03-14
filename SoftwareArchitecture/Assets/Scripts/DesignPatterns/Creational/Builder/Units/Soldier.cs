@@ -20,7 +20,7 @@ namespace WGADemo.DesignPatterns.Creational.Builder.Units
             throw new NotImplementedException();
         }
 
-        public void AttackArmor(IArmor armor)
+        public void AttachArmor(IArmor armor)
         {
             throw new NotImplementedException();
         }

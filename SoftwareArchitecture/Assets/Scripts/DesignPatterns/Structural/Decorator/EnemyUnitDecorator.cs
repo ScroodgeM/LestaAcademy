@@ -1,4 +1,5 @@
-﻿namespace WGADemo.DesignPatterns.Structural.Decorator
+﻿
+namespace WGADemo.DesignPatterns.Structural.Decorator
 {
     public abstract class EnemyUnitDecorator : IEnemyUnit
     {
