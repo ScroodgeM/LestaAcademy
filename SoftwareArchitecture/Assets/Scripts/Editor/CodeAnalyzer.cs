@@ -31,6 +31,7 @@ namespace WGADemo.Editor
                 AnalyzeCSharpFile(filePath, ref lines);
                 File.WriteAllLines(filePath, lines, System.Text.Encoding.UTF8);
             }
+            Debug.Log("AnalyzeCode: done");
         }
 
         private static void AnalyzeCSharpFile(string filePath, ref string[] lines)
