@@ -6,6 +6,12 @@ namespace WGADemo.DesignPatterns.Structural.Flyweight
 {
     public class PlayerProfile:IPlayerProfile
     {
+        public Texture2D Avatar => avatar;
+        public int Level => level;
+        public string Name => name;
+        public int PlayerId => playerId;
+        public int Rating => rating;
+
         private readonly int playerId;
         private readonly int level;
         private readonly int rating;
@@ -31,11 +37,5 @@ namespace WGADemo.DesignPatterns.Structural.Flyweight
                 avatarsCache.Add(playerId, avatar);
             }
         }
-
-        public Texture2D GetAvatar() => avatar;
-        public int GetLevel() => level;
-        public string GetName() => name;
-        public int GetPlayerId() => playerId;
-        public int GetRating() => rating;
     }
 }

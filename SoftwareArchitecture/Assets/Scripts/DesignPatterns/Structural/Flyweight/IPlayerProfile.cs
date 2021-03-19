@@ -5,10 +5,10 @@ namespace WGADemo.DesignPatterns.Structural.Flyweight
 {
     public interface IPlayerProfile
     {
-        int GetPlayerId();
-        string GetName();
-        int GetLevel();
-        int GetRating();
-        Texture2D GetAvatar();
+        int PlayerId { get; }
+        string Name { get; }
+        int Level { get; }
+        int Rating { get; }
+        Texture2D Avatar { get; }
     }
 }
