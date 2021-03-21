@@ -1,6 +1,4 @@
 ﻿
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Behavioral.Mediator
@@ -31,6 +29,11 @@ namespace WGADemo.DesignPatterns.Behavioral.Mediator
 
                 // attack player
             }
+        }
+
+        private void OnDestroy()
+        {
+            mediator.OnPlayerDetected -= OnPlayerDetected;
         }
     }
 }
