@@ -1,4 +1,5 @@
-﻿namespace WGADemo.DesignPatterns.Behavioral.Command
+﻿
+namespace WGADemo.DesignPatterns.Behavioral.Command
 {
     public interface ICommand
     {

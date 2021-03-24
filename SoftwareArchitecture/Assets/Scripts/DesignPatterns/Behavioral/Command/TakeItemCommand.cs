@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Behavioral.Command
 {
