@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Behavioral.Strategy
 {
-    public interface IUnitStrategy 
+    public interface IUnitStrategy
     {
         Vector3 GetMoveGoal(UnitBehaviour unit, Vector3 enemyPosition);
 
