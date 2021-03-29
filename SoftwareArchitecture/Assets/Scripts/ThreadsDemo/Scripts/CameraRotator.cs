@@ -9,7 +9,7 @@ namespace WGADemo.ThreadsDemo.Scripts
         [SerializeField] private float scrollSensitivity;
         [SerializeField] private float zoomSensitivity;
 
-        private float distance = 10f;
+        private float distance = 40f;
         private float angleX = 0f;
         private float angleY = 0f;
 

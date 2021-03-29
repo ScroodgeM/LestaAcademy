@@ -2,19 +2,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace WGADemo.ThreadsDemo.Scripts
 {
     public class WorldController : MonoBehaviour
     {
+        [SerializeField] private Text statisticsText;
         [SerializeField] private int calculationsPerSecond;
         [SerializeField] private Joint jointPrefab;
         [SerializeField] private float repulsionTarget;
         [SerializeField] private Link linkPrefab;
         [SerializeField] private float linkTarget;
         [SerializeField] private int linkWeight;
-
         [SerializeField] private int initialJointsCount;
+        [SerializeField] private bool useThread;
 
         private readonly List<Joint> joints = new List<Joint>();
         private readonly List<Link> links = new List<Link>();
@@ -25,6 +27,8 @@ namespace WGADemo.ThreadsDemo.Scripts
             positions = new List<Vector3>(),
             links = new List<(int, int)>(),
         };
+        private bool calculationInProgress = false;
+        private uint totalCalculationsCount;
 
         private long lastCalculationTick;
         private int? selectedJointIndex;
@@ -81,17 +85,40 @@ namespace WGADemo.ThreadsDemo.Scripts
 
         private void Update()
         {
-            long nowTick = (long)(Time.timeAsDouble * calculationsPerSecond);
-
-            if (nowTick > lastCalculationTick)
+            if (calculationInProgress == false)
             {
-                lastCalculationTick = nowTick;
+                long nowTick = (long)(Time.timeAsDouble * calculationsPerSecond);
 
-                Calculate();
+                if (nowTick > lastCalculationTick)
+                {
+                    calculationInProgress = true;
+
+                    lastCalculationTick = nowTick;
+
+                    Calculate(() =>
+                    {
+                        calculationInProgress = false;
+                        totalCalculationsCount++;
+                    });
+                }
+            }
+
+            statisticsText.text = $"FPS: {Time.frameCount / Time.realtimeSinceStartup:0.0} // CalcPS: {totalCalculationsCount / Time.realtimeSinceStartup: 0.0}";
+        }
+
+        private void Calculate(Action onDone)
+        {
+            if (useThread == true)
+            {
+                CalculateThread(onDone);
+            }
+            else
+            {
+                CalculateNoThread(onDone);
             }
         }
 
-        private void Calculate()
+        private void CalculateNoThread(Action onDone)
         {
             inputCache.positions.Clear();
 
@@ -117,6 +144,13 @@ namespace WGADemo.ThreadsDemo.Scripts
             {
                 joints[i].SetPreferredPosition(preferredPositions[i]);
             }
+
+            onDone();
+        }
+
+        private void CalculateThread(Action onDone)
+        {
+
         }
     }
 }
