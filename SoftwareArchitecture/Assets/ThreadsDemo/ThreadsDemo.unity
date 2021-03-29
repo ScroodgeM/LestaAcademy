@@ -251,14 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54183cc9382ebce4fad2a016c52170d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calculationsPerSecond: 5
+  calculationsPerSecond: 10
   jointPrefab: {fileID: 1459639137498279831, guid: 28be5bab937e8bf49b25d5a76b0f73e3, type: 3}
   repulsionTarget: 10
   linkPrefab: {fileID: 4920582759825967339, guid: 3c6eb4730fefbd643921b0ca45d7a6b3, type: 3}
   linkTarget: 1
   linkWeight: 10
-  initialJointsCount: 100
-  initialLinksCount: 1000
+  initialJointsCount: 300
 --- !u!4 &921990968
 Transform:
   m_ObjectHideFlags: 0

@@ -15,7 +15,6 @@ namespace WGADemo.ThreadsDemo.Scripts
         [SerializeField] private int linkWeight;
 
         [SerializeField] private int initialJointsCount;
-        [SerializeField] private int initialLinksCount;
 
         private readonly List<Joint> joints = new List<Joint>();
         private readonly List<Link> links = new List<Link>();
@@ -42,14 +41,10 @@ namespace WGADemo.ThreadsDemo.Scripts
                 joints.Add(joint);
             }
 
-            for (int i = 0; i < initialLinksCount; i++)
+            for (int i = 1; i < initialJointsCount; i++)
             {
-                int j1 = UnityEngine.Random.Range(0, initialJointsCount);
-                int j2 = UnityEngine.Random.Range(0, initialJointsCount);
-                if (j1 != j2)
-                {
-                    CreateLink(j1, j2);
-                }
+                int other = UnityEngine.Random.Range(0, i);
+                CreateLink(i, other);
             }
         }
 
@@ -74,7 +69,14 @@ namespace WGADemo.ThreadsDemo.Scripts
         {
             Link link = Instantiate(linkPrefab);
             link.Init(joints[joint1], joints[joint2]);
+            link.OnCut += Link_OnClick;
             links.Add(link);
+
+            void Link_OnClick((int, int) joints)
+            {
+                links.Remove(link);
+                Destroy(link.gameObject);
+            }
         }
 
         private void Update()

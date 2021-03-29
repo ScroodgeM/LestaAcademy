@@ -1,10 +1,13 @@
 ﻿
+using System;
 using UnityEngine;
 
 namespace WGADemo.ThreadsDemo.Scripts
 {
     public class Link : MonoBehaviour
     {
+        public event Action<(int, int)> OnCut = ii => { };
+
         private Joint joint1;
         private Joint joint2;
 
@@ -21,6 +24,14 @@ namespace WGADemo.ThreadsDemo.Scripts
             transform.position = (joint1.Position + joint2.Position) * 0.5f;
             transform.rotation = Quaternion.LookRotation(joint2.Position - joint1.Position);
             transform.localScale = new Vector3(1f, 1f, (joint1.Position - joint2.Position).magnitude);
+        }
+
+        private void OnMouseOver()
+        {
+            if (Input.GetMouseButton(0) == true)
+            {
+                OnCut(Joints);
+            }
         }
     }
 }
