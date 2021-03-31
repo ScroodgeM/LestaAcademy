@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,11 @@ namespace WGADemo.ThreadsDemo.Scripts
         private long lastCalculationTick;
         private int? selectedJointIndex;
 
+        private Thread thread;
+        private readonly object lockObject = new object();
+        private bool readyForCalculation = false;
+        private bool readyForClaimResults = false;
+
         private void Awake()
         {
             forceCalculator = new ForceCalculator(linkTarget, linkWeight, repulsionTarget);
@@ -50,6 +56,14 @@ namespace WGADemo.ThreadsDemo.Scripts
                 int other = UnityEngine.Random.Range(0, i);
                 CreateLink(i, other);
             }
+
+            thread = new Thread(ThreadWork);
+            thread.Start();
+        }
+
+        private void OnDestroy()
+        {
+            thread.Abort();
         }
 
         private void Joint_OnClick(int jointIndex)
@@ -95,30 +109,47 @@ namespace WGADemo.ThreadsDemo.Scripts
 
                     lastCalculationTick = nowTick;
 
-                    Calculate(() =>
+                    PrepareCalculationInput();
+
+                    if (useThread == true)
                     {
-                        calculationInProgress = false;
-                        totalCalculationsCount++;
-                    });
+                        lock (lockObject)
+                        {
+                            readyForCalculation = true;
+                        }
+                    }
+                    else
+                    {
+                        forceCalculator.Calculate();
+                        this.readyForClaimResults = true;
+                    }
                 }
+            }
+
+            bool readyForClaimResults;
+
+            lock (lockObject)
+            {
+                readyForClaimResults = this.readyForClaimResults;
+            }
+
+            if (readyForClaimResults)
+            {
+                ClaimResults();
+
+                lock (lockObject)
+                {
+                    this.readyForClaimResults = false;
+                }
+
+                calculationInProgress = false;
+                totalCalculationsCount++;
             }
 
             statisticsText.text = $"FPS: {Time.frameCount / Time.realtimeSinceStartup:0.0} // CalcPS: {totalCalculationsCount / Time.realtimeSinceStartup: 0.0}";
         }
 
-        private void Calculate(Action onDone)
-        {
-            if (useThread == true)
-            {
-                CalculateThread(onDone);
-            }
-            else
-            {
-                CalculateNoThread(onDone);
-            }
-        }
-
-        private void CalculateNoThread(Action onDone)
+        private void PrepareCalculationInput()
         {
             inputCache.positions.Clear();
 
@@ -135,22 +166,42 @@ namespace WGADemo.ThreadsDemo.Scripts
             }
 
             forceCalculator.SetInput(inputCache);
+        }
 
-            forceCalculator.Calculate();
-
+        private void ClaimResults()
+        {
             List<Vector3> preferredPositions = forceCalculator.GetOutput().preferredPositions;
 
             for (int i = 0; i < joints.Count; i++)
             {
                 joints[i].SetPreferredPosition(preferredPositions[i]);
             }
-
-            onDone();
         }
 
-        private void CalculateThread(Action onDone)
+        private void ThreadWork()
         {
+            while (true)
+            {
+                Thread.Sleep(10);
 
+                bool readyForCalculation;
+
+                lock (lockObject)
+                {
+                    readyForCalculation = this.readyForCalculation;
+                }
+
+                if (readyForCalculation)
+                {
+                    forceCalculator.Calculate();
+
+                    lock (lockObject)
+                    {
+                        this.readyForCalculation = false;
+                        this.readyForClaimResults = true;
+                    }
+                }
+            }
         }
     }
 }

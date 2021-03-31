@@ -358,7 +358,7 @@ MonoBehaviour:
   linkPrefab: {fileID: 4920582759825967339, guid: 3c6eb4730fefbd643921b0ca45d7a6b3, type: 3}
   linkTarget: 1
   linkWeight: 10
-  initialJointsCount: 300
+  initialJointsCount: 10
   useThread: 0
 --- !u!4 &921990968
 Transform:
