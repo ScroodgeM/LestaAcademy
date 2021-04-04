@@ -1,0 +1,37 @@
+@startuml
+
+Physics *-- Collider
+Physics *-- Rigidbody
+
+RenderPipeline *-- MeshFilter
+RenderPipeline *-- Mesh
+
+InputSystem *-- InputHandler
+InputSystem *-- InputCatcher
+
+NPCAI *-- MonsterDecisionMaker
+NPCAI *-- MonsterTarget
+
+PathFinder *-- PathBuilder
+PathFinder *-- PathObstacle
+
+HealthSystem *-- HealthTracker
+HealthSystem *-- HealthAffector
+
+EntityFactory *-- EntitySpawner
+
+InputHandler <-- PlayerBehaviour
+PathBuilder <-- PlayerBehaviour
+EntitySpawner <-- PlayerBehaviour
+EntityMover <-left- PlayerBehaviour
+HealthTracker <-- PlayerBehaviour
+
+PathBuilder <-- EntityMover
+Rigidbody <-- EntityMover
+
+MonsterDecisionMaker <-- MonsterBehaviour
+PathBuilder <-- MonsterBehaviour
+EntityMover <-right- MonsterBehaviour
+HealthTracker <-- MonsterBehaviour
+
+@enduml

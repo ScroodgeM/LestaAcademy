@@ -1,0 +1,49 @@
+@startuml
+
+entity Monster {
++MeshFilter
++Mesh
++MonsterBehaviour
++MonsterDecisionMaker
++Collider
++PathBuilder
++HealthTracker
++HealthAffector
++EntityMover
+}
+
+entity Player {
++MeshFilter
++Mesh
++InputHandler
++Collider
++MonsterTarget
++PathBuilder
++HealthTracker
++EntitySpawner
++PlayerBehaviour
++EntityMover
+}
+
+entity Bullet {
++MeshFilter
++Mesh
++Rigidbody
++Collider
++HealthAffector
+}
+
+entity Button {
++MeshFilter
++Mesh
++InputCatcher
+}
+
+entity Tree {
++MeshFilter
++Mesh
++Collider
++PathObstacle
+}
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+
+interface ICharacterCustomization
+interface ICharacterInventory
+interface ICharacterSkin
+interface ICharacterEquipment
+interface ISkinShop
+interface IBilling
+
+component CharacterCustomization
+component SkinShop
+component CharacterInventory
+component CharacterSkinSelector
+component CharacterEquipment
+component MobileStoreBilling
+component SteamStoreBilling
+
+ICharacterCustomization -- CharacterCustomization
+ICharacterInventory -- CharacterInventory
+ICharacterSkin -- CharacterSkinSelector
+ICharacterEquipment -- CharacterEquipment
+IBilling -- MobileStoreBilling
+IBilling -- SteamStoreBilling
+ISkinShop -- SkinShop
+
+SkinShop --> IBilling
+CharacterCustomization --> ICharacterSkin
+CharacterCustomization --> ICharacterEquipment
+CharacterEquipment --> ICharacterInventory
+CharacterSkinSelector --> ISkinShop
+
+@enduml
