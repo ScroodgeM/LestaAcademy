@@ -46,7 +46,7 @@ namespace WGADemo.DesignPatterns.Behavioral.Servant
 
             int Sorter(ICharacter a, ICharacter b)
             {
-                return powerCache[a].CompareTo(powerCache[b]);
+                return -powerCache[a].CompareTo(powerCache[b]);
             }
         }
     }

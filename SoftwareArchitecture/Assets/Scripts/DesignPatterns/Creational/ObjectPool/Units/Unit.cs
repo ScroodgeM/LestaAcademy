@@ -28,5 +28,10 @@ namespace WGADemo.DesignPatterns.Creational.ObjectPool.Units
         {
             // clear all lifetime effects here and prepare for reusage
         }
+
+        public void Kill()
+        {
+            inUse = false;
+        }
     }
 }

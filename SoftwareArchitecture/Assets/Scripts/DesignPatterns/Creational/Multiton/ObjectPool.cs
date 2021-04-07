@@ -7,6 +7,7 @@ namespace WGADemo.DesignPatterns.Creational.Multiton
     public class ObjectPool<T, TI> where T : IObjectPoolMember
     {
         private readonly Func<TI, T> newObjectConstructor;
+
         private readonly Multiton<List<T>, TI> poolsMultitone = new Multiton<List<T>, TI>(() => { return new List<T>(); });
 
         public ObjectPool(Func<TI, T> newObjectConstructor)
