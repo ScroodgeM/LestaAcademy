@@ -1,22 +1,37 @@
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AccelerometerAndGyro : MonoBehaviour
 {
     void Update()
     {
-        Vector3 acceleration = Input.gyro.userAcceleration;
+        Accelerometer accelerometer = Accelerometer.current;
+        GravitySensor gravitySensor = GravitySensor.current;
+        AttitudeSensor attitudeSensor = AttitudeSensor.current;
 
-        Quaternion orientation = Input.gyro.attitude;
-
-        if (acceleration.sqrMagnitude > 1f)
+        // check for game over condition
+        if (accelerometer != null)
         {
-            Debug.LogWarning("you move device too fast, game over");
+            Vector3 acceleration = accelerometer.acceleration.ReadValue();
+            if (acceleration.sqrMagnitude > 1f)
+            {
+                Debug.LogWarning("you move device too fast, game over");
+            }
         }
 
         // mode 1 - modify world's gravity
-        Physics.gravity = orientation * Vector3.down;
+        if (gravitySensor != null)
+        {
+            Vector3 gravity = gravitySensor.gravity.ReadValue();
+            Physics.gravity = gravity;
+        }
 
         // mode 2 - compense device rotation
-        transform.rotation = Quaternion.Inverse(orientation);
+        if (attitudeSensor != null)
+        {
+            Quaternion attitude = attitudeSensor.attitude.ReadValue();
+            transform.rotation = Quaternion.Inverse(attitude);
+        }
     }
 }
