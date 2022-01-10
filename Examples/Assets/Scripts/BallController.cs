@@ -6,6 +6,8 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
 
+    [SerializeField] private CameraRotator cameraRotator;
+
     private void Awake()
     {
         playerInput.onActionTriggered += OnPlayerInputActionTriggered;
@@ -18,6 +20,11 @@ public class BallController : MonoBehaviour
             case "Move":
                 Vector2 moveCommand = context.action.ReadValue<Vector2>();
                 HandleMoveCommand(moveCommand);
+                break;
+
+            case "Look":
+                Vector2 lookCommand = context.action.ReadValue<Vector2>();
+                HandleLookCommand(lookCommand);
                 break;
 
             case "Jump":
@@ -40,6 +47,11 @@ public class BallController : MonoBehaviour
         position.x = moveCommand.x;
         position.z = moveCommand.y;
         transform.position = position;
+    }
+
+    private void HandleLookCommand(Vector2 lookCommand)
+    {
+        cameraRotator.SetLookOffset(lookCommand);
     }
 
     private void HandleJumpCommand(bool jumping)
