@@ -1,33 +1,36 @@
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollow3DLockAndMouseLook : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
+
     [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private Vector3 cameraRotationRelative;
     [SerializeField] private Transform target;
     [SerializeField] private float mouseSensitivity;
-
-    private Vector2? oldMousePosition = null;
+    [SerializeField] private float yAngleMin;
+    [SerializeField] private float yAngleMax;
 
     private Vector2 userRotation = Vector2.zero;
 
-    private void Update()
+    private void Awake()
     {
-        // rotate only with mouse right button pressed
+        playerInput.onActionTriggered += OnPlayerInputActionTriggered;
+    }
 
-        Vector2? newMousePosition = null;
-
-        if (Input.GetMouseButton(1) == true)
+    private void OnPlayerInputActionTriggered(InputAction.CallbackContext context)
+    {
+        switch (context.action.name)
         {
-            newMousePosition = Input.mousePosition;
+            case "Look":
+                // rotate only with mouse right button pressed
+                Vector2 delta = context.action.ReadValue<Vector2>();
+                userRotation += Vector2.Scale(delta, new Vector2(1f / Screen.width, 1f / Screen.height)) * mouseSensitivity;
+                userRotation.y = Mathf.Clamp(userRotation.y, yAngleMin, yAngleMax);
+                break;
         }
-
-        if (oldMousePosition.HasValue && newMousePosition.HasValue)
-        {
-            userRotation += Vector2.Scale(newMousePosition.Value - oldMousePosition.Value, new Vector2(1f / Screen.width, 1f / Screen.height)) * mouseSensitivity;
-        }
-
-        oldMousePosition = newMousePosition;
     }
 
     private void LateUpdate()
