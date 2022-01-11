@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class CameraFollow3DLockAndMouseLook : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
-
     [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private Vector3 cameraRotationRelative;
     [SerializeField] private Transform target;
@@ -25,7 +24,6 @@ public class CameraFollow3DLockAndMouseLook : MonoBehaviour
         switch (context.action.name)
         {
             case "Look":
-                // rotate only with mouse right button pressed
                 Vector2 delta = context.action.ReadValue<Vector2>();
                 userRotation += Vector2.Scale(delta, new Vector2(1f / Screen.width, 1f / Screen.height)) * mouseSensitivity;
                 userRotation.y = Mathf.Clamp(userRotation.y, yAngleMin, yAngleMax);

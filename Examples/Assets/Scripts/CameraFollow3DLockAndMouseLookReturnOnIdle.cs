@@ -1,48 +1,47 @@
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollow3DLockAndMouseLookReturnOnIdle : MonoBehaviour
 {
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Vector3 cameraOffset;
     [SerializeField] private Vector3 cameraRotationRelative;
     [SerializeField] private Transform target;
     [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float yAngleMin;
+    [SerializeField] private float yAngleMax;
     [SerializeField] private float cooldownBeforeAutoReturn;
     [SerializeField] private float autoReturnSpeed;
-
-    private Vector2? oldMousePosition = null;
 
     private Vector2 userRotation = Vector2.zero;
     private float lastUserRotationCommandTime;
 
+    private void Awake()
+    {
+        playerInput.onActionTriggered += OnPlayerInputActionTriggered;
+    }
+
+    private void OnPlayerInputActionTriggered(InputAction.CallbackContext context)
+    {
+        switch (context.action.name)
+        {
+            case "Look":
+                // rotate only with mouse right button pressed
+                Vector2 delta = context.action.ReadValue<Vector2>();
+                userRotation += Vector2.Scale(delta, new Vector2(1f / Screen.width, 1f / Screen.height)) * mouseSensitivity;
+                userRotation.y = Mathf.Clamp(userRotation.y, yAngleMin, yAngleMax);
+                lastUserRotationCommandTime = Time.time;
+                break;
+        }
+    }
 
     private void Update()
     {
-        // rotate only with mouse right button pressed
-
-        Vector2? newMousePosition = null;
-
-        if (Input.GetMouseButton(1) == true)
-        {
-            newMousePosition = Input.mousePosition;
-        }
-
-        if (oldMousePosition.HasValue && newMousePosition.HasValue)
-        {
-            userRotation += Vector2.Scale(newMousePosition.Value - oldMousePosition.Value, new Vector2(1f / Screen.width, 1f / Screen.height)) * mouseSensitivity;
-
-            //simplify angle
-            userRotation.x = SimplifyAngle(userRotation.x);
-            userRotation.y = SimplifyAngle(userRotation.y);
-
-            lastUserRotationCommandTime = Time.time;
-        }
-
         if (lastUserRotationCommandTime + cooldownBeforeAutoReturn < Time.time)
         {
             userRotation = Vector2.MoveTowards(userRotation, Vector2.zero, Time.deltaTime * autoReturnSpeed);
         }
-
-        oldMousePosition = newMousePosition;
     }
 
     private void LateUpdate()
