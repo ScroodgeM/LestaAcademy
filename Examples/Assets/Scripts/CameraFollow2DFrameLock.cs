@@ -9,12 +9,14 @@ public class CameraFollow2DFrameLock : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 oldPosition = transform.position;
-        Vector3 newPosition = target.position + cameraOffset;
+        Vector3 centerPosition = target.position + cameraOffset;
 
-        for (int i = 0; i < 3; i++)
-        {
-            newPosition[i] = Mathf.MoveTowards(newPosition[i], oldPosition[i], frameExtent[i]);
-        }
+        Vector3 newPosition;
+
+        newPosition.x = Mathf.Clamp(oldPosition.x, centerPosition.x - frameExtent.x, centerPosition.x + frameExtent.x);
+        newPosition.z = Mathf.Clamp(oldPosition.z, centerPosition.z - frameExtent.z, centerPosition.z + frameExtent.z);
+
+        newPosition.y = centerPosition.y;
 
         transform.position = newPosition;
     }
