@@ -10,6 +10,8 @@ public class CameraSwitcher : MonoBehaviour
     [SerializeField] private Portal portal1;
     [SerializeField] private Portal portal2;
     [SerializeField] private float defaultNearClipPlane;
+    [SerializeField] private Vector3 world1to2offset;
+    [SerializeField] private GameObject character;
 
     private int currentWorld = 0;
 
@@ -21,7 +23,7 @@ public class CameraSwitcher : MonoBehaviour
         portal2.OnPlayerEnterPortal += () => { SetWorld(1); };
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) == true && currentWorld != 1)
         {
@@ -32,6 +34,9 @@ public class CameraSwitcher : MonoBehaviour
         {
             SetWorld(2);
         }
+
+        camera1.transform.position = transform.position - (currentWorld == 1 ? Vector3.zero : world1to2offset);
+        camera2.transform.position = transform.position + (currentWorld == 2 ? Vector3.zero : world1to2offset);
 
         camera1.nearClipPlane = currentWorld == 1 ? defaultNearClipPlane : (camera1.transform.position - portal1.transform.position).magnitude;
         camera2.nearClipPlane = currentWorld == 2 ? defaultNearClipPlane : (camera2.transform.position - portal2.transform.position).magnitude;
@@ -44,6 +49,20 @@ public class CameraSwitcher : MonoBehaviour
 
         drawAnotherWorldOnCamera1.enabled = world == 1;
         drawAnotherWorldOnCamera2.enabled = world == 2;
+
+        if (currentWorld == 1 && world == 2)
+        {
+            character.SetActive(false);
+            character.transform.position += world1to2offset;
+            character.SetActive(true);
+        }
+
+        if (currentWorld == 2 && world == 1)
+        {
+            character.SetActive(false);
+            character.transform.position -= world1to2offset;
+            character.SetActive(true);
+        }
 
         currentWorld = world;
 
