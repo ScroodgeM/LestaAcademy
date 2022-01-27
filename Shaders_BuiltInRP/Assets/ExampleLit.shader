@@ -12,7 +12,7 @@ Shader "ExampleLit"
         _Cube ("Cubemap", CUBE) = "" {}
         _Amount ("Extrusion Amount", Range(0,10)) = 0.5
         _ShieldColor ("Shield Color", Color) = (0.5,0.5,0.5,0.5)
-        _ShieldTexture ("Shield", 2D) = "grey" {}
+        _ShieldTexture ("Shield", 2D) = "white" {}
         _ShieldScale ("Shield Scale", Range(0.01,1)) = 0.5
         _ShieldSpeed ("Shield Speed", Range(0.1,10)) = 0.5
     }
