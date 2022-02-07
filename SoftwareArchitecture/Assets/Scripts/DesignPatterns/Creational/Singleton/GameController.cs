@@ -19,9 +19,10 @@ namespace WGADemo.DesignPatterns.Creational.Singleton
         {
             for (int i = 0; i < count; i++)
             {
-                IUnit unit = EntryPoint.Instance.Factory.CreateUnit(unitType);
+                IUnit unit = EntryPoint.Factory.CreateUnit(unitType);
 
-                IWeapon weapon = EntryPoint.Instance.Factory.CreateWeapon(weaponType);
+                IWeapon weapon = EntryPoint.Factory.CreateWeapon(weaponType);
+
                 unit.AttachWeapon(weapon);
 
                 units.Add(unit);

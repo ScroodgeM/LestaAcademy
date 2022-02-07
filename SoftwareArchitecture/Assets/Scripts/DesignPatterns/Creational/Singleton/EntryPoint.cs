@@ -8,36 +8,38 @@ namespace WGADemo.DesignPatterns.Creational.Singleton
         [SerializeField] private GameObject factoryGameObject;
         [SerializeField] private GameObject gameControllerGameObject;
 
-        private static EntryPoint instance;
-
-        public static EntryPoint Instance
+        private static EntryPoint _instance;
+        private static EntryPoint instance
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
                     Debug.LogError($"instance of {nameof(EntryPoint)} not exists, attach component to some scene GameObject");
                 }
-                return instance;
+                return _instance;
             }
         }
 
-        public IFactory Factory { get; private set; }
-        public IGameController GameController { get; private set; }
+        private IFactory factory;
+        private IGameController gameController;
+
+        public static IFactory Factory => instance.factory;
+        public static IGameController GameController => instance.gameController;
 
         private void Awake()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = this;
+                _instance = this;
             }
             else
             {
                 Debug.LogError($"instance of {nameof(EntryPoint)} already exists");
             }
 
-            Factory = factoryGameObject.GetComponent<IFactory>();
-            GameController = gameControllerGameObject.GetComponent<IGameController>();
+            factory = factoryGameObject.GetComponent<IFactory>();
+            gameController = gameControllerGameObject.GetComponent<IGameController>();
         }
 
         public void StartGame()
