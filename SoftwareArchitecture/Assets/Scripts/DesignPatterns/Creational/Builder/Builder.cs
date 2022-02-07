@@ -8,7 +8,24 @@ namespace WGADemo.DesignPatterns.Creational.Builder
 {
     public static class Builder
     {
-        public static Soldier CreateSoldier(UnitRank unitRank)
+        public static IUnit CreateUnit(UnitType unitType, UnitRank unitRank)
+        {
+            switch (unitType)
+            {
+                case UnitType.Medic:
+                    return CreateMedic(unitRank);
+
+                case UnitType.Sniper:
+                    return CreateSniper(unitRank);
+
+                case UnitType.Soldier:
+                    return CreateSoldier(unitRank);
+            }
+
+            throw new NotSupportedException($"unit of type {unitType} and rank {unitRank} not supported");
+        }
+
+        private static Soldier CreateSoldier(UnitRank unitRank)
         {
             Soldier soldierUnit = new Soldier();
 
@@ -29,7 +46,7 @@ namespace WGADemo.DesignPatterns.Creational.Builder
             throw new NotSupportedException($"unit of type Soldier and rank {unitRank} not supported");
         }
 
-        public static Sniper CreateSniper(UnitRank unitRank)
+        private static Sniper CreateSniper(UnitRank unitRank)
         {
             Sniper sniperUnit = new Sniper();
 
@@ -49,7 +66,7 @@ namespace WGADemo.DesignPatterns.Creational.Builder
             throw new NotSupportedException($"unit of type Sniper and rank {unitRank} not supported");
         }
 
-        public static Medic CreateMedic(UnitRank unitRank)
+        private static Medic CreateMedic(UnitRank unitRank)
         {
             Medic medicUnit = new Medic();
 

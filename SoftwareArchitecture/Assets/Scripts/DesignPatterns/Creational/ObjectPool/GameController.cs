@@ -16,8 +16,15 @@ namespace WGADemo.DesignPatterns.Creational.ObjectPool
             for (int i = 0; i < count; i++)
             {
                 IUnit unit = unitsPool.GetObject(unitType);
+                unit.OnDeath += OnUnitDeath;
                 units.Add(unit);
             }
+        }
+
+        private void OnUnitDeath(IUnit unit)
+        {
+            unit.OnDeath -= OnUnitDeath;
+            units.Remove(unit);
         }
 
         private static IUnit CreateUnit(UnitType unitType)

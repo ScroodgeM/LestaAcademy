@@ -1,8 +1,12 @@
 ﻿
+using System;
+
 namespace WGADemo.DesignPatterns.Creational.ObjectPool.Units
 {
     public abstract class Unit : IUnit
     {
+        public event Action<IUnit> OnDeath = (unit) => { };
+
         private bool inUse;
 
         public bool InUse => inUse;
@@ -31,6 +35,8 @@ namespace WGADemo.DesignPatterns.Creational.ObjectPool.Units
 
         public void Kill()
         {
+            OnDeath(this);
+
             inUse = false;
         }
     }
