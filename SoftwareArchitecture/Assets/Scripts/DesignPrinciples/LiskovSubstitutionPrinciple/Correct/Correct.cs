@@ -37,16 +37,12 @@ namespace WGADemo.DesignPrinciples.LiskovSubstitutionPrinciple.Correct
         }
     }
 
-    public abstract class MovableUnitWithSniperAttack : UnitWithSniperAttack, IMovableUnit
+    public class SniperUnit : UnitWithSniperAttack, IMovableUnit
     {
         public void Move()
         {
             // simple move here
         }
-    }
-
-    public class SniperUnit : MovableUnitWithSniperAttack
-    {
     }
 
     public class SniperTower : UnitWithSniperAttack

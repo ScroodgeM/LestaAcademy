@@ -14,7 +14,7 @@ namespace WGADemo.DesignPrinciples.OpenClosed.Wrong
         public float iceResist;
     }
 
-    public class Damage
+    public struct Damage
     {
         public DamageType type;
         public float points;
@@ -34,15 +34,19 @@ namespace WGADemo.DesignPrinciples.OpenClosed.Wrong
                 case DamageType.Physical:
                     actualDamage = (damage.points - armor.physicalAbsorb) * (1f - armor.physicalResist);
                     break;
+
                 case DamageType.Magic:
                     actualDamage = damage.points;
                     break;
+
                 case DamageType.Fire:
                     actualDamage = damage.points * (1f - armor.fireResist);
                     break;
+
                 case DamageType.Ice:
                     actualDamage = damage.points * (1f - armor.iceResist);
                     break;
+
                 default:
                     return;
             }

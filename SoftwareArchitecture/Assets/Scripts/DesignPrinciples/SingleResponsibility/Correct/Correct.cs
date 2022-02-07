@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,32 +45,12 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
 
             playerCharacter.ProcessPickedItem(item);
 
-            if (playerCharacter.IsOveloaded == true)
+            if (playerCharacter.Inventory.IsOveloaded == true)
             {
                 userInterface.PlayPopup("Too many items, can't move", Color.red);
             }
 
             saveGameController.IncreaseItemCounter(item);
-        }
-    }
-
-    public class AvatarView
-    {
-        private Transform avatarTransform;
-        private Animator animator;
-
-        public void PlayPickItemAnimation()
-        {
-            animator.Play("pick_item_animation");
-        }
-
-        public void SetHelm(bool hasHelm)
-        {
-            if (hasHelm == true)
-            {
-                GameObject helmPrefab = Resources.Load<GameObject>("ItemModels/Helm");
-                GameObject helmInstance = GameObject.Instantiate(helmPrefab, avatarTransform);
-            }
         }
     }
 
@@ -96,11 +77,12 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
 
     public class PlayerCharacter
     {
-        private AvatarView avatarView;
         private PlayerInventory inventory;
         private bool canMove;
 
-        public bool IsOveloaded => inventory.IsOveloaded;
+        public event Action OnItemPickedUp = () => { };
+
+        public PlayerInventory Inventory => inventory;
 
         public void ProcessPickedItem(Item item)
         {
@@ -108,8 +90,40 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
 
             canMove = inventory.IsOveloaded == false;
 
-            avatarView.PlayPickItemAnimation();
-            avatarView.SetHelm(inventory.HasHelm);
+            OnItemPickedUp();
+        }
+    }
+
+    public class AvatarView
+    {
+        private PlayerCharacter playerCharacter;
+        private Transform avatarTransform;
+        private Animator animator;
+
+        public void Init(PlayerCharacter playerCharacter)
+        {
+            this.playerCharacter = playerCharacter;
+            playerCharacter.OnItemPickedUp += OnItemPickedUp;
+        }
+
+        private void OnItemPickedUp()
+        {
+            PlayPickItemAnimation();
+            SetHelm(playerCharacter.Inventory.HasHelm);
+        }
+
+        private void PlayPickItemAnimation()
+        {
+            animator.Play("pick_item_animation");
+        }
+
+        private void SetHelm(bool hasHelm)
+        {
+            if (hasHelm == true)
+            {
+                GameObject helmPrefab = Resources.Load<GameObject>("ItemModels/Helm");
+                GameObject helmInstance = GameObject.Instantiate(helmPrefab, avatarTransform);
+            }
         }
     }
 }
