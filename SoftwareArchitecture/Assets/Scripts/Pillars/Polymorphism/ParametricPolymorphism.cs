@@ -1,8 +1,8 @@
-
+﻿
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo
+namespace WGADemo.Pillars.Polymorphism
 {
     public class ParametricPolymorphism
     {

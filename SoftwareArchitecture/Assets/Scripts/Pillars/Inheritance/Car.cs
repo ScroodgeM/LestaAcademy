@@ -1,7 +1,7 @@
-
+﻿
 using System;
 
-namespace WGADemo
+namespace WGADemo.Pillars.Inheritance
 {
     public class Car
     {

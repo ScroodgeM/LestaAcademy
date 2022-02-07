@@ -60,6 +60,7 @@ namespace WGADemo.DesignPrinciples.DelegationPrinciples.Wrong
             for (int i = 0; i < unitViews.Count; i++)
             {
                 UnitView unitView = unitViews[i];
+                // bad solution here
                 if (unitView.UnitType.type != unitType.type) { continue; }
                 if (unitView.UnitType.level != unitType.level) { continue; }
                 if (unitView.UnitType.skin != unitType.skin) { continue; }
@@ -81,10 +82,13 @@ namespace WGADemo.DesignPrinciples.DelegationPrinciples.Wrong
         public UnitView(UnitType unitType)
         {
             this.unitType = unitType;
+
+            // apply some exterior based on unit type
         }
 
         public void Initialize(UnitController unitController)
         {
+            // bad solution here
             unitController.OnFire += UnitController_OnFire;
             unitController.OnMove += UnitController_OnMove;
         }

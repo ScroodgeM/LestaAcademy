@@ -91,6 +91,8 @@ namespace WGADemo.DesignPrinciples.DelegationPrinciples.Correct
         public UnitView(UnitType unitType)
         {
             this.unitType = unitType;
+
+            // apply some exterior based on unit type
         }
 
         public void Initialize(UnitController unitController)
