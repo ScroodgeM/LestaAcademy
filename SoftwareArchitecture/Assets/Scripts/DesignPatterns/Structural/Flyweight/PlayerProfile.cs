@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Structural.Flyweight
 {
-    public class PlayerProfile:IPlayerProfile
+    public class PlayerProfile : IPlayerProfile
     {
         public Texture2D Avatar => avatar;
         public int Level => level;
@@ -25,7 +25,9 @@ namespace WGADemo.DesignPatterns.Structural.Flyweight
             this.level = 1;
             this.rating = 0;
 
-            if (avatarsCache.TryGetValue(playerId, out Texture2D avatar) == true)
+            int avatarId = playerId % 10;
+
+            if (avatarsCache.TryGetValue(avatarId, out Texture2D avatar) == true)
             {
                 this.avatar = avatar;
             }
@@ -34,7 +36,7 @@ namespace WGADemo.DesignPatterns.Structural.Flyweight
                 this.avatar = null; // resolve real avatar here
 
                 // store avatar in dictionary for future use
-                avatarsCache.Add(playerId, avatar);
+                avatarsCache.Add(avatarId, this.avatar);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace WGADemo.DesignPatterns.Structural.Composite
@@ -7,7 +8,7 @@ namespace WGADemo.DesignPatterns.Structural.Composite
     {
         public static IUnit CreateSingleUnit()
         {
-            return null; // replace it with real unit implementation
+            throw new NotImplementedException();
         }
 
         public static IUnit CreateSquadUnit()
