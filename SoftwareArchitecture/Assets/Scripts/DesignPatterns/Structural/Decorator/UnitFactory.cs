@@ -3,19 +3,19 @@ namespace WGADemo.DesignPatterns.Structural.Decorator
 {
     public class UnitFactory
     {
-        public IEnemyUnit GetDecoratedUnit()
+        public IUnit GetDecoratedUnit()
         {
-            IEnemyUnit enemyUnit = null; // replace it with base enemy unit implementation
+            IUnit unit = null; // replace it with base unit implementation
 
-            enemyUnit = new DamagePlayerOnHitEnemyUnit().SetEnemyUnit(enemyUnit);
+            unit = new DamagePlayerOnHitUnit().SetUnit(unit);
 
-            enemyUnit = new ExplodeOnDeathEnemyUnit(2f).SetEnemyUnit(enemyUnit);
+            unit = new ExplodeOnDeathUnit(2f).SetUnit(unit);
 
-            enemyUnit = new KnockbackOnPushEnemyUnit().SetEnemyUnit(enemyUnit);
+            unit = new KnockbackOnPushUnit().SetUnit(unit);
 
-            enemyUnit = new ExplodeOnDeathEnemyUnit(25f).SetEnemyUnit(enemyUnit);
+            unit = new ExplodeOnDeathUnit(25f).SetUnit(unit);
 
-            return enemyUnit;
+            return unit;
         }
     }
 }

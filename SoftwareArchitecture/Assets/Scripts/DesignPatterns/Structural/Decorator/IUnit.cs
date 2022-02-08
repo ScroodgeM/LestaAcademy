@@ -1,7 +1,7 @@
 ﻿
 namespace WGADemo.DesignPatterns.Structural.Decorator
 {
-    public interface IEnemyUnit
+    public interface IUnit
     {
         void Damage(int damagePoints);
         void Push(int forcePoint);

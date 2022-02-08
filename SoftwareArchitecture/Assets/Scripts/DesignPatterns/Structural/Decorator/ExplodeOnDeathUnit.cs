@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Structural.Decorator
 {
-    public class ExplodeOnDeathEnemyUnit : EnemyUnitDecorator
+    public class ExplodeOnDeathUnit : UnitDecorator
     {
         private readonly float explodeRadius;
 
-        public ExplodeOnDeathEnemyUnit(float explodeRadius)
+        public ExplodeOnDeathUnit(float explodeRadius)
         {
             this.explodeRadius = explodeRadius;
         }

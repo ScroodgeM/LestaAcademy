@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Structural.Decorator
 {
-    public class KnockbackOnPushEnemyUnit : EnemyUnitDecorator
+    public class KnockbackOnPushUnit : UnitDecorator
     {
         public override void Push(int forcePoint)
         {

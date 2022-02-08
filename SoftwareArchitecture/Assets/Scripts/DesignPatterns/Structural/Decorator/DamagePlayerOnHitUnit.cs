@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Structural.Decorator
 {
-    public class DamagePlayerOnHitEnemyUnit : EnemyUnitDecorator
+    public class DamagePlayerOnHitUnit : UnitDecorator
     {
         public override void Damage(int damagePoints)
         {
