@@ -37,7 +37,7 @@ namespace WGADemo.DesignPrinciples.FavorCompositionOverInheritance.Correct
     {
         public void Attack()
         {
-            // range attack here
+            // melee attack here
         }
     }
 
@@ -45,7 +45,7 @@ namespace WGADemo.DesignPrinciples.FavorCompositionOverInheritance.Correct
     {
         public void Attack()
         {
-            // melee attack here
+            // range attack here
         }
     }
 

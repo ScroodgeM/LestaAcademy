@@ -44,7 +44,7 @@ namespace WGADemo.DesignPatterns.Creational.Singleton
 
         public void StartGame()
         {
-            GameController.CreateArmy();
+            EntryPoint.GameController.CreateArmy();
         }
     }
 }
