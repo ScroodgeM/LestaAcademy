@@ -7,7 +7,7 @@ namespace WGADemo.DesignPatterns.Creational.Multiton
     public class Multiton<T, TI>
     {
         private Func<T> newMemberCreator;
-        private readonly Dictionary<TI, T> membersGrouped = new Dictionary<TI, T>();
+        private readonly Dictionary<TI, T> members = new Dictionary<TI, T>();
 
         public Multiton(Func<T> newMemberCreator)
         {
@@ -16,14 +16,14 @@ namespace WGADemo.DesignPatterns.Creational.Multiton
 
         public T GetMember(TI id)
         {
-            if (membersGrouped.TryGetValue(id, out T members) == true)
+            if (members.TryGetValue(id, out T member) == true)
             {
-                return members;
+                return member;
             }
 
-            members = newMemberCreator();
-            membersGrouped.Add(id, members);
-            return members;
+            member = newMemberCreator();
+            members.Add(id, member);
+            return member;
         }
     }
 }
