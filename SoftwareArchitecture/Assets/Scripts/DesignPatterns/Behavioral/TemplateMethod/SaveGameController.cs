@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
 {
@@ -12,8 +11,6 @@ namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
 
         private string gameName;
         private GameState gameState;
-
-        public IEnumerable<string> GetGames() => GetAllSaves();
 
         public void LoadGame(string name)
         {
@@ -33,14 +30,39 @@ namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
         public void SaveGame()
         {
             SaveGame(gameName, gameState);
+
+            GetGamesList(games =>
+            {
+                List<string> gamesList = new List<string>(games);
+                if (gamesList.Contains(gameName) == false)
+                {
+                    gamesList.Add(gameName);
+                    SetGamesList(gamesList);
+                }
+            });
         }
 
         public void DeleteGame()
         {
             DeleteGame(gameName);
+
+            GetGamesList(games =>
+            {
+                List<string> gamesList = new List<string>(games);
+                if (gamesList.Contains(gameName) == true)
+                {
+                    gamesList.Remove(gameName);
+                    SetGamesList(gamesList);
+                }
+            });
+
+            gameName = default;
+            gameState = default;
         }
 
-        protected abstract IEnumerable<string> GetAllSaves();
+        protected abstract void GetGamesList(Action<IEnumerable<string>> onLoad);
+        protected abstract void SetGamesList(List<string> gamesList);
+
         protected abstract void DeleteGame(string name);
         protected abstract void SaveGame(string name, GameState gameState);
         protected abstract void LoadGame(string name, Action<GameState> onLoad);

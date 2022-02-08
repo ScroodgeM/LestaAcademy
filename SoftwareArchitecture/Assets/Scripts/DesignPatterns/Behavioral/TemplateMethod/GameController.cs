@@ -21,9 +21,9 @@ namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
             }
         }
 
-        public void SetPlayer(string name)
+        public void SetPlayer(string gameName)
         {
-            saveGameController.LoadGame(name);
+            saveGameController.LoadGame(gameName);
         }
 
         public GameState GetGameState()
