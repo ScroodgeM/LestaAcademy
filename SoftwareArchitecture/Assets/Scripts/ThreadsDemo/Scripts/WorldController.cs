@@ -1,7 +1,11 @@
 ﻿
-using System;
-using System.Collections.Generic;
+//#define USE_THREAD
+
+#if USE_THREAD
 using System.Threading;
+#endif
+
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +13,17 @@ namespace WGADemo.ThreadsDemo.Scripts
 {
     public class WorldController : MonoBehaviour
     {
+#if USE_THREAD
+        private enum State { Idle, ReadyForCalculation, CalculationDone }
+#endif
+
         [SerializeField] private Text statisticsText;
-        [SerializeField] private int calculationsPerSecond;
         [SerializeField] private Joint jointPrefab;
         [SerializeField] private float repulsionTarget;
         [SerializeField] private Link linkPrefab;
         [SerializeField] private float linkTarget;
         [SerializeField] private int linkWeight;
         [SerializeField] private int initialJointsCount;
-        [SerializeField] private bool useThread;
 
         private readonly List<Joint> joints = new List<Joint>();
         private readonly List<Link> links = new List<Link>();
@@ -28,19 +34,23 @@ namespace WGADemo.ThreadsDemo.Scripts
             positions = new List<Vector3>(),
             links = new List<(int, int)>(),
         };
-        private bool calculationInProgress = false;
-        private uint totalCalculationsCount;
 
-        private long lastCalculationTick;
+        private long nextPrintStatisticTime;
+        private double threeFramesAgoTime;
+        private double threeCalculationsAgoTime;
+
         private int? selectedJointIndex;
 
+#if USE_THREAD
         private Thread thread;
         private readonly object lockObject = new object();
-        private bool readyForCalculation = false;
-        private bool readyForClaimResults = false;
+        private State state = State.Idle;
+#endif
 
         private void Awake()
         {
+            Application.targetFrameRate = 60;
+
             forceCalculator = new ForceCalculator(linkTarget, linkWeight, repulsionTarget);
 
             for (int i = 0; i < initialJointsCount; i++)
@@ -57,13 +67,17 @@ namespace WGADemo.ThreadsDemo.Scripts
                 CreateLink(i, other);
             }
 
+#if USE_THREAD
             thread = new Thread(ThreadWork);
             thread.Start();
+#endif
         }
 
         private void OnDestroy()
         {
+#if USE_THREAD
             thread.Abort();
+#endif
         }
 
         private void Joint_OnClick(int jointIndex)
@@ -99,54 +113,44 @@ namespace WGADemo.ThreadsDemo.Scripts
 
         private void Update()
         {
-            if (calculationInProgress == false)
+            long time = (long)Time.timeAsDouble;
+            if (time >= nextPrintStatisticTime)
             {
-                long nowTick = (long)(Time.timeAsDouble * calculationsPerSecond);
-
-                if (nowTick > lastCalculationTick)
-                {
-                    calculationInProgress = true;
-
-                    lastCalculationTick = nowTick;
-
-                    PrepareCalculationInput();
-
-                    if (useThread == true)
-                    {
-                        lock (lockObject)
-                        {
-                            readyForCalculation = true;
-                        }
-                    }
-                    else
-                    {
-                        forceCalculator.Calculate();
-                        this.readyForClaimResults = true;
-                    }
-                }
+                statisticsText.text = $"FPS: {3 / (Time.timeAsDouble - threeFramesAgoTime):0.0} // CalcPS: {3 / (Time.timeAsDouble - threeCalculationsAgoTime): 0.0}";
+                nextPrintStatisticTime = time + 1;
             }
 
-            bool readyForClaimResults;
+#if USE_THREAD
+            State state;
 
             lock (lockObject)
             {
-                readyForClaimResults = this.readyForClaimResults;
+                state = this.state;
             }
 
-            if (readyForClaimResults)
+            if (state == State.CalculationDone || state == State.Idle)
             {
-                ClaimResults();
+                if (state == State.CalculationDone)
+                {
+                    ClaimResults();
+                    threeCalculationsAgoTime += (Time.timeAsDouble - threeCalculationsAgoTime) * 0.333;
+                }
+
+                PrepareCalculationInput();
 
                 lock (lockObject)
                 {
-                    this.readyForClaimResults = false;
+                    this.state = State.ReadyForCalculation;
                 }
-
-                calculationInProgress = false;
-                totalCalculationsCount++;
             }
+#else
+            PrepareCalculationInput();
+            forceCalculator.Calculate();
+            ClaimResults();
+            threeCalculationsAgoTime += (Time.timeAsDouble - threeCalculationsAgoTime) * 0.333;
+#endif
 
-            statisticsText.text = $"FPS: {Time.frameCount / Time.realtimeSinceStartup:0.0} // CalcPS: {totalCalculationsCount / Time.realtimeSinceStartup: 0.0}";
+            threeFramesAgoTime += (Time.timeAsDouble - threeFramesAgoTime) * 0.333;
         }
 
         private void PrepareCalculationInput()
@@ -178,30 +182,31 @@ namespace WGADemo.ThreadsDemo.Scripts
             }
         }
 
+#if USE_THREAD
         private void ThreadWork()
         {
             while (true)
             {
                 Thread.Sleep(10);
 
-                bool readyForCalculation;
+                State state;
 
                 lock (lockObject)
                 {
-                    readyForCalculation = this.readyForCalculation;
+                    state = this.state;
                 }
 
-                if (readyForCalculation)
+                if (state == State.ReadyForCalculation)
                 {
                     forceCalculator.Calculate();
 
                     lock (lockObject)
                     {
-                        this.readyForCalculation = false;
-                        this.readyForClaimResults = true;
+                        this.state = State.CalculationDone;
                     }
                 }
             }
         }
+#endif
     }
 }

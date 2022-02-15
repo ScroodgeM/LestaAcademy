@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1546778244}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.116088204, g: 0.056562774, b: 0.22711462, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -203,6 +203,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -312,6 +313,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1775993751}
   m_Father: {fileID: 0}
@@ -352,14 +354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statisticsText: {fileID: 1775993752}
-  calculationsPerSecond: 10
   jointPrefab: {fileID: 1459639137498279831, guid: 28be5bab937e8bf49b25d5a76b0f73e3, type: 3}
   repulsionTarget: 15
   linkPrefab: {fileID: 4920582759825967339, guid: 3c6eb4730fefbd643921b0ca45d7a6b3, type: 3}
   linkTarget: 1
   linkWeight: 10
-  initialJointsCount: 10
-  useThread: 0
+  initialJointsCount: 20
 --- !u!4 &921990968
 Transform:
   m_ObjectHideFlags: 0
@@ -370,6 +370,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -463,6 +464,7 @@ Transform:
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -495,6 +497,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 149854543}
   m_RootOrder: 0
