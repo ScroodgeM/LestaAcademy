@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace WGADemo.DesignPatterns.Behavioral.Observer.Observers
 {
-    public class PlaySoundOnMoneyChange : MonoBehaviour
+    public class PlaySoundOnMoneyChange : MonoBehaviour, IObserver<ulong>
     {
         private void Awake()
         {
-            GameController.PlayerState.OnMoneyUpdated += PlayerState_OnMoneyUpdated;
+            GameController.PlayerMoney.Subscribe(this);
         }
 
         private void OnDestroy()
         {
-            GameController.PlayerState.OnMoneyUpdated -= PlayerState_OnMoneyUpdated;
+            GameController.PlayerMoney.Unsubscribe(this);
         }
 
-        private void PlayerState_OnMoneyUpdated()
+        public void OnObserverEvent(ulong value)
         {
             // play sound
         }

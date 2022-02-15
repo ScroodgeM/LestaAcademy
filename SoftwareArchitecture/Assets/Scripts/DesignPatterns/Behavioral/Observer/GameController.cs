@@ -3,12 +3,15 @@ namespace WGADemo.DesignPatterns.Behavioral.Observer
 {
     public class GameController
     {
-        public static IPlayerState PlayerState
+        private static GameController instance;
+
+        private PlayerMoney playerMoney;
+
+        public static ISubject<ulong> PlayerMoney
         {
             get
             {
-                // do something here to resolve player state
-                return default;
+                return instance.playerMoney;
             }
         }
     }
