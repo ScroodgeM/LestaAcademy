@@ -5,7 +5,7 @@ namespace WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
     {
         public int GetPriority()
         {
-            return 50; // always first
+            return 50;
         }
 
         public bool TryHandle(ScreenInputEvent screenInputEvent)

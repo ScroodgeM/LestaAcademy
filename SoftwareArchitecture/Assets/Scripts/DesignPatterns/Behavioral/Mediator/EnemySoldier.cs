@@ -21,9 +21,9 @@ namespace WGADemo.DesignPatterns.Behavioral.Mediator
 
         private void Update()
         {
-            if (true) // player detected in camera viewport
+            if (true) // player detected
             {
-                Vector3 playerPosition = default; // calculate player position based on camera settings
+                Vector3 playerPosition = default; // calculate player position
 
                 mediator.NotifyAboutPlayerPosition(playerPosition);
 
