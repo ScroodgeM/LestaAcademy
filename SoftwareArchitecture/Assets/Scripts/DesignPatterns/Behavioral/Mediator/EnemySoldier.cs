@@ -16,7 +16,7 @@ namespace WGADemo.DesignPatterns.Behavioral.Mediator
 
         private void OnPlayerDetected(Vector3 playerPosition)
         {
-            // make path to player position and foolow path
+            // make path to player position and follow path
         }
 
         private void Update()
