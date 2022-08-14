@@ -8,7 +8,7 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Wrong
     public class Item
     {
         private string name;
-        public string Name => Name;
+        public string Name => name;
     }
 
     public class PlayerCharacter

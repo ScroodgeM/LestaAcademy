@@ -6,7 +6,7 @@ namespace WGADemo.Pillars.Polymorphism
 {
     public class ParametricPolymorphism
     {
-        private static readonly DateTime wgAcademyDeadLine = new DateTime(2022, 06, 15, 12, 0, 0);
+        private static readonly DateTime wgAcademyDeadLine = new DateTime(2023, 06, 15, 18, 0, 0);
 
         public void DoSomeJob()
         {

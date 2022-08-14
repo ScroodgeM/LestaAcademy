@@ -1,11 +1,6 @@
 ﻿
 namespace WGADemo.Pillars.Encapsulation
 {
-    public interface IScoreConfig
-    {
-        long GetScoreBySource(ScoreSource scoreSource);
-    }
-
     public enum ScoreSource
     {
         CoinCollected,
@@ -13,9 +8,21 @@ namespace WGADemo.Pillars.Encapsulation
         BossKilled,
     }
 
-    public class ScoreManager
+    public interface IScoreConfig
+    {
+        long GetScoreBySource(ScoreSource scoreSource);
+    }
+
+    public interface IScoreManager
+    {
+        long GetScore();
+        void SubmitScore(ScoreSource scoreSource);
+    }
+
+    public class ScoreManager : IScoreManager
     {
         private long score = 0;
+        private float scoreMultiplier = 1.0f;
         private IScoreConfig scoreConfig;
 
         public ScoreManager(IScoreConfig scoreConfig)
@@ -27,7 +34,7 @@ namespace WGADemo.Pillars.Encapsulation
 
         public void SubmitScore(ScoreSource scoreSource)
         {
-            this.score += scoreConfig.GetScoreBySource(scoreSource);
+            this.score += (long)(scoreConfig.GetScoreBySource(scoreSource) * scoreMultiplier);
         }
     }
 }

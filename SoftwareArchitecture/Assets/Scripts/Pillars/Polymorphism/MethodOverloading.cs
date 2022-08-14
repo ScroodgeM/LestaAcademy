@@ -12,7 +12,7 @@ namespace WGADemo.Pillars.Polymorphism
 
     public class UserCommandController
     {
-        private IUnit selectedUnit; // here we keep currenctly selected unit
+        private IUnit selectedUnit; // here we keep currently selected unit
 
         public void Attack(Vector3 position)
         {

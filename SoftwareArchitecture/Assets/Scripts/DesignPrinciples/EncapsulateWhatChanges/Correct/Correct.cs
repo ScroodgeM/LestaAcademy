@@ -6,33 +6,37 @@ namespace WGADemo.DesignPrinciples.EncapsulateWhatChanges.Correct
         Healer, Builder, Soldier,
     }
 
+    public interface ISkill
+    {
+        void UseSkill(Unit unit);
+    }
+
     public class Unit
     {
-        private UnitType unitType;
+        private ISkill skill;
 
-        public void UseSkill()
+        public Unit(UnitType unitType)
         {
             switch (unitType)
             {
                 case UnitType.Healer:
-                    UseHealSkill();
+                    skill = new HealSkill();
                     break;
 
                 case UnitType.Builder:
-                    UseBuildSkill();
+                    skill = new BuildSkill();
                     break;
 
                 case UnitType.Soldier:
-                    UseAttackSkill();
+                    skill = new AttackSkill();
                     break;
             }
         }
 
-        private void UseHealSkill() { }
-
-        private void UseBuildSkill() { }
-
-        private void UseAttackSkill() { }
+        public void UseSkill()
+        {
+            skill.UseSkill(this);
+        }
     }
 
     public class UnitBehaviour
@@ -41,5 +45,20 @@ namespace WGADemo.DesignPrinciples.EncapsulateWhatChanges.Correct
         {
             unit.UseSkill();
         }
+    }
+
+    public class HealSkill : ISkill
+    {
+        public void UseSkill(Unit unit) { }
+    }
+
+    public class BuildSkill : ISkill
+    {
+        public void UseSkill(Unit unit) { }
+    }
+
+    public class AttackSkill : ISkill
+    {
+        public void UseSkill(Unit unit) { }
     }
 }

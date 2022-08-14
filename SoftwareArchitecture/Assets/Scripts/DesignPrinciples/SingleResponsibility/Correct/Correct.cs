@@ -9,7 +9,7 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
     public class Item
     {
         private string name;
-        public string Name => Name;
+        public string Name => name;
     }
 
     public class UserInterface
@@ -30,27 +30,6 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
         {
             int oldItemCount = PlayerPrefs.GetInt($"item_{item.Name}_count");
             PlayerPrefs.SetInt($"item_{item.Name}_count", oldItemCount + 1);
-        }
-    }
-
-    public class Scenario
-    {
-        private PlayerCharacter playerCharacter;
-        private UserInterface userInterface;
-        private SaveGameController saveGameController;
-
-        public void ProcessPickItemCommand(Item item)
-        {
-            userInterface.PlayPopup(item.Name, Color.white);
-
-            playerCharacter.ProcessPickedItem(item);
-
-            if (playerCharacter.Inventory.IsOveloaded == true)
-            {
-                userInterface.PlayPopup("Too many items, can't move", Color.red);
-            }
-
-            saveGameController.IncreaseItemCounter(item);
         }
     }
 
@@ -124,6 +103,27 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
                 GameObject helmPrefab = Resources.Load<GameObject>("ItemModels/Helm");
                 GameObject helmInstance = GameObject.Instantiate(helmPrefab, avatarTransform);
             }
+        }
+    }
+
+    public class Scenario
+    {
+        private PlayerCharacter playerCharacter;
+        private UserInterface userInterface;
+        private SaveGameController saveGameController;
+
+        public void ProcessPickItemCommand(Item item)
+        {
+            userInterface.PlayPopup(item.Name, Color.white);
+
+            playerCharacter.ProcessPickedItem(item);
+
+            if (playerCharacter.Inventory.IsOveloaded == true)
+            {
+                userInterface.PlayPopup("Too many items, can't move", Color.red);
+            }
+
+            saveGameController.IncreaseItemCounter(item);
         }
     }
 }

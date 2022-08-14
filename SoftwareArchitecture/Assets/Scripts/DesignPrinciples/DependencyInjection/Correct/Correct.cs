@@ -9,6 +9,10 @@ namespace WGADemo.DesignPrinciples.DependencyInjection.Correct
         int StartUnitSpeed { get; }
     }
 
+    public interface IUnit
+    {
+    }
+
     public class GameConfig : IGameConfig
     {
         private static GameConfig instance;
@@ -20,7 +24,7 @@ namespace WGADemo.DesignPrinciples.DependencyInjection.Correct
         public int StartUnitSpeed => 5;
     }
 
-    public class Unit
+    public class Unit : IUnit
     {
         private int speed;
         private int health;
@@ -34,13 +38,13 @@ namespace WGADemo.DesignPrinciples.DependencyInjection.Correct
 
     public class GameController
     {
-        public List<Unit> SpawnArmy(int unitCount)
+        public List<IUnit> SpawnArmy(int unitCount)
         {
-            List<Unit> army = new List<Unit>();
+            List<IUnit> army = new List<IUnit>();
 
             for (int i = 0; i < unitCount; i++)
             {
-                Unit unit = DependencyContainer.CreateUnit();
+                IUnit unit = DependencyContainer.CreateUnit();
                 army.Add(unit);
             }
 
@@ -50,7 +54,7 @@ namespace WGADemo.DesignPrinciples.DependencyInjection.Correct
 
     public static class DependencyContainer
     {
-        public static Unit CreateUnit()
+        public static IUnit CreateUnit()
         {
             IGameConfig gameConfig = GameConfig.GetConfig();
             return new Unit(gameConfig);

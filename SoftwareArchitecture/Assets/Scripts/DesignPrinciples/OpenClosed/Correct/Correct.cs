@@ -11,7 +11,7 @@ namespace WGADemo.DesignPrinciples.OpenClosed.Correct
 
     public abstract class Damage
     {
-        public float points;
+        protected float points;
 
         public abstract float GetActualDamage(Armor armor);
     }
