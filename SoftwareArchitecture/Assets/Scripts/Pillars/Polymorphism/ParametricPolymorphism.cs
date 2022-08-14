@@ -4,6 +4,19 @@ using System.Collections.Generic;
 
 namespace WGADemo.Pillars.Polymorphism
 {
+    public class MyData : IComparable<MyData>
+    {
+        public int CompareTo(MyData other)
+        {
+            return 0;
+        }
+
+        public override string ToString()
+        {
+            return "bla";
+        }
+    }
+
     public class ParametricPolymorphism
     {
         private static readonly DateTime wgAcademyDeadLine = new DateTime(2023, 06, 15, 18, 0, 0);
@@ -28,12 +41,19 @@ namespace WGADemo.Pillars.Polymorphism
                 wgAcademyDeadLine,
             };
 
+            List<MyData> values4 = new List<MyData>()
+            {
+                new MyData(),
+                new MyData(),
+            };
+
             SortAndPrint(values1);
             SortAndPrint(values2);
             SortAndPrint(values3);
+            SortAndPrint(values4);
         }
 
-        private void SortAndPrint<T>(List<T> input)
+        private void SortAndPrint<T>(List<T> input) where T : IComparable<T>
         {
             input.Sort();
 
