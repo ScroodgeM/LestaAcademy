@@ -18,6 +18,7 @@ namespace WGADemo.DesignPatterns.Structural.Adapter.SocialNetworks
         {
             this.apiKey = apiKey;
         }
+
         public void Start()
         {
             vkontakteAPI.Go(apiKey);
