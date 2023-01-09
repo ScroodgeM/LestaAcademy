@@ -6,13 +6,17 @@ namespace WGADemo.DesignPatterns.Behavioral.Iterator
     {
         public static IEnumerator<long> GetNumbers(int count)
         {
-            if (count <= 0)
+            if (count > 0)
             {
-                yield break;
+                yield return 0;
+                count--;
             }
 
-            yield return 1;
-            count--;
+            if (count > 0)
+            {
+                yield return 1;
+                count--;
+            }
 
             long prev2 = 0;
             long prev1 = 1;
@@ -21,11 +25,11 @@ namespace WGADemo.DesignPatterns.Behavioral.Iterator
             {
                 long next = prev2 + prev1;
 
-                prev2 = prev1;
-                prev1 = next;
-
                 yield return next;
                 count--;
+
+                prev2 = prev1;
+                prev1 = next;
             }
         }
     }
