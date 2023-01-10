@@ -15,20 +15,22 @@ public class BallController : MonoBehaviour
 
     private void OnPlayerInputActionTriggered(InputAction.CallbackContext context)
     {
-        switch (context.action.name)
+        InputAction action = context.action;
+
+        switch (action.name)
         {
             case "Move":
-                Vector2 moveCommand = context.action.ReadValue<Vector2>();
+                Vector2 moveCommand = action.ReadValue<Vector2>();
                 HandleMoveCommand(moveCommand);
                 break;
 
             case "Look":
-                Vector2 lookCommand = context.action.ReadValue<Vector2>();
+                Vector2 lookCommand = action.ReadValue<Vector2>();
                 HandleLookCommand(lookCommand);
                 break;
 
             case "Jump":
-                switch (context.action.phase)
+                switch (action.phase)
                 {
                     case InputActionPhase.Started:
                         HandleJumpCommand(true);
