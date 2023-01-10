@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.scroodge.unitytools": {
+      "version": "git@github.com:ScroodgeM/UnityTools.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a8a7d442295fc2134e4714f94f951db6ade9d0fd"
+    },
     "com.unity.cinemachine": {
       "version": "2.8.9",
       "depth": 0,
