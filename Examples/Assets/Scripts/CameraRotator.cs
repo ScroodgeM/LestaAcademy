@@ -6,6 +6,9 @@ public class CameraRotator : MonoBehaviour
     [SerializeField] private Transform rotatePivot;
     [SerializeField] private Vector3 defaultRotation;
     [SerializeField] private float maxAngle;
+    [SerializeField] private float rotateSensitivity;
+
+    private Vector2 aggregatedRotateCommand = Vector2.zero;
 
     private void Awake()
     {
@@ -14,8 +17,19 @@ public class CameraRotator : MonoBehaviour
 
     public void SetLookOffset(Vector2 offset)
     {
-        Vector3 offsetRotation = new Vector3(-offset.y, 0f, offset.x) * maxAngle;
+        aggregatedRotateCommand = offset * maxAngle;
+        ApplyRotation();
+    }
 
-        rotatePivot.rotation = Quaternion.Euler(offsetRotation) * Quaternion.Euler(defaultRotation);
+    internal void Rotate(Vector2 rotateCommand)
+    {
+        aggregatedRotateCommand = Vector2.ClampMagnitude(aggregatedRotateCommand + rotateCommand * rotateSensitivity, maxAngle);
+        ApplyRotation();
+    }
+
+    private void ApplyRotation()
+    {
+        Vector3 eulerAngles = new Vector3(-aggregatedRotateCommand.y, aggregatedRotateCommand.x, 0f);
+        rotatePivot.rotation = Quaternion.Euler(eulerAngles) * Quaternion.Euler(defaultRotation);
     }
 }

@@ -24,6 +24,11 @@ public class BallController : MonoBehaviour
                 HandleMoveCommand(moveCommand);
                 break;
 
+            case "Rotate":
+                Vector2 rotateCommand = action.ReadValue<Vector2>();
+                HandleRotateCommand(rotateCommand);
+                break;
+
             case "Look":
                 Vector2 lookCommand = action.ReadValue<Vector2>();
                 HandleLookCommand(lookCommand);
@@ -54,6 +59,11 @@ public class BallController : MonoBehaviour
     private void HandleLookCommand(Vector2 lookCommand)
     {
         cameraRotator.SetLookOffset(lookCommand);
+    }
+
+    private void HandleRotateCommand(Vector2 rotateCommand)
+    {
+        cameraRotator.Rotate(rotateCommand);
     }
 
     private void HandleJumpCommand(bool jumping)
