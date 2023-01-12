@@ -156,7 +156,7 @@ MonoBehaviour:
   spawnRoot: {fileID: 389384754}
   spawnZone:
     m_Center: {x: 255, y: 0, z: 0}
-    m_Extent: {x: 10, y: 0.1, z: 25}
+    m_Extent: {x: 10, y: 0.1, z: 20}
   spawnInterval: 0.2
   spawnObject: {fileID: 148086, guid: 7a9ed5ae7b700bc45ba1f4711d89be72, type: 3}
 --- !u!114 &389384753
@@ -175,7 +175,7 @@ MonoBehaviour:
   worldCamera: {fileID: 2051572245}
   playerSpawnZone:
     m_Center: {x: -255, y: 0, z: 0}
-    m_Extent: {x: 10, y: 0.1, z: 25}
+    m_Extent: {x: 10, y: 0.1, z: 20}
   spawnObject: {fileID: 139514, guid: d52c742fd6504ae4ebbf93796a8a4b13, type: 3}
 --- !u!4 &389384754
 Transform:
@@ -703,6 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
