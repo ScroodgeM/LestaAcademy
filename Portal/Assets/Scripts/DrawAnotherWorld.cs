@@ -9,15 +9,17 @@ public class DrawAnotherWorld : MonoBehaviour
         GL.PushMatrix();
         GL.LoadOrtho();
 
-        // activate the first shader pass (in this case we know it is the only pass)
-        material.SetPass(0);
-        // draw a quad over whole screen
-        GL.Begin(GL.QUADS);
-        GL.Vertex3(0, 0, 0);
-        GL.Vertex3(1, 0, 0);
-        GL.Vertex3(1, 1, 0);
-        GL.Vertex3(0, 1, 0);
-        GL.End();
+        for (int i = 0; i < material.passCount; i++)
+        {
+            material.SetPass(i);
+            
+            GL.Begin(GL.QUADS);
+            GL.Vertex3(0, 0, 0);
+            GL.Vertex3(1, 0, 0);
+            GL.Vertex3(1, 1, 0);
+            GL.Vertex3(0, 1, 0);
+            GL.End();
+        }
 
         GL.PopMatrix();
     }
