@@ -1,22 +1,20 @@
 ﻿
-using System;
-
 namespace WGADemo.Pillars.Inheritance
 {
     public class Car
     {
-        public void StartEngine() { throw new NotImplementedException(); }
-        public void Drive() { throw new NotImplementedException(); }
-        public void StopEngine() { throw new NotImplementedException(); }
+        public void StartEngine() { /* some actions here */ }
+        public void Drive() { /* some actions here */ }
+        public void StopEngine() { /* some actions here */ }
     }
 
     public class Cabriolet : Car
     {
-        public void SetTopState(bool attached) { throw new NotImplementedException(); }
+        public void SetTopState(bool attached) { /* some actions here */ }
     }
 
     public class OffRoadVehicle : Car
     {
-        public void SetLoweringGear(bool enabled) { throw new NotImplementedException(); }
+        public void SetLoweringGear(bool enabled) { /* some actions here */ }
     }
 }

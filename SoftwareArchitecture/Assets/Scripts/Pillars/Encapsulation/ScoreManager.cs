@@ -25,9 +25,10 @@ namespace WGADemo.Pillars.Encapsulation
         private float scoreMultiplier = 1.0f;
         private IScoreConfig scoreConfig;
 
-        public ScoreManager(IScoreConfig scoreConfig)
+        public ScoreManager(IScoreConfig scoreConfig, float scoreMultiplier)
         {
             this.scoreConfig = scoreConfig;
+            this.scoreMultiplier = scoreMultiplier;
         }
 
         public long GetScore() => score;
