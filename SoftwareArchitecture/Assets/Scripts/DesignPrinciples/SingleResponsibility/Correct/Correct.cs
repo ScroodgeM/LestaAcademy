@@ -60,6 +60,7 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
         private bool canMove;
 
         public event Action OnItemPickedUp = () => { };
+        public event Action OnInventoryOverloaed = () => { };
 
         public PlayerInventory Inventory => inventory;
 
@@ -70,6 +71,11 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
             canMove = inventory.IsOveloaded == false;
 
             OnItemPickedUp();
+
+            if (inventory.IsOveloaded == true)
+            {
+                OnInventoryOverloaed();
+            }
         }
     }
 
@@ -112,16 +118,19 @@ namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
         private UserInterface userInterface;
         private SaveGameController saveGameController;
 
+        public Scenario()
+        {
+            playerCharacter.OnInventoryOverloaed += () =>
+            {
+                userInterface.PlayPopup("Too many items, can't move", Color.red);
+            };
+        }
+
         public void ProcessPickItemCommand(Item item)
         {
             userInterface.PlayPopup(item.Name, Color.white);
 
             playerCharacter.ProcessPickedItem(item);
-
-            if (playerCharacter.Inventory.IsOveloaded == true)
-            {
-                userInterface.PlayPopup("Too many items, can't move", Color.red);
-            }
 
             saveGameController.IncreaseItemCounter(item);
         }

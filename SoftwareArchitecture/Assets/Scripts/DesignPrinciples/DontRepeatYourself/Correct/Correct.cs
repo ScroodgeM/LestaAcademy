@@ -41,7 +41,7 @@ namespace WGADemo.DesignPrinciples.DontRepeatYourself.Correct
         }
     }
 
-    public class AttackUnitBehaviour: UnitBehaviour
+    public class AttackUnitBehaviour : UnitBehaviour
     {
         public void UseSkill(List<Unit> allEnemies)
         {
@@ -56,7 +56,7 @@ namespace WGADemo.DesignPrinciples.DontRepeatYourself.Correct
         }
     }
 
-    public class HealerUnitBehaviour: UnitBehaviour
+    public class HealerUnitBehaviour : UnitBehaviour
     {
         public void UseSkill(List<Unit> allAllies)
         {

@@ -17,4 +17,21 @@ namespace WGADemo.Pillars.Inheritance
     {
         public void SetLoweringGear(bool enabled) { /* some actions here */ }
     }
+
+    public class Mechanic
+    {
+        public void DoJob()
+        {
+            Car[] cars = new Car[]
+            {
+                new Cabriolet(),
+                new OffRoadVehicle(),
+            };
+
+            foreach (Car car in cars)
+            {
+                car.StartEngine();
+            }
+        }
+    }
 }

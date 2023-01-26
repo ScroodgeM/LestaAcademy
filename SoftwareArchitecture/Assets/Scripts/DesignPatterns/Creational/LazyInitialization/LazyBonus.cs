@@ -3,7 +3,7 @@ namespace WGADemo.DesignPatterns.Creational.LazyInitialization
 {
     public class LazyBonus : IBonus
     {
-        private Bonus realBonus = null;
+        private IBonus realBonus = null;
 
         public void Show(string someMessageOnBonusBox)
         {
