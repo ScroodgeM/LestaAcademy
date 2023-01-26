@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.scroodge.unitytools": {
+      "version": "git@github.com:ScroodgeM/UnityTools.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "b513b331f592b847df75cbee0ed6c9b1551c3165"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 2,
@@ -8,7 +15,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.16",
+      "version": "2.0.17",
       "depth": 0,
       "source": "registry",
       "dependencies": {

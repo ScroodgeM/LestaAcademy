@@ -1,5 +1,4 @@
 ﻿
-
 namespace WGADemo.DesignPatterns.Behavioral.Observer
 {
     public class PlayerMoney : SubjectBase<ulong>
