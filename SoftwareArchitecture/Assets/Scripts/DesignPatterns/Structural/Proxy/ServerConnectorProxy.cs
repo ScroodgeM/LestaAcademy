@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace WGADemo.DesignPatterns.Structural.Proxy
+namespace LestaAcademyDemo.DesignPatterns.Structural.Proxy
 {
     public class ServerConnectorProxy : IServerConnector
     {

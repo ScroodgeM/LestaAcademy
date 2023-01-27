@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.ProgrammingForInterfaceNotImplementation.Correct
+namespace LestaAcademyDemo.DesignPrinciples.ProgrammingForInterfaceNotImplementation.Correct
 {
     public interface IUnit
     {

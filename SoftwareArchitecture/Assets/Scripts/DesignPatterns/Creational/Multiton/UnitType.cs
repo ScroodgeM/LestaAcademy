@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.Multiton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 {
     public enum UnitType
     {

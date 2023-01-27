@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.LazyInitialization
+namespace LestaAcademyDemo.DesignPatterns.Creational.LazyInitialization
 {
     public class Bonus : IBonus
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.State
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
 {
     public interface IStateControlledUnit
     {

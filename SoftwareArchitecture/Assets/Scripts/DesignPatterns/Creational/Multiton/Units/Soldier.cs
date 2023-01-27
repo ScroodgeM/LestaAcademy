@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.Multiton.Units
+namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton.Units
 {
     public class Soldier : Unit
     {

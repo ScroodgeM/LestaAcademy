@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Flyweight
+namespace LestaAcademyDemo.DesignPatterns.Structural.Flyweight
 {
     public class PlayerProfile : IPlayerProfile
     {

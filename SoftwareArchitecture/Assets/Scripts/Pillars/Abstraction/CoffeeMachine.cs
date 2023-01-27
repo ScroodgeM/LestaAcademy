@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.Pillars.Abstraction
+namespace LestaAcademyDemo.Pillars.Abstraction
 {
     public class CoffeeMachine
     {

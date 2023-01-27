@@ -1,9 +1,9 @@
 ﻿
 using System;
-using WGADemo.DesignPatterns.Creational.AbstractFactory.Units;
-using WGADemo.DesignPatterns.Creational.AbstractFactory.Weapons;
+using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Units;
+using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Weapons;
 
-namespace WGADemo.DesignPatterns.Creational.AbstractFactory
+namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory
 {
     public class Factory : IFactory
     {

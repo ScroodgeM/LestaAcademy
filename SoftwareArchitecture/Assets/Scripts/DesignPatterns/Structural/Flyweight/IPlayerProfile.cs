@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Flyweight
+namespace LestaAcademyDemo.DesignPatterns.Structural.Flyweight
 {
     public interface IPlayerProfile
     {

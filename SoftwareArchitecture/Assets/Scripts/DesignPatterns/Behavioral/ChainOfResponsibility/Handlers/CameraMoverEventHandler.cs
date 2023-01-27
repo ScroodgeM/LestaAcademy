@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
 {
     class CameraMoverEventHandler : IScreenInputEventHandler
     {

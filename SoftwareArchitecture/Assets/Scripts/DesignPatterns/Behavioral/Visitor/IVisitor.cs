@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Visitor
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {
     public interface IVisitor
     {

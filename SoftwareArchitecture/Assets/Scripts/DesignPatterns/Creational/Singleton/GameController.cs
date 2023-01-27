@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Creational.Singleton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
 {
     public class GameController : MonoBehaviour, IGameController
     {

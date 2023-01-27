@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.Observer
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
 {
     public abstract class SubjectBase<T> : ISubject<T>
     {

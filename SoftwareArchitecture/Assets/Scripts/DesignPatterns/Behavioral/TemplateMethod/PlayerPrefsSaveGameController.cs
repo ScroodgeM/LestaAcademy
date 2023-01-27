@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.TemplateMethod
 {
     public class PlayerPrefsSaveGameController : SaveGameController
     {

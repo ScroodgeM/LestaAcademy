@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace WGADemo.ThreadsDemo.Scripts
+namespace LestaAcademyDemo.ThreadsDemo.Scripts
 {
     public class WorldController : MonoBehaviour
     {

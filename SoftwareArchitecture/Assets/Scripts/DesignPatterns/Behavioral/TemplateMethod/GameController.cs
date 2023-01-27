@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.TemplateMethod
 {
     public class GameController : MonoBehaviour
     {

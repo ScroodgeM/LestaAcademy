@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Mediator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Mediator
 {
     public class Artillery : MonoBehaviour
     {

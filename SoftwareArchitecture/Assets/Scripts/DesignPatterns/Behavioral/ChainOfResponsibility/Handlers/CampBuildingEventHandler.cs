@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
 {
     class CampBuildingEventHandler : IScreenInputEventHandler
     {

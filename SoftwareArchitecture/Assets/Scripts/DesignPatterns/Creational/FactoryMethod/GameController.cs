@@ -1,9 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.Creational.FactoryMethod.Units;
+using LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod.Units;
 
-namespace WGADemo.DesignPatterns.Creational.FactoryMethod
+namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod
 {
     public class GameController
     {

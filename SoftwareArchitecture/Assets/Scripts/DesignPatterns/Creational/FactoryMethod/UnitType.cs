@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.FactoryMethod
+namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod
 {
     public enum UnitType
     {

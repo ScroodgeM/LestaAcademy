@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPrinciples.DelegationPrinciples.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.DelegationPrinciples.Wrong
 {
     public struct UnitType
     {

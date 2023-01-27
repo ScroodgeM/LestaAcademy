@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Memento
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Memento
 {
     public class PlayerController
     {

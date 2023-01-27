@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.Singleton.Weapons
+namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton.Weapons
 {
     public class AssaultRifle : IWeapon
     {

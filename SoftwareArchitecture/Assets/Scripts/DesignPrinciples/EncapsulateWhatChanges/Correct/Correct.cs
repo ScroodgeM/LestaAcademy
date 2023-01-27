@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPrinciples.EncapsulateWhatChanges.Correct
+namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 {
     public enum UnitType
     {

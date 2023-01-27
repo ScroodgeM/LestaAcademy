@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Composite
+namespace LestaAcademyDemo.DesignPatterns.Structural.Composite
 {
     public class CompositeUnit : IUnit
     {

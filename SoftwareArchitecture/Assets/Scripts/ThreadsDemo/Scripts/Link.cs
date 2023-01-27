@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace WGADemo.ThreadsDemo.Scripts
+namespace LestaAcademyDemo.ThreadsDemo.Scripts
 {
     public class Link : MonoBehaviour
     {

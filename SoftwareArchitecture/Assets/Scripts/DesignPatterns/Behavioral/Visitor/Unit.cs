@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Visitor
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {
     public abstract class Unit : MonoBehaviour
     {

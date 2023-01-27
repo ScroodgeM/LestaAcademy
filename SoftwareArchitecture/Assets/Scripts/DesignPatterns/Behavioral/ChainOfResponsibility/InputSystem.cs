@@ -1,8 +1,8 @@
 ﻿
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers;
+using LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers;
 
-namespace WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility
 {
     public class InputSystem : IInputSystem
     {

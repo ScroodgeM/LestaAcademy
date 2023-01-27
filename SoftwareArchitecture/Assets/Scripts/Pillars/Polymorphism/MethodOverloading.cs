@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace WGADemo.Pillars.Polymorphism
+namespace LestaAcademyDemo.Pillars.Polymorphism
 {
     public interface IUnit
     {

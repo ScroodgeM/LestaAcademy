@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Observer.Observers
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer.Observers
 {
     public class PlaySoundOnMoneyChange : MonoBehaviour, IObserver<ulong>
     {

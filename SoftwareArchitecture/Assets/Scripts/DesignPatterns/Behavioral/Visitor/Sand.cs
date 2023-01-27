@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.Visitor
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {
     public class Sand : IVisitor
     {

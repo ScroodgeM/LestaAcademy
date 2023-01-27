@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.AbstractFactory
+namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory
 {
     public interface IWeapon
     {

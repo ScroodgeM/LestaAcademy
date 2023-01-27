@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPrinciples.FavorCompositionOverInheritance.Correct
+namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Correct
 {
     public interface IUnit
     {

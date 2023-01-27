@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Creational.Prototype
+namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype
 {
     public class PrototypeSelector : MonoBehaviour
     {

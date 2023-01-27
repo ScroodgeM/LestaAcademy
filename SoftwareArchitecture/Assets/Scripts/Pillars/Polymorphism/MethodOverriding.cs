@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.Pillars.Polymorphism
+namespace LestaAcademyDemo.Pillars.Polymorphism
 {
     public abstract class UnitBase
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Creational.Multiton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 {
     public class ObjectPool<T, TI> where T : IObjectPoolMember
     {

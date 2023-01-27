@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.LiskovSubstitutionPrinciple.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.LiskovSubstitutionPrinciple.Wrong
 {
     public class GameController
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.Iterator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {
     public enum UnitType
     {

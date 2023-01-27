@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.Observer
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
 {
     public interface IObserver<T>
     {

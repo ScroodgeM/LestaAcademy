@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Composite
+namespace LestaAcademyDemo.DesignPatterns.Structural.Composite
 {
     public interface IUnit
     {

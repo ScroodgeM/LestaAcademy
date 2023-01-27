@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.Iterator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {
     // encapsulate concrete implementation
     public class GameController : IGameController

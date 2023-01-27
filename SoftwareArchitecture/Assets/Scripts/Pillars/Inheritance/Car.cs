@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.Pillars.Inheritance
+namespace LestaAcademyDemo.Pillars.Inheritance
 {
     public class Car
     {

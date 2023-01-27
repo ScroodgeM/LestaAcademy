@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Adapter.Units
+namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter.Units
 {
     public interface INPC
     {

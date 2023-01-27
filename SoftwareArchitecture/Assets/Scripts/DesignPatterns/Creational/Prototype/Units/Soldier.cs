@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Creational.Prototype.Units
+namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype.Units
 {
     public class Soldier : IUnit
     {

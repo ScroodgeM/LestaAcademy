@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Servant
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Servant
 {
     public class CharacterSelectWindow : MonoBehaviour
     {

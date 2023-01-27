@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.Pillars.Polymorphism
+namespace LestaAcademyDemo.Pillars.Polymorphism
 {
     public class MyData : IComparable<MyData>
     {

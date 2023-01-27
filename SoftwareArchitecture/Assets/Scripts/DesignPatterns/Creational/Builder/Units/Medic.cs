@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Creational.Builder.Units
+namespace LestaAcademyDemo.DesignPatterns.Creational.Builder.Units
 {
     public class Medic : IUnit
     {

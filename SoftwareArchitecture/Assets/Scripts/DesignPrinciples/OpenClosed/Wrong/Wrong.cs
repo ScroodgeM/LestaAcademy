@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPrinciples.OpenClosed.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Wrong
 {
     public enum DamageType
     {

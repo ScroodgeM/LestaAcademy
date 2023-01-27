@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace WGADemo.DesignPrinciples.SingleResponsibility.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.SingleResponsibility.Wrong
 {
     public class Item
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.Singleton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
 {
     public interface IGameController
     {

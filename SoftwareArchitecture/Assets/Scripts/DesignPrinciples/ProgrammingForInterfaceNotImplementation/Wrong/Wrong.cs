@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.ProgrammingForInterfaceNotImplementation.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.ProgrammingForInterfaceNotImplementation.Wrong
 {
     public class GameController
     {

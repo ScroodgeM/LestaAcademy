@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Creational.Builder.Armors
+namespace LestaAcademyDemo.DesignPatterns.Creational.Builder.Armors
 {
     public class HeavyArmor : IArmor
     {

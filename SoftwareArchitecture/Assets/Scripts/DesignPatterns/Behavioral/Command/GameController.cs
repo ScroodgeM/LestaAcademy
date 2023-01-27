@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.Command
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Command
 {
     public class GameController
     {

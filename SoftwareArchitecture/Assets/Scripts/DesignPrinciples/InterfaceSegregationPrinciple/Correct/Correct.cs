@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.InterfaceSegregationPrinciple.Correct
+namespace LestaAcademyDemo.DesignPrinciples.InterfaceSegregationPrinciple.Correct
 {
     public class GameController
     {

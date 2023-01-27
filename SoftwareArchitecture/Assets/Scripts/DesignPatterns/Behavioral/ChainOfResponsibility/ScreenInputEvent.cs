@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.ChainOfResponsibility
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility
 {
     public struct ScreenInputEvent
     {

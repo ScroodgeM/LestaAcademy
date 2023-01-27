@@ -1,9 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.Creational.Multiton.Units;
+using LestaAcademyDemo.DesignPatterns.Creational.Multiton.Units;
 
-namespace WGADemo.DesignPatterns.Creational.Multiton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 {
     public class GameController
     {

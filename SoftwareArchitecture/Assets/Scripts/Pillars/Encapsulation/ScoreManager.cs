@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.Pillars.Encapsulation
+namespace LestaAcademyDemo.Pillars.Encapsulation
 {
     public enum ScoreSource
     {

@@ -1,8 +1,8 @@
 ﻿
-using WGADemo.DesignPatterns.Structural.Adapter.SocialNetworks;
-using WGADemo.DesignPatterns.Structural.Adapter.Units;
+using LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks;
+using LestaAcademyDemo.DesignPatterns.Structural.Adapter.Units;
 
-namespace WGADemo.DesignPatterns.Structural.Adapter
+namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter
 {
     public class Factory
     {

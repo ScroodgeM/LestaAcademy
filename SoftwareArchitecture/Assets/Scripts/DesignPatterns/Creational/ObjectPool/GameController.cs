@@ -1,9 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using WGADemo.DesignPatterns.Creational.ObjectPool.Units;
+using LestaAcademyDemo.DesignPatterns.Creational.ObjectPool.Units;
 
-namespace WGADemo.DesignPatterns.Creational.ObjectPool
+namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool
 {
     public class GameController
     {

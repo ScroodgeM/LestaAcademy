@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Structural.Adapter.SocialNetworks
+namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks
 {
     public interface ISocialNetworkAPI
     {

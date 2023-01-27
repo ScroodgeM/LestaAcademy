@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Creational.AbstractFactory
+namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory
 {
     public class GameController
     {

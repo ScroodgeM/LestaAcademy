@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Behavioral.Memento
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Memento
 {
     public class Caretaker
     {

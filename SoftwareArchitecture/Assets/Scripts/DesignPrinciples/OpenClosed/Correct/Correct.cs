@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPrinciples.OpenClosed.Correct
+namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Correct
 {
     public class Armor
     {

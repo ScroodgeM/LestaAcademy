@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Behavioral.Iterator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {
     public class BossUnit : IUnit
     {

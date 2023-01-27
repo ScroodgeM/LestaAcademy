@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace WGADemo.DesignPrinciples.SingleResponsibility.Correct
+namespace LestaAcademyDemo.DesignPrinciples.SingleResponsibility.Correct
 {
     public class Item
     {

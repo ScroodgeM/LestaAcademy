@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Structural.Decorator
+namespace LestaAcademyDemo.DesignPatterns.Structural.Decorator
 {
     public interface IUnit
     {

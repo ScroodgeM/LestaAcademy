@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.DontRepeatYourself.Wrong
+namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Wrong
 {
     public class Unit
     {

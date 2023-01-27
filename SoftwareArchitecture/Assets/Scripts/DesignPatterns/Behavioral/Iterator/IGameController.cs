@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.Iterator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {
     public interface IGameController
     {

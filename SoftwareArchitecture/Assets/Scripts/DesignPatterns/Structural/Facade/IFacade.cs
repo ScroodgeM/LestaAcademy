@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Structural.Facade
+namespace LestaAcademyDemo.DesignPatterns.Structural.Facade
 {
     public interface IFacade
     {

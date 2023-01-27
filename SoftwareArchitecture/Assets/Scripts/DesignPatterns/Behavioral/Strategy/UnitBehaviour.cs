@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Behavioral.Strategy
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Strategy
 {
     public class UnitBehaviour : MonoBehaviour
     {

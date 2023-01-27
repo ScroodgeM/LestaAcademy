@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Structural.Proxy
+namespace LestaAcademyDemo.DesignPatterns.Structural.Proxy
 {
     public interface IServerConnector
     {

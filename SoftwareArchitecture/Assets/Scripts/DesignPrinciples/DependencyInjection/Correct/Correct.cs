@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.DependencyInjection.Correct
+namespace LestaAcademyDemo.DesignPrinciples.DependencyInjection.Correct
 {
     public interface IGameConfig
     {

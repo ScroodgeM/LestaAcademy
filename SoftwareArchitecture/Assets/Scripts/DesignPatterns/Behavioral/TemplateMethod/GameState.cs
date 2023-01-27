@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.TemplateMethod
 {
     [Serializable]
     public struct GameState

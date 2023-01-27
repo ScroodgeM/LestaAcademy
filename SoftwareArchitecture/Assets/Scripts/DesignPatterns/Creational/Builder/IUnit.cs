@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.Builder
+namespace LestaAcademyDemo.DesignPatterns.Creational.Builder
 {
     public interface IUnit
     {

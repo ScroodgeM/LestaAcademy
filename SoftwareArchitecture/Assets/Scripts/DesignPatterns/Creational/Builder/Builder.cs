@@ -1,10 +1,10 @@
 ﻿
 using System;
-using WGADemo.DesignPatterns.Creational.Builder.Armors;
-using WGADemo.DesignPatterns.Creational.Builder.Units;
-using WGADemo.DesignPatterns.Creational.Builder.Weapons;
+using LestaAcademyDemo.DesignPatterns.Creational.Builder.Armors;
+using LestaAcademyDemo.DesignPatterns.Creational.Builder.Units;
+using LestaAcademyDemo.DesignPatterns.Creational.Builder.Weapons;
 
-namespace WGADemo.DesignPatterns.Creational.Builder
+namespace LestaAcademyDemo.DesignPatterns.Creational.Builder
 {
     public static class Builder
     {

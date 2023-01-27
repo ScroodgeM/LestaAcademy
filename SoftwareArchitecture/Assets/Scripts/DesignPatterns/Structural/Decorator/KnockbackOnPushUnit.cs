@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.DesignPatterns.Structural.Decorator
+namespace LestaAcademyDemo.DesignPatterns.Structural.Decorator
 {
     public class KnockbackOnPushUnit : UnitDecorator
     {

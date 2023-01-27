@@ -1,5 +1,5 @@
 ﻿
-namespace WGADemo.DesignPatterns.Creational.AbstractFactory.Weapons
+namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Weapons
 {
     public class Pistol : IWeapon
     {

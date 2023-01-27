@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPrinciples.LiskovSubstitutionPrinciple.Correct
+namespace LestaAcademyDemo.DesignPrinciples.LiskovSubstitutionPrinciple.Correct
 {
     public class GameController
     {

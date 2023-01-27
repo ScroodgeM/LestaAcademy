@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.TemplateMethod
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.TemplateMethod
 {
     public abstract class SaveGameController
     {

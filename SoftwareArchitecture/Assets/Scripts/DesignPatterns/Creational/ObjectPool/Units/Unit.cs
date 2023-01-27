@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WGADemo.DesignPatterns.Creational.ObjectPool.Units
+namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool.Units
 {
     public abstract class Unit : IUnit
     {

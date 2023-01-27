@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Behavioral.Servant
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Servant
 {
     public static class CharacterPowerCalculator
     {

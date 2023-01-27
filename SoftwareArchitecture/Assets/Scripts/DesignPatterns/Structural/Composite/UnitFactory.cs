@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WGADemo.DesignPatterns.Structural.Composite
+namespace LestaAcademyDemo.DesignPatterns.Structural.Composite
 {
     public static class UnitFactory
     {

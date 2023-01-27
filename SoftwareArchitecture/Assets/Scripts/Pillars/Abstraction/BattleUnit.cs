@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace WGADemo.Pillars.Abstraction
+namespace LestaAcademyDemo.Pillars.Abstraction
 {
     public class Unit : IBattleUnit
     {
