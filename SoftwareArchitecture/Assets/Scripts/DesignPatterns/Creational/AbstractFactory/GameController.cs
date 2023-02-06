@@ -9,6 +9,11 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory
 
         private readonly List<IUnit> units = new List<IUnit>();
 
+        public GameController(IFactory factory)
+        {
+            this.factory = factory;
+        }
+
         public void CreateArmy()
         {
             CreateUnits(UnitType.Soldier, WeaponType.AssaultRifle, 100);

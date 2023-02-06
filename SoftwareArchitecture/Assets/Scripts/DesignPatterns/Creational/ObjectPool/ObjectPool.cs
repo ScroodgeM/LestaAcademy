@@ -18,14 +18,11 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool
         {
             foreach (T member in members)
             {
-                if (member.InUse == false)
+                if (member.InUse == false && member.TypeMatches(typeIdentifier) == true)
                 {
-                    if (member.TypeMatches(typeIdentifier) == true)
-                    {
-                        member.Clear();
-                        member.MarkAsUsed();
-                        return member;
-                    }
+                    member.Clear();
+                    member.MarkAsUsed();
+                    return member;
                 }
             }
 

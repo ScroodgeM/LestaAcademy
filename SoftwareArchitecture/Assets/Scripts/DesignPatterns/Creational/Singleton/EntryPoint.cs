@@ -41,10 +41,5 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
             factory = factoryGameObject.GetComponent<IFactory>();
             gameController = gameControllerGameObject.GetComponent<IGameController>();
         }
-
-        public void StartGame()
-        {
-            EntryPoint.GameController.CreateArmy();
-        }
     }
 }
