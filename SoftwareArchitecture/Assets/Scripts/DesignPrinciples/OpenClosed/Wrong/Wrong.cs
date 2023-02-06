@@ -1,3 +1,5 @@
+﻿//this empty line for UTF-8 BOM header
+
 namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Wrong
 {
     public enum DamageType

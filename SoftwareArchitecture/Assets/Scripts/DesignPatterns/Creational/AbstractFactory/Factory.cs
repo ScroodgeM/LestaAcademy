@@ -1,3 +1,4 @@
+﻿//this empty line for UTF-8 BOM header
 using System;
 using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Units;
 using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Weapons;

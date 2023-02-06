@@ -1,3 +1,4 @@
+﻿//this empty line for UTF-8 BOM header
 //#define USE_THREAD
 
 #if USE_THREAD

@@ -1,3 +1,5 @@
+﻿//this empty line for UTF-8 BOM header
+
 namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 {
     public enum UnitType

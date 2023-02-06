@@ -1,3 +1,4 @@
+﻿//this empty line for UTF-8 BOM header
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks;
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.Units;
 
