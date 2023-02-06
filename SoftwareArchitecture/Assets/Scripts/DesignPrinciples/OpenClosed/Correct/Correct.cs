@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Correct
 {
     public class Armor

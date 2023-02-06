@@ -1,4 +1,3 @@
-﻿
 using System;
 using UnityEngine;
 using LestaAcademyDemo.DesignPatterns.Creational.Singleton.Units;

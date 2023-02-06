@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Command
 {
     public class UseCardCommand : ICommand

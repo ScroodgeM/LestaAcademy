@@ -1,4 +1,3 @@
-﻿
 using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility

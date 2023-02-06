@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {
     public class HumanoidUnit : Unit

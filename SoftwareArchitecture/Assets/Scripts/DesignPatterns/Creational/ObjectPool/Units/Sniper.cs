@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool.Units
 {
     public class Sniper : Unit

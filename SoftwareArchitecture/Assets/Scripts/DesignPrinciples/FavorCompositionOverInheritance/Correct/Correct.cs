@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Correct
 {
     public interface IUnit

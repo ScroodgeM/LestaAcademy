@@ -1,4 +1,4 @@
-﻿namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
+namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
 {
     public class Scenario
     {

@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Structural.Decorator
 {
     public interface IUnit

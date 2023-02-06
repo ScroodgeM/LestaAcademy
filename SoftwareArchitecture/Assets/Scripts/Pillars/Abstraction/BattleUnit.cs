@@ -1,4 +1,3 @@
-﻿
 using UnityEngine;
 
 namespace LestaAcademyDemo.Pillars.Abstraction

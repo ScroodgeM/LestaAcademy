@@ -1,4 +1,3 @@
-﻿
 //#define USE_THREAD
 
 #if USE_THREAD

@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod
 {
     public enum UnitType

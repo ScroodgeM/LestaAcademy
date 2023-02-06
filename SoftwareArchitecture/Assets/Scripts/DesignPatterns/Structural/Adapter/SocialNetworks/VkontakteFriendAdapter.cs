@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks
 {
     public class VkontakteFriendAdapter : ISocialNetworkFriend

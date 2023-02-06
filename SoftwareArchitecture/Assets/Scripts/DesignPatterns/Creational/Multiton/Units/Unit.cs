@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton.Units
 {
     public abstract class Unit : IUnit

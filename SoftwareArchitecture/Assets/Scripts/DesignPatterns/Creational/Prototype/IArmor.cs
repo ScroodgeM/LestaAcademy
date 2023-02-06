@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype
 {
     public interface IArmor

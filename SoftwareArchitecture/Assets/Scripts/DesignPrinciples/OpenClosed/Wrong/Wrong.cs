@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Wrong
 {
     public enum DamageType

@@ -1,4 +1,3 @@
-﻿
 using System;
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.Builder.Units

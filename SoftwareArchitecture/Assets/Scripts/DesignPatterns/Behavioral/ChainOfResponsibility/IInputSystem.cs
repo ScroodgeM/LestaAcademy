@@ -1,4 +1,3 @@
-﻿
 using LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility

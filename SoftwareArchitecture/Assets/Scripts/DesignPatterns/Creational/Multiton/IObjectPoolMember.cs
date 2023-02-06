@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 {
     public interface IObjectPoolMember

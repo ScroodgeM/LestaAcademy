@@ -1,4 +1,3 @@
-﻿
 using System;
 using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Units;
 using LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Weapons;

@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype.Weapons
 {
     public class SniperRifle : IWeapon

@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.Pillars.Inheritance
 {
     public class Car

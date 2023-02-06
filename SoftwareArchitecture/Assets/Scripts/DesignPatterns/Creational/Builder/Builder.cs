@@ -1,4 +1,3 @@
-﻿
 using System;
 using LestaAcademyDemo.DesignPatterns.Creational.Builder.Armors;
 using LestaAcademyDemo.DesignPatterns.Creational.Builder.Units;

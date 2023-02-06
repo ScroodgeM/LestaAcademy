@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.Builder.Weapons
 {
     public class Pistol : IWeapon

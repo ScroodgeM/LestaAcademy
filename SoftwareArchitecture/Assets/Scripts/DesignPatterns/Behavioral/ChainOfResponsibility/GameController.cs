@@ -1,4 +1,3 @@
-﻿
 using System.Collections.Generic;
 using LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers;
 

@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.LazyInitialization
 {
     public class LazyBonus : IBonus

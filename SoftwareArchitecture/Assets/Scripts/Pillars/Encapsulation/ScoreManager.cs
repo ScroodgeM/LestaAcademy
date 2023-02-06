@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.Pillars.Encapsulation
 {
     public enum ScoreSource

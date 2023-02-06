@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 {
     public enum UnitType

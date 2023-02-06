@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool
 {
     public interface IObjectPoolMember<TI>

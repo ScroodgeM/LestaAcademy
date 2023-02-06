@@ -1,4 +1,3 @@
-﻿
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks;
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.Units;
 

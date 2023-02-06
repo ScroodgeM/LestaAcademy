@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Structural.Facade
 {
     public class Facade : IFacade

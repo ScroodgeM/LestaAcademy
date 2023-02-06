@@ -1,4 +1,3 @@
-﻿
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handlers
 {
     public class CampBuildingHudEventHandler : IScreenInputEventHandler
