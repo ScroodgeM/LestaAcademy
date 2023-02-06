@@ -4,8 +4,14 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Memento
 {
     public class Originator
     {
-        PlayerController playerController;
-        LevelController levelController;
+        private readonly PlayerController playerController;
+        private readonly LevelController levelController;
+
+        public Originator(PlayerController playerController, LevelController levelController)
+        {
+            this.playerController = playerController;
+            this.levelController = levelController;
+        }
 
         public Memento CreateMemento()
         {

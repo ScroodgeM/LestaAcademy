@@ -19,7 +19,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Command
 
         public void UndoCommand()
         {
-            // move somethinf to '-step'
+            // move something to '-step'
         }
     }
 }

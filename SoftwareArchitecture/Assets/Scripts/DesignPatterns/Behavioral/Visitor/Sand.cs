@@ -11,7 +11,10 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 
         public void Visit(VehicleUnit unit)
         {
-            unit.SetSpeed(0.1f);
+            if (unit.IsFlyingUnit == false)
+            {
+                unit.SetSpeed(0.1f);
+            }
         }
     }
 }

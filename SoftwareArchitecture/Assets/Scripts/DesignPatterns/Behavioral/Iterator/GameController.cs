@@ -1,6 +1,7 @@
 ﻿//this empty line for UTF-8 BOM header
 using System;
 using System.Collections.Generic;
+using LestaAcademyDemo.DesignPatterns.Behavioral.Iterator.Units;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {

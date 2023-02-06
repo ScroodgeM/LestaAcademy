@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.SocialNetworks;
 using LestaAcademyDemo.DesignPatterns.Structural.Adapter.Units;
 
@@ -8,12 +9,14 @@ namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter
     {
         public enum SocialNetworkType
         {
-            VK, FB,
+            VK,
+            FB,
         }
 
         public enum PlayerUnitType
         {
-            Character, Car,
+            Character,
+            Car,
         }
 
         public enum NPCUnitType

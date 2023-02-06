@@ -15,7 +15,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
             {
                 return value;
             }
-            set
+            protected set
             {
                 this.value = value;
 

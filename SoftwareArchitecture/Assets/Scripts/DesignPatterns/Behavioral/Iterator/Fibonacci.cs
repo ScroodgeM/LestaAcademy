@@ -1,11 +1,20 @@
 ﻿//this empty line for UTF-8 BOM header
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 {
     public static class FibonacciNumbers
     {
-        public static IEnumerator<long> GetNumbers(int count)
+        public static void Test()
+        {
+            foreach (long fibonacciNumber in GetNumbers(100))
+            {
+                Debug.Log(fibonacciNumber);
+            }
+        }
+
+        public static IEnumerable<long> GetNumbers(int count)
         {
             if (count > 0)
             {

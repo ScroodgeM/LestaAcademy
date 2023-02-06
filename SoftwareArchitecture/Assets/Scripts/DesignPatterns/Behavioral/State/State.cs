@@ -1,5 +1,7 @@
 ﻿//this empty line for UTF-8 BOM header
 
+using UnityEngine;
+
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
 {
     internal interface IState
@@ -11,7 +13,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
     {
         public IState ProcessAction(IStateControlledUnit unit)
         {
-            if (/*some enemy in fire range*/ true)
+            if (/*some enemy in fire range*/ Random.value > 0.5f)
             {
                 return new FireState();
             }
@@ -26,14 +28,14 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
     {
         public IState ProcessAction(IStateControlledUnit unit)
         {
-            if (/*no more bullets in the gun*/true)
+            if (/*no more bullets in the gun*/ Random.value > 0.5f)
             {
                 unit.NotifyAboutReloading();
 
                 return new ReloadGunState();
             }
 
-            if (/*enemy in range*/true)
+            if (/*enemy in range*/ Random.value > 0.5f)
             {
                 unit.FireToEnemy();
                 unit.WithdrawOneBulletFromGun();
@@ -50,7 +52,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
     {
         public IState ProcessAction(IStateControlledUnit unit)
         {
-            if (/*gun reloaded*/true)
+            if (/*gun reloaded*/ Random.value > 0.5f)
             {
                 unit.GunReloaded();
 
@@ -66,7 +68,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
     {
         public IState ProcessAction(IStateControlledUnit unit)
         {
-            if (/*unit is still stunned*/true)
+            if (/*unit is still stunned*/ Random.value > 0.5f)
             {
                 // do nothing, stunning effect/animation should be playing
                 return this;
@@ -80,7 +82,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
     {
         public IState ProcessAction(IStateControlledUnit unit)
         {
-            if (/*enemy appeared in range*/true)
+            if (/*enemy appeared in range*/ Random.value > 0.5f)
             {
                 return new FireState();
             }

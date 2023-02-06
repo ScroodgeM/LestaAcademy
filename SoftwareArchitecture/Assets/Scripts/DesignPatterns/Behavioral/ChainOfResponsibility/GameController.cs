@@ -6,7 +6,12 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility
 {
     public class GameController
     {
-        private IInputSystem inputSystem;
+        private readonly IInputSystem inputSystem;
+
+        public GameController(IInputSystem inputSystem)
+        {
+            this.inputSystem = inputSystem;
+        }
 
         public void SubscribeThem()
         {

@@ -1,13 +1,13 @@
 ﻿//this empty line for UTF-8 BOM header
 using System;
 
-namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
+namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator.Units
 {
-    public class BossUnit : IUnit
+    public class HumanUnit : IUnit
     {
         public bool IsMovable => throw new NotImplementedException();
 
-        public UnitType UnitType => UnitType.Boss;
+        public UnitType UnitType => UnitType.Human;
 
         public string GetAlliance()
         {
