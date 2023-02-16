@@ -2,9 +2,9 @@
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
 {
-    public class PlayerMoney : SubjectBase<ulong>
+    public class PlayerMoney : SubjectBase<Money>
     {
-        public void SetNewMoney(ulong newMoney)
+        public void SetNewMoney(Money newMoney)
         {
             this.Value = newMoney;
         }

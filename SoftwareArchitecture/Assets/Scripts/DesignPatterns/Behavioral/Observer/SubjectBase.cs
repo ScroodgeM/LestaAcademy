@@ -9,13 +9,9 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
 
         private T value;
 
-        public T Value
+        protected T Value
         {
-            get
-            {
-                return value;
-            }
-            protected set
+            set
             {
                 this.value = value;
 
@@ -30,7 +26,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
         {
             observers.Add(observer);
 
-            observer.OnObserverEvent(Value);
+            observer.OnObserverEvent(value);
         }
 
         public void Unsubscribe(IObserver<T> observer)

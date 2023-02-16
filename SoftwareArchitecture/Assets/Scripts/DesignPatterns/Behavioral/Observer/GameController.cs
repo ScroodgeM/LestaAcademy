@@ -4,15 +4,13 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer
 {
     public class GameController
     {
-        private static GameController instance;
-
         private PlayerMoney playerMoney;
 
-        public static ISubject<ulong> PlayerMoney
+        public ISubject<Money> PlayerMoney
         {
             get
             {
-                return instance.playerMoney;
+                return playerMoney;
             }
         }
     }

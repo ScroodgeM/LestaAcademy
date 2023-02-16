@@ -3,19 +3,26 @@ using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Observer.Observers
 {
-    public class ShopInformer : MonoBehaviour, IObserver<ulong>
+    public class ShopInformer : MonoBehaviour, IObserver<Money>
     {
-        private void Awake()
+        private ISubject<Money> playerMoney;
+
+        public void Init(GameController gameController)
         {
-            GameController.PlayerMoney.Subscribe(this);
+            playerMoney = gameController.PlayerMoney;
+        }
+
+        private void Start()
+        {
+            playerMoney.Subscribe(this);
         }
 
         private void OnDestroy()
         {
-            GameController.PlayerMoney.Unsubscribe(this);
+            playerMoney.Unsubscribe(this);
         }
 
-        public void OnObserverEvent(ulong value)
+        public void OnObserverEvent(Money value)
         {
             // show notification about [new] goods you can buy now
         }

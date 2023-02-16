@@ -33,13 +33,13 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Iterator
 
             while (count > 0)
             {
-                long next = prev2 + prev1;
+                long current = prev2 + prev1;
 
-                yield return next;
+                yield return current;
                 count--;
 
                 prev2 = prev1;
-                prev1 = next;
+                prev1 = current;
             }
         }
     }

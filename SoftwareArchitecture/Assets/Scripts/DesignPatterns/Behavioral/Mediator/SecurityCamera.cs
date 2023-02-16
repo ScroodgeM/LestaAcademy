@@ -1,6 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Mediator
@@ -14,7 +13,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Mediator
             this.mediator = mediator;
         }
 
-        void Update()
+        private void Update()
         {
             if (true) // player detected in camera viewport
             {
