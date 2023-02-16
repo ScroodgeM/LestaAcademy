@@ -4,11 +4,6 @@ using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
 {
-    internal interface IState
-    {
-        IState ProcessAction(IStateControlledUnit unit);
-    }
-
     internal class IdleState : IState
     {
         public IState ProcessAction(IStateControlledUnit unit)

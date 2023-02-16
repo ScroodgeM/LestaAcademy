@@ -41,10 +41,12 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Strategy
 
         private void Attack(Vector3 enemyPosition)
         {
+            // do attack actions here
         }
 
         internal void MoveToGoal(Vector3 goal)
         {
+            // do move actions here
         }
     }
 }

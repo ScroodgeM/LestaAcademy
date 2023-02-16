@@ -5,7 +5,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {
     public abstract class Unit : MonoBehaviour
     {
-        public void SetSpeed(float speed)
+        public void SetSpeedMultiplier(float speed)
         {
             // apply speed here
         }

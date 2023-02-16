@@ -20,22 +20,27 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.State
 
         public void MoveForward()
         {
+            // ...
         }
 
         public void GunReloaded()
         {
+            // ...
         }
 
         public void NotifyAboutReloading()
         {
+            // ...
         }
 
         public void WithdrawOneBulletFromGun()
         {
+            // ...
         }
 
         public void FireToEnemy()
         {
+            // ...
         }
     }
 }

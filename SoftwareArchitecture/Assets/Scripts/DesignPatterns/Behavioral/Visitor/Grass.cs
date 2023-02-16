@@ -6,14 +6,17 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
     {
         public void Visit(HumanoidUnit unit)
         {
-            unit.SetSpeed(1.2f);
+            if (unit.IsMechanoid == false)
+            {
+                unit.SetSpeedMultiplier(1.2f);
+            }
         }
 
         public void Visit(VehicleUnit unit)
         {
             if (unit.IsFlyingUnit == false)
             {
-                unit.SetSpeed(1.8f);
+                unit.SetSpeedMultiplier(1.8f);
             }
         }
     }
