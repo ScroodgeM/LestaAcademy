@@ -13,7 +13,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handl
         {
             if (screenInputEvent.isDragEvent == true)
             {
-                // grab this and all future events with this finger id and hange it as drag
+                // grab this and all future events with this finger id and handle it as drag
                 return true;
             }
 

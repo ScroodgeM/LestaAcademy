@@ -27,7 +27,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.TemplateMethod
         }
         protected override void LoadGame(string name, Action<GameState> onLoad)
         {
-            GameState gameState = new GameState() { level = 1000, money = 1000000000, name = "QA Debug" };
+            GameState gameState = new GameState() { level = 1000, money = 1000000000, name = "QA Game" };
             onLoad(gameState);
         }
     }
