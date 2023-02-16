@@ -6,7 +6,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handl
     {
         public int GetPriority()
         {
-            return 50;
+            return (int)Priority.CampBuildingHud;
         }
 
         public bool TryHandle(ScreenInputEvent screenInputEvent)

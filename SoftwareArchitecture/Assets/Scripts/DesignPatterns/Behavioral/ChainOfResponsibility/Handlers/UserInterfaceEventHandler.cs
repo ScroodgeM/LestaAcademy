@@ -6,7 +6,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.ChainOfResponsibility.Handl
     {
         public int GetPriority()
         {
-            return 0; // always first
+            return (int)Priority.UserInterface; // always first
         }
 
         public bool TryHandle(ScreenInputEvent screenInputEvent)
