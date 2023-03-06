@@ -34,7 +34,7 @@ Shader "ExampleScreen"
                 float4 vertex : SV_POSITION;
             };
 
-            v2f vert (appdata v)
+            v2f vert(appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
@@ -50,7 +50,7 @@ Shader "ExampleScreen"
             float _ScannerDistanceMax;
             fixed4 _ScannerColor;
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f i) : SV_Target
             {
                 half depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
                 depth = LinearEyeDepth(depth);

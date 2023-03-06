@@ -18,7 +18,10 @@ Shader "ExampleLit"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue"="Transparent" }
+        Tags
+        {
+            "RenderType"="Opaque" "Queue"="Geometry"
+        }
         LOD 200
 
         CGPROGRAM
@@ -48,24 +51,25 @@ Shader "ExampleLit"
         float4 _RimColor;
         float _RimPower;
 
-        void vert (inout appdata_full v) {
+        void vert(inout appdata_full v)
+        {
             //v.vertex.xyz += v.normal * _Amount;
         }
 
-        void surf (Input IN, inout SurfaceOutputStandard o)
+        void surf(Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
+            fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
             o.Albedo = c.rgb;
-            o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+            o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
             // Metallic and smoothness come from slider variables
-            float metallic = tex2D (_MetallicMap, IN.uv_MetallicMap).r;
+            float metallic = tex2D(_MetallicMap, IN.uv_MetallicMap).r;
             o.Metallic = _Metallic * metallic;
             o.Smoothness = _Glossiness * metallic;
             o.Alpha = c.a;
-            half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
-            o.Emission = _RimColor.rgb * pow (rim, _RimPower);
-            o.Emission += texCUBE (_Cube, WorldReflectionVector (IN, o.Normal)).rgb * metallic;
+            half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
+            o.Emission = _RimColor.rgb * pow(rim, _RimPower);
+            o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb * metallic;
             return;
         }
         ENDCG
@@ -78,7 +82,6 @@ Shader "ExampleLit"
             Cull Off
 
             CGPROGRAM
-
             #pragma vertex vert
             #pragma fragment frag
 
@@ -102,7 +105,7 @@ Shader "ExampleLit"
             float _ShieldScale;
             float _ShieldSpeed;
 
-            v2f vert (appdata v)
+            v2f vert(appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.pos + v.normal * _Amount);
@@ -110,13 +113,13 @@ Shader "ExampleLit"
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            fixed4 frag(v2f i) : SV_Target
             {
                 return tex2D(_ShieldTexture, i.localPos.yy) * _ShieldColor;
             }
-
             ENDCG
         }
     }
+
     FallBack "Diffuse"
 }
