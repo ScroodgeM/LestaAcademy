@@ -19,6 +19,7 @@ Shader "Demo Unlit"
             struct appdata
             {
                 float4 pos : POSITION;
+                float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
             };
 
@@ -26,6 +27,7 @@ Shader "Demo Unlit"
             {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
+                half3 normal : TEXCOORD1;
             };
 
             fixed4 _Color;
@@ -37,12 +39,14 @@ Shader "Demo Unlit"
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.pos);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.normal = v.normal;
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return tex2D(_MainTex, i.uv) * _Color;
+                //return tex2D(_MainTex, i.uv) * _Color;
+                return fixed4(i.normal, 1);
             }
             ENDCG
         }
