@@ -11,6 +11,11 @@ Shader "Demo Unlit"
 
     SubShader
     {
+        Tags
+        {
+            "RenderType"="Opaque" "LightMode"="ForwardBase"
+        }
+
         Pass
         {
             CGPROGRAM
@@ -85,7 +90,9 @@ Shader "Demo Unlit"
 
                 half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
 
-                fixed4 result = fixed4(skyColor * metallic + unlit * nl * _LightColor0, 1);
+                fixed3 ambient = ShadeSH9(half4(worldNormal, 1));
+
+                fixed4 result = fixed4(skyColor * metallic + unlit * (nl * _LightColor0 + ambient), 1);
                 return result;
             }
             ENDCG
