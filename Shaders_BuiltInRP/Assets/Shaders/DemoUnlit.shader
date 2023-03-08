@@ -64,7 +64,6 @@ Shader "Demo Unlit"
             {
                 fixed4 bumpMap = tex2D(_BumpMap, i.uv);
                 half3 normal = lerp(half3(0, 0, 1), UnpackNormal(bumpMap), _BumpMultiplier);
-                return fixed4(normal, 1);
 
                 half3 worldNormal;
                 worldNormal.x = dot(i.tspace0, normal);
