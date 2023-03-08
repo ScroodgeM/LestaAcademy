@@ -18,6 +18,7 @@ Shader "Demo Unlit"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "UnityLightingCommon.cginc"
 
             struct appdata
             {
@@ -83,9 +84,8 @@ Shader "Demo Unlit"
                 fixed4 unlit = tex2D(_MainTex, i.uv) * _Color;
 
                 half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
-                return fixed4(nl, nl, nl, 1);
 
-                fixed4 result = fixed4(skyColor * metallic + unlit, 1);
+                fixed4 result = fixed4(skyColor * metallic + unlit * nl * _LightColor0, 1);
                 return result;
             }
             ENDCG
