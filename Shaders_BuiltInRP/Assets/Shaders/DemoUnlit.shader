@@ -21,9 +21,11 @@ Shader "Demo Unlit"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityCG.cginc"
             #include "UnityLightingCommon.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata
             {
@@ -41,6 +43,7 @@ Shader "Demo Unlit"
                 half3 tspace0 : TEXCOORD3;
                 half3 tspace1 : TEXCOORD4;
                 half3 tspace2 : TEXCOORD5;
+                SHADOW_COORDS(6)
             };
 
             fixed4 _Color;
@@ -65,6 +68,8 @@ Shader "Demo Unlit"
                 o.tspace0 = half3(worldTangent.x, worldBiTangent.x, worldNormal.x);
                 o.tspace1 = half3(worldTangent.y, worldBiTangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBiTangent.z, worldNormal.z);
+
+                TRANSFER_SHADOW(o);
                 return o;
             }
 
@@ -92,7 +97,9 @@ Shader "Demo Unlit"
 
                 fixed3 ambient = ShadeSH9(half4(worldNormal, 1));
 
-                fixed4 result = fixed4(skyColor * metallic + unlit * (nl * _LightColor0 + ambient), 1);
+                fixed shadow = SHADOW_ATTENUATION(i);
+
+                fixed4 result = fixed4(skyColor * metallic + unlit * (nl * _LightColor0 * shadow + ambient), 1);
                 return result;
             }
             ENDCG
