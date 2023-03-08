@@ -80,9 +80,9 @@ Shader "Demo Unlit"
 
                 fixed metallic = tex2D(_MetallicMap, i.uv).r;
 
-                //return tex2D(_MainTex, i.uv) * _Color;
+                fixed4 unlit = tex2D(_MainTex, i.uv) * _Color;
 
-                fixed4 result = fixed4(skyColor * metallic, 1);
+                fixed4 result = fixed4(skyColor * metallic + unlit, 1);
                 return result;
             }
             ENDCG
