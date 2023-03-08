@@ -22,6 +22,7 @@ Shader "Demo Unlit"
             #pragma vertex vert
             #pragma fragment frag
             #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
+            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
             #include "UnityLightingCommon.cginc"
@@ -44,6 +45,7 @@ Shader "Demo Unlit"
                 half3 tspace1 : TEXCOORD4;
                 half3 tspace2 : TEXCOORD5;
                 SHADOW_COORDS(6)
+                UNITY_FOG_COORDS(7)
             };
 
             fixed4 _Color;
@@ -70,6 +72,7 @@ Shader "Demo Unlit"
                 o.tspace2 = half3(worldTangent.z, worldBiTangent.z, worldNormal.z);
 
                 TRANSFER_SHADOW(o);
+                UNITY_TRANSFER_FOG(o, o.pos);
                 return o;
             }
 
@@ -100,6 +103,9 @@ Shader "Demo Unlit"
                 fixed shadow = SHADOW_ATTENUATION(i);
 
                 fixed4 result = fixed4(skyColor * metallic + unlit * (nl * _LightColor0 * shadow + ambient), 1);
+
+                UNITY_APPLY_FOG(i.fogCoord, result);
+
                 return result;
             }
             ENDCG
