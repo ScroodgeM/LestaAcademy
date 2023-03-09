@@ -3,6 +3,8 @@ Shader "Demo Screen"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _WarningLevel ("Warning Level", Range(0,1)) = 0
+        _WarningColor ("Warning Color", Color) = (1,0,0,0)
     }
     SubShader
     {
@@ -38,12 +40,15 @@ Shader "Demo Screen"
             }
 
             sampler2D _MainTex;
+            fixed _WarningLevel;
+            fixed4 _WarningColor;
 
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // just invert the colors
-                col.rgb = 1 - col.rgb;
+
+                col += (_WarningLevel * length(i.uv - 0.5) * abs(_SinTime.w)) * _WarningColor;
+
                 return col;
             }
             ENDCG
