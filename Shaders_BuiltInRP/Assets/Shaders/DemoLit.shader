@@ -12,6 +12,9 @@ Shader "Demo Lit"
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
         _Cube ("Cubemap", CUBE) = "" {}
         _Amount ("Extrusion Amount", Range(0,10)) = 0.5
+        _ShieldColor ("Shield Color", Color) = (0.5,0.5,0.5,0.5)
+        _ShieldTexture ("Shield", 2D) = "white" {}
+        _ShieldScale ("Shield Scale", Range(0.01,1)) = 0.5
     }
     SubShader
     {
@@ -92,20 +95,25 @@ Shader "Demo Lit"
             struct v2f
             {
                 float4 pos : SV_POSITION;
+                float4 localPos : TEXCOORD0;
             };
 
+            sampler2D _ShieldTexture;
             float _Amount;
+            fixed4 _ShieldColor;
+            float _ShieldScale;
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.pos + v.normal * _Amount);
+                o.localPos = v.pos * _ShieldScale;
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return fixed4(1, 1, 0, 0.25);
+                return tex2D(_ShieldTexture, i.localPos.yy) * _ShieldColor;
             }
             ENDCG
         }
