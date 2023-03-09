@@ -52,7 +52,7 @@ Shader "Demo Lit"
 
         void vert(inout appdata_full v)
         {
-            v.vertex.xyz += v.normal * _Amount;
+            //v.vertex.xyz += v.normal * _Amount;
         }
 
         void surf(Input IN, inout SurfaceOutputStandard o)
@@ -69,6 +69,46 @@ Shader "Demo Lit"
             o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb * metallic;
         }
         ENDCG
+
+        Pass
+        {
+            Blend SrcAlpha OneMinusSrcAlpha
+
+            ZWrite Off
+            Cull Off
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 pos : POSITION;
+                float3 normal : NORMAL;
+            };
+
+            struct v2f
+            {
+                float4 pos : SV_POSITION;
+            };
+
+            float _Amount;
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.pos + v.normal * _Amount);
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                return fixed4(1, 1, 0, 0.25);
+            }
+            ENDCG
+        }
     }
     FallBack "Diffuse"
 }
