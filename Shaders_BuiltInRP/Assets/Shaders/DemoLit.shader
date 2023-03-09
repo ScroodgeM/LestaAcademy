@@ -5,6 +5,7 @@ Shader "Demo Lit"
         _Color ("Color", Color) = (1,1,1,1)
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _BumpMap ("Bumpmap", 2D) = "bump" {}
+        _MetallicMap ("Metallic", 2D) = "black" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         _RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)
@@ -28,12 +29,14 @@ Shader "Demo Lit"
 
         sampler2D _MainTex;
         sampler2D _BumpMap;
+        sampler2D _MetallicMap;
         samplerCUBE _Cube;
 
         struct Input
         {
             float2 uv_MainTex;
             float2 uv_BumpMap;
+            float2 uv_MetallicMap;
             float3 viewDir;
             float3 worldRefl;
             INTERNAL_DATA
@@ -47,17 +50,16 @@ Shader "Demo Lit"
 
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
-            // Albedo comes from a texture tinted by color
             fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb;
             o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
-            // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
+            float metallic = tex2D(_MetallicMap, IN.uv_MetallicMap).r;
+            o.Metallic = _Metallic * metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
             half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
             o.Emission = _RimColor.rgb * pow(rim, _RimPower);
-            o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb;
+            o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb * metallic;
         }
         ENDCG
     }
