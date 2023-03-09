@@ -15,6 +15,7 @@ Shader "Demo Lit"
         _ShieldColor ("Shield Color", Color) = (0.5,0.5,0.5,0.5)
         _ShieldTexture ("Shield", 2D) = "white" {}
         _ShieldScale ("Shield Scale", Range(0.01,1)) = 0.5
+        _ShieldSpeed ("Shield Speed", Range(0.1,10)) = 0.5
     }
     SubShader
     {
@@ -102,12 +103,13 @@ Shader "Demo Lit"
             float _Amount;
             fixed4 _ShieldColor;
             float _ShieldScale;
+            float _ShieldSpeed;
 
             v2f vert(appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.pos + v.normal * _Amount);
-                o.localPos = v.pos * _ShieldScale;
+                o.localPos = v.pos * _ShieldScale - _Time.zzzz * _ShieldSpeed;
                 return o;
             }
 
