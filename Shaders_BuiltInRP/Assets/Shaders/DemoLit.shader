@@ -16,6 +16,7 @@ Shader "Demo Lit"
         _ShieldTexture ("Shield", 2D) = "white" {}
         _ShieldScale ("Shield Scale", Range(0.01,1)) = 0.5
         _ShieldSpeed ("Shield Speed", Range(0.1,10)) = 0.5
+        _OutlineColor ("Outline Color", Color) = (0.5,0.5,0.5,0.5)
     }
     SubShader
     {
@@ -116,6 +117,48 @@ Shader "Demo Lit"
             fixed4 frag(v2f i) : SV_Target
             {
                 return tex2D(_ShieldTexture, i.localPos.yy) * _ShieldColor;
+            }
+            ENDCG
+        }
+
+        Pass
+        {
+            Blend SrcAlpha OneMinusSrcAlpha
+
+            ZTest Less
+            ZWrite On
+            Cull Front
+
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            struct appdata
+            {
+                float4 pos : POSITION;
+                float3 normal : NORMAL;
+            };
+
+            struct v2f
+            {
+                float4 pos : SV_POSITION;
+            };
+
+            float _Amount;
+            fixed4 _OutlineColor;
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.pos = UnityObjectToClipPos(v.pos + v.normal * _Amount * 0.5);
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                return _OutlineColor;
             }
             ENDCG
         }
