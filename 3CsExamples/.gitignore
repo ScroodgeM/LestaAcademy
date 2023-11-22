@@ -1,9 +1,10 @@
 /[Ll]ibrary/
-/[Ll]ogs/
 /[Tt]emp/
 /[Oo]bj/
+/[Ll]ogs/
 /UserSettings/
 .vs/
+.idea/
 .vsconfig
 *.csproj
 *.sln
