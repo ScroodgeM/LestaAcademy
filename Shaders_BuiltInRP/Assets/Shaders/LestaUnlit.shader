@@ -86,9 +86,9 @@ Shader "Lesta/Unlit"
                 half3 skyColor = DecodeHDR(skyData, unity_SpecCube0_HDR);
 
                 fixed metallic = tex2D(_MetallicMap, i.uv).r;
-                return fixed4(skyColor * metallic, 1);
-
-                fixed4 col = tex2D(_MainTex, i.uv) * _Color;
+                fixed3 reflection = skyColor * metallic;
+                fixed3 diffuse = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
+                fixed4 col = fixed4(reflection + diffuse, 1);
                 return col;
             }
             ENDCG
