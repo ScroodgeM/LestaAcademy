@@ -10,6 +10,7 @@ Shader "Lesta/Lit"
         _RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
         _Cube ("Cubemap", CUBE) = "" {}
+        _Amount ("Extrusion Amount", Range(0,10)) = 0.5
     }
     SubShader
     {
@@ -21,7 +22,7 @@ Shader "Lesta/Lit"
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows vertex:vert
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -41,6 +42,7 @@ Shader "Lesta/Lit"
             INTERNAL_DATA
         };
 
+        float _Amount;
         half _Glossiness;
         fixed4 _Color;
         float4 _RimColor;
@@ -52,6 +54,11 @@ Shader "Lesta/Lit"
         UNITY_INSTANCING_BUFFER_START(Props)
             // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
+
+        void vert(inout appdata_full v)
+        {
+            v.vertex.xyz += v.normal * _Amount;
+        }
 
         void surf(Input IN, inout SurfaceOutputStandard o)
         {
