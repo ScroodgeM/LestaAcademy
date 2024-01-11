@@ -5,6 +5,9 @@ Shader "Lesta/Screen"
         _MainTex ("Texture", 2D) = "white" {}
         _WarningLevel ("Warning Level", Range(0,1)) = 0
         _WarningColor ("Warning Color", Color) = (1,0,0,0)
+        _ScannerDistanceMin ("Scanner Distance Min", Range(0,300)) = 50
+        _ScannerDistanceMax ("Scanner Distance Max", Range(0,300)) = 200
+        _ScannerColor ("Scanner Color", Color) = (0,1,0,0)
     }
     SubShader
     {
@@ -43,16 +46,21 @@ Shader "Lesta/Screen"
             sampler2D _CameraDepthTexture;
             fixed _WarningLevel;
             fixed4 _WarningColor;
+            float _ScannerDistanceMin;
+            float _ScannerDistanceMax;
+            fixed4 _ScannerColor;
 
             fixed4 frag(v2f i) : SV_Target
             {
                 half depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
                 depth = LinearEyeDepth(depth);
-                return depth * 0.004;
 
                 fixed4 col = tex2D(_MainTex, i.uv);
 
                 col += (_WarningLevel * length(i.uv - 0.5) * abs(_SinTime.w)) * _WarningColor;
+
+                float dist = lerp(_ScannerDistanceMin, _ScannerDistanceMax, sin(_Time.w * 0.15) * 0.5 + 0.5);
+                col += saturate(1.0 - 0.5 * abs(depth - dist)) * _ScannerColor;
 
                 return col;
             }
