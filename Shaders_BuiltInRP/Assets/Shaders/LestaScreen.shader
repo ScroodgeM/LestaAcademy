@@ -40,11 +40,16 @@ Shader "Lesta/Screen"
             }
 
             sampler2D _MainTex;
+            sampler2D _CameraDepthTexture;
             fixed _WarningLevel;
             fixed4 _WarningColor;
 
             fixed4 frag(v2f i) : SV_Target
             {
+                half depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv);
+                depth = LinearEyeDepth(depth);
+                return depth * 0.004;
+
                 fixed4 col = tex2D(_MainTex, i.uv);
 
                 col += (_WarningLevel * length(i.uv - 0.5) * abs(_SinTime.w)) * _WarningColor;
