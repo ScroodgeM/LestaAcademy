@@ -14,6 +14,7 @@ Shader "Lesta/Unlit"
         Tags
         {
             "RenderType"="Opaque"
+            "LightMode"="ForwardBase"
         }
         LOD 100
 
@@ -91,7 +92,8 @@ Shader "Lesta/Unlit"
                 fixed metallic = tex2D(_MetallicMap, i.uv).r;
                 fixed3 reflection = skyColor * metallic;
                 fixed3 unlit = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
-                fixed3 diffuse = unlit * (nl * _LightColor0);
+                fixed3 ambient = ShadeSH9(half4(worldNormal, 1));
+                fixed3 diffuse = unlit * (nl * _LightColor0 + ambient);
                 fixed4 col = fixed4(reflection + diffuse, 1);
                 return col;
             }
