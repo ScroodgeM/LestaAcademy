@@ -4,6 +4,7 @@ Shader "Lesta/Unlit"
     {
         _Color ("Main Color", Color) = (1, 1, 0, 1)
         _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _BumpMap ("NormalMap", 2D) = "bump" {}
     }
 
     SubShader
@@ -43,6 +44,7 @@ Shader "Lesta/Unlit"
             fixed4 _Color;
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            sampler2D _BumpMap;
 
             v2f vert(appdata v)
             {
@@ -65,6 +67,9 @@ Shader "Lesta/Unlit"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                fixed4 bumpMap = tex2D(_BumpMap, i.uv);
+                return fixed4(UnpackNormal(bumpMap), 1);
+
                 half3 normal = fixed4(0, 0, 1, 0);
 
                 half3 worldNormal;
