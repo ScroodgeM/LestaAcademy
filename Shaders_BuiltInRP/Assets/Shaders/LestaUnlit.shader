@@ -6,6 +6,7 @@ Shader "Lesta/Unlit"
         _MainTex ("Texture", 2D) = "white" {}
         [NoScaleOffset] _BumpMap ("NormalMap", 2D) = "bump" {}
         _BumpMultiplier ("NormalMap Multiplier", Range(0,1)) = 1
+        [NoScaleOffset] _MetallicMap ("Metallic Map", 2D) = "white" {}
     }
 
     SubShader
@@ -47,6 +48,7 @@ Shader "Lesta/Unlit"
             float4 _MainTex_ST;
             sampler2D _BumpMap;
             float _BumpMultiplier;
+            sampler2D _MetallicMap;
 
             v2f vert(appdata v)
             {
@@ -83,7 +85,8 @@ Shader "Lesta/Unlit"
                 half4 skyData = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, worldRefl);
                 half3 skyColor = DecodeHDR(skyData, unity_SpecCube0_HDR);
 
-                return fixed4(skyColor, 1);
+                fixed metallic = tex2D(_MetallicMap, i.uv).r;
+                return fixed4(skyColor * metallic, 1);
 
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;
                 return col;
