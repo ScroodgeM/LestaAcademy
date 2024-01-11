@@ -33,7 +33,7 @@ Shader "Lesta/Unlit"
             {
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
-                half3 normal : TEXCOORD1;
+                half3 worldNormal : TEXCOORD1;
             };
 
             fixed4 _Color;
@@ -45,13 +45,13 @@ Shader "Lesta/Unlit"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.normal = v.normal;
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return fixed4(i.normal, 1);
+                return fixed4(i.worldNormal, 1);
 
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;
                 return col;
