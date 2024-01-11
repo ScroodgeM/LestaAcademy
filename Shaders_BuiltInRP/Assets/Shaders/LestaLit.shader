@@ -6,7 +6,7 @@ Shader "Lesta/Lit"
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _BumpMap ("Bumpmap", 2D) = "bump" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
+        _MetallicMap ("Metallic", 2D) = "black" {}
         _RimColor ("Rim Color", Color) = (0.26,0.19,0.16,0.0)
         _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
         _Cube ("Cubemap", CUBE) = "" {}
@@ -28,19 +28,20 @@ Shader "Lesta/Lit"
 
         sampler2D _MainTex;
         sampler2D _BumpMap;
+        sampler2D _MetallicMap;
         samplerCUBE _Cube;
 
         struct Input
         {
             float2 uv_MainTex;
             float2 uv_BumpMap;
+            float2 uv_MetallicMap;
             float3 viewDir;
             float3 worldRefl;
             INTERNAL_DATA
         };
 
         half _Glossiness;
-        half _Metallic;
         fixed4 _Color;
         float4 _RimColor;
         float _RimPower;
@@ -59,12 +60,12 @@ Shader "Lesta/Lit"
             o.Albedo = c.rgb;
             o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
             // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
+            o.Metallic = tex2D(_MetallicMap, IN.uv_MetallicMap).r;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
             half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
             o.Emission = _RimColor.rgb * pow(rim, _RimPower);
-            o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb;
+            o.Emission += texCUBE(_Cube, WorldReflectionVector(IN, o.Normal)).rgb * o.Metallic;
         }
         ENDCG
     }
