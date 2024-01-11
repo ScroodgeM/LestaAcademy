@@ -26,6 +26,7 @@ Shader "Lesta/Unlit"
             {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
+                float4 tangent : TANGENT;
                 float2 uv : TEXCOORD0;
             };
 
@@ -33,8 +34,10 @@ Shader "Lesta/Unlit"
             {
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
-                half3 worldNormal : TEXCOORD1;
                 float3 worldPos : TEXCOORD2;
+                half3 tspace0 : TEXCOORD3;
+                half3 tspace1 : TEXCOORD4;
+                half3 tspace2 : TEXCOORD5;
             };
 
             fixed4 _Color;
@@ -46,15 +49,31 @@ Shader "Lesta/Unlit"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
+
+                float3 worldNormal = UnityObjectToWorldNormal(v.normal);
+                half3 worldTangent = UnityObjectToWorldDir(v.tangent.xyz);
+                half tangentSign = v.tangent.w * unity_WorldTransformParams.w;
+                half3 worldBiTangent = cross(worldNormal, worldTangent) * tangentSign;
+
+                o.tspace0 = half3(worldTangent.x, worldBiTangent.x, worldNormal.x);
+                o.tspace1 = half3(worldTangent.y, worldBiTangent.y, worldNormal.y);
+                o.tspace2 = half3(worldTangent.z, worldBiTangent.z, worldNormal.z);
+
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
+                half3 normal = fixed4(0, 0, 1, 0);
+
+                half3 worldNormal;
+                worldNormal.x = dot(i.tspace0, normal);
+                worldNormal.y = dot(i.tspace1, normal);
+                worldNormal.z = dot(i.tspace2, normal);
+
                 half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
-                half3 worldRefl = reflect(-worldViewDir, i.worldNormal);
+                half3 worldRefl = reflect(-worldViewDir, worldNormal);
 
                 half4 skyData = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, worldRefl);
                 half3 skyColor = DecodeHDR(skyData, unity_SpecCube0_HDR);
