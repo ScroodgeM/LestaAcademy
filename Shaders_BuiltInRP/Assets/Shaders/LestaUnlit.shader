@@ -24,6 +24,7 @@ Shader "Lesta/Unlit"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "UnityLightingCommon.cginc"
 
             struct appdata
             {
@@ -86,11 +87,11 @@ Shader "Lesta/Unlit"
                 half3 skyColor = DecodeHDR(skyData, unity_SpecCube0_HDR);
 
                 half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
-                return fixed4(nl, nl, nl, 1);
 
                 fixed metallic = tex2D(_MetallicMap, i.uv).r;
                 fixed3 reflection = skyColor * metallic;
-                fixed3 diffuse = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
+                fixed3 unlit = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
+                fixed3 diffuse = unlit * (nl * _LightColor0);
                 fixed4 col = fixed4(reflection + diffuse, 1);
                 return col;
             }
