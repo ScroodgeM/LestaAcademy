@@ -34,6 +34,7 @@ Shader "Lesta/Unlit"
                 float4 vertex : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 half3 worldNormal : TEXCOORD1;
+                float3 worldPos : TEXCOORD2;
             };
 
             fixed4 _Color;
@@ -46,12 +47,19 @@ Shader "Lesta/Unlit"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex);
                 return o;
             }
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return fixed4(i.worldNormal, 1);
+                half3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos));
+                half3 worldRefl = reflect(-worldViewDir, i.worldNormal);
+
+                half4 skyData = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, worldRefl);
+                half3 skyColor = DecodeHDR(skyData, unity_SpecCube0_HDR);
+
+                return fixed4(skyColor, 1);
 
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;
                 return col;
