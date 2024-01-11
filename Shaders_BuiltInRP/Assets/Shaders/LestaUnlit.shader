@@ -23,9 +23,11 @@ Shader "Lesta/Unlit"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase nolightmap nodirlightmap nodynlightmap novertexlight
 
             #include "UnityCG.cginc"
             #include "UnityLightingCommon.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata
             {
@@ -37,12 +39,13 @@ Shader "Lesta/Unlit"
 
             struct v2f
             {
-                float4 vertex : SV_POSITION;
+                float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 float3 worldPos : TEXCOORD2;
                 half3 tspace0 : TEXCOORD3;
                 half3 tspace1 : TEXCOORD4;
                 half3 tspace2 : TEXCOORD5;
+                SHADOW_COORDS(6)
             };
 
             fixed4 _Color;
@@ -55,7 +58,7 @@ Shader "Lesta/Unlit"
             v2f vert(appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 o.worldPos = mul(unity_ObjectToWorld, v.vertex);
 
@@ -67,6 +70,8 @@ Shader "Lesta/Unlit"
                 o.tspace0 = half3(worldTangent.x, worldBiTangent.x, worldNormal.x);
                 o.tspace1 = half3(worldTangent.y, worldBiTangent.y, worldNormal.y);
                 o.tspace2 = half3(worldTangent.z, worldBiTangent.z, worldNormal.z);
+
+                TRANSFER_SHADOW(o);
 
                 return o;
             }
@@ -93,7 +98,8 @@ Shader "Lesta/Unlit"
                 fixed3 reflection = skyColor * metallic;
                 fixed3 unlit = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
                 fixed3 ambient = ShadeSH9(half4(worldNormal, 1));
-                fixed3 diffuse = unlit * (nl * _LightColor0 + ambient);
+                fixed shadow = SHADOW_ATTENUATION(i);
+                fixed3 diffuse = unlit * (nl * _LightColor0 * shadow + ambient);
                 fixed4 col = fixed4(reflection + diffuse, 1);
                 return col;
             }
