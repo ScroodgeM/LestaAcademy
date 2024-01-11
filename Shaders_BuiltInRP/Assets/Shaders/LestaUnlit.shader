@@ -1,5 +1,10 @@
 Shader "Lesta/Unlit"
 {
+    Properties
+    {
+        _Color ("Main Color", Color) = (1, 1, 0, 1)
+    }
+
     SubShader
     {
         Tags
@@ -24,6 +29,8 @@ Shader "Lesta/Unlit"
                 float4 vertex : SV_POSITION;
             };
 
+            fixed4 _Color;
+
             v2f vert(appdata v)
             {
                 v2f o;
@@ -33,7 +40,7 @@ Shader "Lesta/Unlit"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = fixed4(1, 1, 0, 1);
+                fixed4 col = _Color;
                 return col;
             }
             ENDCG
