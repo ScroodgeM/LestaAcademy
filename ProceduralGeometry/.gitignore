@@ -3,6 +3,7 @@
 /[Tt]emp/
 /[Oo]bj/
 /UserSettings/
+.idea/
 .vs/
 .vsconfig
 *.csproj
