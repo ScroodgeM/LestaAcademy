@@ -13,21 +13,22 @@ namespace Battlegrounds
 
         public void GenerateTerrain()
         {
-            Vector3[] vertices = new Vector3[4];
-            int[] triangles = new int[6];
-
             float x = size.x * 0.5f;
             float z = size.y * 0.5f;
+
+            Vector3[] vertices = new Vector3[4];
 
             vertices[0] = new Vector3(-x, 0f, -z);
             vertices[1] = new Vector3(-x, 0f, +z);
             vertices[2] = new Vector3(+x, 0f, +z);
             vertices[3] = new Vector3(+x, 0f, -z);
 
+            int[] triangles = new int[6];
+
             triangles[0] = 0;
             triangles[1] = 1;
             triangles[2] = 2;
-            
+
             triangles[3] = 0;
             triangles[4] = 2;
             triangles[5] = 3;
