@@ -1,25 +1,11 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Battlegrounds
 {
     [Serializable]
     public class LowPolyTerrainChunk_WeldingOn : LowPolyTerrainChunk_Base
     {
-        private readonly MeshCollider meshCollider;
-        private readonly Vector3 terrainScale;
-
-        private readonly Mesh mesh;
-        private readonly Vector3[] vertices;
-        private readonly int[] triangles;
-        private readonly Color[] colors;
-
-        private bool trianglesApplied = false;
-
-        private int cellsCountX => mapIndexXTo - mapIndexXFrom;
-        private int cellsCountZ => mapIndexZTo - mapIndexZFrom;
-
         public LowPolyTerrainChunk_WeldingOn(
             GameObject gameObject,
             MeshFilter meshFilter,
@@ -29,23 +15,9 @@ namespace Battlegrounds
             int chunkIndexZ,
             int chunkSize,
             int totalCellsX,
-            int totalCellsZ) : base(gameObject, chunkIndexX, chunkIndexZ, chunkSize, totalCellsX, totalCellsZ)
+            int totalCellsZ)
+            : base(gameObject, meshFilter, meshCollider, terrainScale, chunkIndexX, chunkIndexZ, chunkSize, totalCellsX, totalCellsZ, true)
         {
-            this.meshCollider = meshCollider;
-            this.terrainScale = terrainScale;
-
-            mesh = new Mesh { name = string.Format("Chunk x{0} z{1}", chunkIndexX, chunkIndexZ), hideFlags = HideFlags.DontSave, };
-            meshFilter.mesh = mesh;
-            meshCollider.sharedMesh = mesh;
-
-            Assert.IsTrue(cellsCountX > 0);
-            Assert.IsTrue(cellsCountZ > 0);
-
-            int vertexCount = (cellsCountX + 1) * (cellsCountZ + 1);
-            int trianglesCount = 6 * cellsCountX * cellsCountZ;
-            vertices = new Vector3[vertexCount];
-            triangles = new int[trianglesCount];
-            colors = new Color[vertexCount];
         }
 
         internal override void ApplyColorsAndGeometry(Color[,] colorMap, float[,] heights)
