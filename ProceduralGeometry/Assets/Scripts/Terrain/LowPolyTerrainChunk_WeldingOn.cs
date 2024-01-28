@@ -17,8 +17,8 @@ namespace Battlegrounds
 
         private bool trianglesApplied = false;
 
-        private int cellsCountX { get { return (mapIndexXTo - mapIndexXFrom); } }
-        private int cellsCountZ { get { return (mapIndexZTo - mapIndexZFrom); } }
+        private int cellsCountX => mapIndexXTo - mapIndexXFrom;
+        private int cellsCountZ => mapIndexZTo - mapIndexZFrom;
 
         public LowPolyTerrainChunk_WeldingOn(
             GameObject gameObject,
@@ -48,7 +48,7 @@ namespace Battlegrounds
             colors = new Color[vertexCount];
         }
 
-        internal override void ApplyGeometry(float[,] heights)
+        internal override void ApplyColorsAndGeometry(Color[,] colorMap, float[,] heights)
         {
             for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
             {
@@ -79,6 +79,8 @@ namespace Battlegrounds
                         triangles[index + 4] = vertex11index;
                         triangles[index + 5] = vertex10index;
                     }
+
+                    colors[GetVerticeIndex(localX, localZ)] = colorMap[x, z];
                 }
             }
 
@@ -87,24 +89,12 @@ namespace Battlegrounds
             {
                 mesh.triangles = triangles;
             }
+
+            mesh.colors = colors;
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             meshCollider.sharedMesh = mesh;
             trianglesApplied = true;
-        }
-
-        internal override void ApplyColors(Color[,] colorMap)
-        {
-            for (int x = mapIndexXFrom; x <= mapIndexXTo; x++)
-            {
-                for (int z = mapIndexZFrom; z <= mapIndexZTo; z++)
-                {
-                    int localX = x - mapIndexXFrom;
-                    int localZ = z - mapIndexZFrom;
-                    colors[GetVerticeIndex(localX, localZ)] = colorMap[x, z];
-                }
-            }
-            mesh.colors = colors;
         }
 
         private int GetVerticeIndex(int localX, int localZ)

@@ -17,8 +17,8 @@ namespace Battlegrounds
 
         private bool trianglesApplied = false;
 
-        private int cellsCountX { get { return (mapIndexXTo - mapIndexXFrom); } }
-        private int cellsCountZ { get { return (mapIndexZTo - mapIndexZFrom); } }
+        private int cellsCountX => mapIndexXTo - mapIndexXFrom;
+        private int cellsCountZ => mapIndexZTo - mapIndexZFrom;
 
         public LowPolyTerrainChunk_WeldingOff(
             GameObject gameObject,
@@ -47,7 +47,7 @@ namespace Battlegrounds
             colors = new Color[vertexCount];
         }
 
-        internal override void ApplyGeometry(float[,] heights)
+        internal override void ApplyColorsAndGeometry(Color[,] colorMap, float[,] heights)
         {
             for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
             {
@@ -84,6 +84,16 @@ namespace Battlegrounds
                         triangles[meshVertexIndex4] = meshVertexIndex4;
                         triangles[meshVertexIndex5] = meshVertexIndex5;
                     }
+
+                    Color finalColor000111 = MixColor(colorMap[x + 0, z + 0], colorMap[x + 0, z + 1], colorMap[x + 1, z + 1]);
+                    Color finalColor001011 = MixColor(colorMap[x + 0, z + 0], colorMap[x + 1, z + 0], colorMap[x + 1, z + 1]);
+
+                    colors[meshVertexIndex0] = finalColor000111;
+                    colors[meshVertexIndex1] = finalColor000111;
+                    colors[meshVertexIndex2] = finalColor000111;
+                    colors[meshVertexIndex3] = finalColor001011;
+                    colors[meshVertexIndex4] = finalColor001011;
+                    colors[meshVertexIndex5] = finalColor001011;
                 }
             }
 
@@ -92,35 +102,12 @@ namespace Battlegrounds
             {
                 mesh.triangles = triangles;
             }
+
+            mesh.colors = colors;
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
             meshCollider.sharedMesh = mesh;
             trianglesApplied = true;
-        }
-
-        internal override void ApplyColors(Color[,] colorMap)
-        {
-            for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
-            {
-                for (int z = mapIndexZFrom; z < mapIndexZTo; z++)
-                {
-                    int localX = x - mapIndexXFrom;
-                    int localZ = z - mapIndexZFrom;
-
-                    int meshVertexIndex0 = 6 * (localX + localZ * cellsCountX);
-
-                    Color finalColor000111 = MixColor(colorMap[x + 0, z + 0], colorMap[x + 0, z + 1], colorMap[x + 1, z + 1]);
-                    Color finalcolor001011 = MixColor(colorMap[x + 0, z + 0], colorMap[x + 1, z + 0], colorMap[x + 1, z + 1]);
-
-                    colors[meshVertexIndex0 + 0] = finalColor000111;
-                    colors[meshVertexIndex0 + 1] = finalColor000111;
-                    colors[meshVertexIndex0 + 2] = finalColor000111;
-                    colors[meshVertexIndex0 + 3] = finalcolor001011;
-                    colors[meshVertexIndex0 + 4] = finalcolor001011;
-                    colors[meshVertexIndex0 + 5] = finalcolor001011;
-                }
-            }
-            mesh.colors = colors;
         }
 
         private static Color MixColor(Color c1, Color c2, Color c3)
@@ -131,6 +118,7 @@ namespace Battlegrounds
                 result[i] = Mathf.Min(result[i], c2[i]);
                 result[i] = Mathf.Min(result[i], c3[i]);
             }
+
             return result;
         }
     }

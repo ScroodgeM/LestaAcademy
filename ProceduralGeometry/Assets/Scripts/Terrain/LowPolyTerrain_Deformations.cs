@@ -68,8 +68,7 @@ namespace Battlegrounds
             {
                 if (chunks[i].IsInRange(xMin, xMax, zMin, zMax))
                 {
-                    chunks[i].ApplyGeometry(heights);
-                    chunks[i].ApplyColors(colorMapPixels);
+                    chunks[i].ApplyColorsAndGeometry(colorMapPixels, heights);
                 }
             }
         }

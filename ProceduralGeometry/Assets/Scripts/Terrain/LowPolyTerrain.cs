@@ -77,8 +77,7 @@ namespace Battlegrounds
         protected virtual void GenerateChunks()
         {
             LowPolyTerrainChunk_Base chunk = CreateChunk(0, 0, int.MaxValue);
-            chunk.ApplyGeometry(heights);
-            chunk.ApplyColors(colorMapPixels);
+            chunk.ApplyColorsAndGeometry(colorMapPixels, heights);
             chunks.Add(chunk);
         }
 

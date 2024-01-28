@@ -28,9 +28,7 @@ namespace Battlegrounds
             this.mapIndexZTo = Mathf.Min((chunkIndexZ + 1) * chunkSize, totalCellsZ);
         }
 
-        internal abstract void ApplyGeometry(float[,] heights);
-
-        internal abstract void ApplyColors(Color[,] colorMap);
+        internal abstract void ApplyColorsAndGeometry(Color[,] colorMap, float[,] heights);
 
         internal bool IsInRange(int xMin, int xMax, int zMin, int zMax)
         {
