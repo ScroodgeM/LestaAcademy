@@ -14,11 +14,12 @@ namespace Battlegrounds
 
         private readonly MeshCollider meshCollider;
         private readonly Vector3 terrainScale;
-
         private bool weldVertices;
+
         private readonly Mesh mesh;
         private readonly Vector3[] vertices;
         private readonly int[] triangles;
+        private readonly Vector2[] uv;
         private readonly Color[] colors;
 
         private bool trianglesApplied = false;
@@ -46,7 +47,6 @@ namespace Battlegrounds
 
             this.meshCollider = meshCollider;
             this.terrainScale = terrainScale;
-
             this.weldVertices = weldVertices;
 
             mesh = new Mesh { name = $"Chunk x{chunkIndexX} z{chunkIndexZ}", hideFlags = HideFlags.DontSave, };
@@ -56,11 +56,11 @@ namespace Battlegrounds
             Assert.IsTrue(cellsCountX > 0);
             Assert.IsTrue(cellsCountZ > 0);
 
-            int vertexCount = weldVertices == true ? (cellsCountX + 1) * (cellsCountZ + 1) : 6 * cellsCountX * cellsCountZ;
-            int trianglesCount = 6 * cellsCountX * cellsCountZ;
+            int vertexCount = weldVertices == true ? ((cellsCountX + 1) * (cellsCountZ + 1)) : (6 * cellsCountX * cellsCountZ);
 
             vertices = new Vector3[vertexCount];
-            triangles = new int[trianglesCount];
+            triangles = new int[6 * cellsCountX * cellsCountZ];
+            uv = new Vector2[vertexCount];
             colors = new Color[vertexCount];
         }
 
@@ -101,6 +101,11 @@ namespace Battlegrounds
                             triangles[index + 3] = vertex00index;
                             triangles[index + 4] = vertex11index;
                             triangles[index + 5] = vertex10index;
+
+                            uv[vertex00index] = new Vector2(x + 0, z + 0);
+                            uv[vertex01index] = new Vector2(x + 0, z + 1);
+                            uv[vertex11index] = new Vector2(x + 1, z + 1);
+                            uv[vertex10index] = new Vector2(x + 1, z + 0);
                         }
 
                         colors[vertex00index] = colorMap[x + 0, z + 0];
@@ -137,6 +142,13 @@ namespace Battlegrounds
                             triangles[meshVertexIndex3] = meshVertexIndex3;
                             triangles[meshVertexIndex4] = meshVertexIndex4;
                             triangles[meshVertexIndex5] = meshVertexIndex5;
+
+                            uv[meshVertexIndex0] = new Vector2(x + 0, z + 0);
+                            uv[meshVertexIndex1] = new Vector2(x + 0, z + 1);
+                            uv[meshVertexIndex2] = new Vector2(x + 1, z + 1);
+                            uv[meshVertexIndex3] = new Vector2(x + 0, z + 0);
+                            uv[meshVertexIndex4] = new Vector2(x + 1, z + 1);
+                            uv[meshVertexIndex5] = new Vector2(x + 1, z + 0);
                         }
 
                         Color finalColor000111 = MixColor(colorMap[x + 0, z + 0], colorMap[x + 0, z + 1], colorMap[x + 1, z + 1]);
@@ -156,6 +168,7 @@ namespace Battlegrounds
             if (!trianglesApplied)
             {
                 mesh.triangles = triangles;
+                mesh.uv = uv;
             }
 
             mesh.colors = colors;

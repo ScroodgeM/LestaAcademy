@@ -83,8 +83,8 @@ namespace Battlegrounds
 
         protected virtual void GetDataAtCell(int x, int z, out float height, out Color color)
         {
-            height = (Mathf.Abs(x - totalCellsX / 2) + Mathf.Abs(z - totalCellsZ / 2)) * 3f;
-            color = new Color((float)x / totalCellsX, (float)z / totalCellsZ, 1f, 1f);
+            height = Mathf.Max((Mathf.Abs(x - totalCellsX / 2) + Mathf.Abs(z - totalCellsZ / 2)) * 3f - 20f, 0f);
+            color = new Color((float)x / totalCellsX, (float)z / totalCellsZ, height / 50f, 1f);
         }
 
         protected LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
