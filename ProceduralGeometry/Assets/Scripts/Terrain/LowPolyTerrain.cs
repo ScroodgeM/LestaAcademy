@@ -10,7 +10,7 @@ namespace Battlegrounds
         [SerializeField] private Material terrainMaterial;
         [SerializeField] private bool weldVertices;
 
-        protected List<LowPolyTerrainChunk_Base> chunks = new List<LowPolyTerrainChunk_Base>();
+        protected List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
 
         protected int totalCellsX;
         protected int totalCellsZ;
@@ -27,7 +27,7 @@ namespace Battlegrounds
 
         public void Clear()
         {
-            foreach (LowPolyTerrainChunk_Base chunk in chunks)
+            foreach (LowPolyTerrainChunk chunk in chunks)
             {
                 if (Application.isPlaying)
                 {
@@ -76,7 +76,7 @@ namespace Battlegrounds
 
         protected virtual void GenerateChunks()
         {
-            LowPolyTerrainChunk_Base chunk = CreateChunk(0, 0, int.MaxValue);
+            LowPolyTerrainChunk chunk = CreateChunk(0, 0, int.MaxValue);
             chunk.ApplyColorsAndGeometry(colorMapPixels, heights);
             chunks.Add(chunk);
         }
@@ -87,7 +87,7 @@ namespace Battlegrounds
             color = new Color((float)x / totalCellsX, (float)z / totalCellsZ, 1f, 1f);
         }
 
-        protected LowPolyTerrainChunk_Base CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
+        protected LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
         {
             GameObject chunkGO = new GameObject
             {
@@ -107,7 +107,7 @@ namespace Battlegrounds
             MeshFilter meshFilter = chunkGO.AddComponent<MeshFilter>();
             MeshCollider meshCollider = chunkGO.AddComponent<MeshCollider>();
 
-            return new LowPolyTerrainChunk_Base(
+            return new LowPolyTerrainChunk(
                 gameObject: chunkGO,
                 meshFilter: meshFilter,
                 meshCollider: meshCollider,

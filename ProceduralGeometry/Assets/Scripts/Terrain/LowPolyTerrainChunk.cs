@@ -3,30 +3,30 @@ using UnityEngine.Assertions;
 
 namespace Battlegrounds
 {
-    public class LowPolyTerrainChunk_Base
+    public class LowPolyTerrainChunk
     {
         internal readonly GameObject gameObject;
 
-        internal readonly int mapIndexXFrom;
-        internal readonly int mapIndexXTo;
-        internal readonly int mapIndexZFrom;
-        internal readonly int mapIndexZTo;
+        private readonly int mapIndexXFrom;
+        private readonly int mapIndexXTo;
+        private readonly int mapIndexZFrom;
+        private readonly int mapIndexZTo;
 
-        protected readonly MeshCollider meshCollider;
-        protected readonly Vector3 terrainScale;
+        private readonly MeshCollider meshCollider;
+        private readonly Vector3 terrainScale;
 
-        protected bool weldVertices;
-        protected readonly Mesh mesh;
-        protected readonly Vector3[] vertices;
-        protected readonly int[] triangles;
-        protected readonly Color[] colors;
+        private bool weldVertices;
+        private readonly Mesh mesh;
+        private readonly Vector3[] vertices;
+        private readonly int[] triangles;
+        private readonly Color[] colors;
 
-        protected bool trianglesApplied = false;
+        private bool trianglesApplied = false;
 
-        protected int cellsCountX => mapIndexXTo - mapIndexXFrom;
-        protected int cellsCountZ => mapIndexZTo - mapIndexZFrom;
+        private int cellsCountX => mapIndexXTo - mapIndexXFrom;
+        private int cellsCountZ => mapIndexZTo - mapIndexZFrom;
 
-        internal LowPolyTerrainChunk_Base(GameObject gameObject,
+        internal LowPolyTerrainChunk(GameObject gameObject,
             MeshFilter meshFilter,
             MeshCollider meshCollider,
             Vector3 terrainScale,
@@ -66,24 +66,29 @@ namespace Battlegrounds
 
         internal void ApplyColorsAndGeometry(Color[,] colorMap, float[,] heights)
         {
-            if (weldVertices == true)
+            for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
             {
-                for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
+                for (int z = mapIndexZFrom; z < mapIndexZTo; z++)
                 {
-                    for (int z = mapIndexZFrom; z < mapIndexZTo; z++)
-                    {
-                        int localX = x - mapIndexXFrom;
-                        int localZ = z - mapIndexZFrom;
+                    int localX = x - mapIndexXFrom;
+                    int localZ = z - mapIndexZFrom;
 
+                    Vector3 vertex00 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
+                    Vector3 vertex01 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
+                    Vector3 vertex10 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
+                    Vector3 vertex11 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
+
+                    if (weldVertices == true)
+                    {
                         int vertex00index = GetVertexIndex(localX + 0, localZ + 0);
                         int vertex01index = GetVertexIndex(localX + 0, localZ + 1);
                         int vertex11index = GetVertexIndex(localX + 1, localZ + 1);
                         int vertex10index = GetVertexIndex(localX + 1, localZ + 0);
 
-                        vertices[vertex00index] = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
-                        vertices[vertex01index] = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
-                        vertices[vertex11index] = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
-                        vertices[vertex10index] = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
+                        vertices[vertex00index] = vertex00;
+                        vertices[vertex01index] = vertex01;
+                        vertices[vertex11index] = vertex10;
+                        vertices[vertex10index] = vertex11;
 
                         if (!trianglesApplied)
                         {
@@ -98,42 +103,24 @@ namespace Battlegrounds
                             triangles[index + 5] = vertex10index;
                         }
 
-                        colors[GetVertexIndex(localX, localZ)] = colorMap[x, z];
+                        colors[vertex00index] = colorMap[x + 0, z + 0];
+                        colors[vertex01index] = colorMap[x + 0, z + 1];
+                        colors[vertex11index] = colorMap[x + 1, z + 1];
+                        colors[vertex10index] = colorMap[x + 1, z + 0];
+
+                        int GetVertexIndex(int localX, int localZ)
+                        {
+                            return localX + localZ * (cellsCountX + 1);
+                        }
                     }
-                }
-
-                mesh.vertices = vertices;
-                if (!trianglesApplied)
-                {
-                    mesh.triangles = triangles;
-                }
-
-                mesh.colors = colors;
-                mesh.RecalculateBounds();
-                mesh.RecalculateNormals();
-                meshCollider.sharedMesh = mesh;
-                trianglesApplied = true;
-            }
-            else
-            {
-                for (int x = mapIndexXFrom; x < mapIndexXTo; x++)
-                {
-                    for (int z = mapIndexZFrom; z < mapIndexZTo; z++)
+                    else
                     {
-                        int localX = x - mapIndexXFrom;
-                        int localZ = z - mapIndexZFrom;
-
                         int meshVertexIndex0 = 6 * (localX + localZ * cellsCountX);
                         int meshVertexIndex1 = meshVertexIndex0 + 1;
                         int meshVertexIndex2 = meshVertexIndex0 + 2;
                         int meshVertexIndex3 = meshVertexIndex0 + 3;
                         int meshVertexIndex4 = meshVertexIndex0 + 4;
                         int meshVertexIndex5 = meshVertexIndex0 + 5;
-
-                        Vector3 vertex00 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
-                        Vector3 vertex01 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
-                        Vector3 vertex10 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
-                        Vector3 vertex11 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
 
                         vertices[meshVertexIndex0] = vertex00;
                         vertices[meshVertexIndex1] = vertex01;
@@ -163,19 +150,19 @@ namespace Battlegrounds
                         colors[meshVertexIndex5] = finalColor001011;
                     }
                 }
-
-                mesh.vertices = vertices;
-                if (!trianglesApplied)
-                {
-                    mesh.triangles = triangles;
-                }
-
-                mesh.colors = colors;
-                mesh.RecalculateBounds();
-                mesh.RecalculateNormals();
-                meshCollider.sharedMesh = mesh;
-                trianglesApplied = true;
             }
+
+            mesh.vertices = vertices;
+            if (!trianglesApplied)
+            {
+                mesh.triangles = triangles;
+            }
+
+            mesh.colors = colors;
+            mesh.RecalculateBounds();
+            mesh.RecalculateNormals();
+            meshCollider.sharedMesh = mesh;
+            trianglesApplied = true;
         }
 
         internal bool IsInRange(int xMin, int xMax, int zMin, int zMax)
@@ -188,11 +175,6 @@ namespace Battlegrounds
                 zMin <= mapIndexZTo
                 &&
                 zMax >= mapIndexZFrom;
-        }
-
-        private int GetVertexIndex(int localX, int localZ)
-        {
-            return localX + localZ * (cellsCountX + 1);
         }
 
         private static Color MixColor(Color c1, Color c2, Color c3)
