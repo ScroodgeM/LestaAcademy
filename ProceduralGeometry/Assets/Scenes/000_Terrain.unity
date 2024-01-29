@@ -761,6 +761,104 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 690030496}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &691995105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 691995107}
+  - component: {fileID: 691995106}
+  m_Layer: 0
+  m_Name: 020_LPT_Perlin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &691995106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691995105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8686bc6e43ceed478313f697d578e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellSize: 1
+  terrainSize: {x: 250, y: 250}
+  terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
+  weldVertices: 1
+  terrainLayers:
+  - enabled: 1
+    heightsAffected:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    density: 0.01
+    minMapping: -10
+    maxMapping: 40
+    color:
+      serializedVersion: 2
+      key0: {r: 0.4528302, g: 0.43507215, b: 0, a: 1}
+      key1: {r: 0.03706836, g: 0.46226418, b: 0.048740428, a: 1}
+      key2: {r: 0.41509432, g: 0.39151683, b: 0.38180846, a: 0}
+      key3: {r: 1, g: 1, b: 1, a: 0}
+      key4: {r: 1, g: 1, b: 1, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 16577
+      ctime1: 23901
+      ctime2: 36623
+      ctime3: 46260
+      ctime4: 52428
+      ctime5: 65535
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 2
+--- !u!4 &691995107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691995105}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -125, y: -10, z: -125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &893949024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,12 +1024,12 @@ GameObject:
   - component: {fileID: 1054029985}
   - component: {fileID: 1054029984}
   m_Layer: 0
-  m_Name: 020_LPT_Perlin
+  m_Name: 030_LPT_Layers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1054029984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,7 +1047,8 @@ MonoBehaviour:
   terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
   weldVertices: 1
   terrainLayers:
-  - heightsAffected:
+  - enabled: 1
+    heightsAffected:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
@@ -997,6 +1096,247 @@ MonoBehaviour:
       m_ColorSpace: -1
       m_NumColorKeys: 4
       m_NumAlphaKeys: 2
+  - enabled: 1
+    heightsAffected:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.31883067
+        value: 1.000117
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 9.991867
+        value: -0.002814591
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    density: 0.05
+    minMapping: 0
+    maxMapping: 5
+    color:
+      serializedVersion: 2
+      key0: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
+      key1: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
+      key4: {r: 1, g: 1, b: 1, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 65535
+      ctime4: 52428
+      ctime5: 65535
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+  - enabled: 1
+    heightsAffected:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -20.002594
+        value: 1.0035771
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 19.265915
+        value: -0.0059625376
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    density: 0.29
+    minMapping: -3
+    maxMapping: 0
+    color:
+      serializedVersion: 2
+      key0: {r: 0.003921577, g: 0.58431375, b: 0.0041593076, a: 1}
+      key1: {r: 0.003921577, g: 0.58431375, b: 0.0041593076, a: 0}
+      key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
+      key4: {r: 1, g: 1, b: 1, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 65535
+      ctime4: 52428
+      ctime5: 65535
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+  - enabled: 1
+    heightsAffected:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.0071154474
+        value: 0.49861532
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 10.039032
+        value: 0.49789506
+        inSlope: -0.00014384714
+        outSlope: -0.00014384714
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 20.035667
+        value: 0.20127228
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    density: 0.25
+    minMapping: -1
+    maxMapping: 1
+    color:
+      serializedVersion: 2
+      key0: {r: 0.2830189, g: 0.08331965, b: 0.012014948, a: 1}
+      key1: {r: 0.98783034, g: 1, b: 0.0141509175, a: 0}
+      key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
+      key4: {r: 1, g: 1, b: 1, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 65535
+      ctime4: 52428
+      ctime5: 65535
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 32575
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 3
+  - enabled: 1
+    heightsAffected:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 10.499688
+        value: 0.103061736
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 20.352146
+        value: 1.0016224
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    density: 0.05
+    minMapping: 10
+    maxMapping: -2
+    color:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
+      key4: {r: 1, g: 1, b: 1, a: 0}
+      key5: {r: 1, g: 1, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 65535
+      ctime4: 52428
+      ctime5: 65535
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
 --- !u!4 &1054029985
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,7 +1346,7 @@ Transform:
   m_GameObject: {fileID: 1054029983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -125, y: -10, z: -125}
+  m_LocalPosition: {x: -125, y: -15, z: -125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1830,4 +2170,5 @@ SceneRoots:
   - {fileID: 2060692162275365329}
   - {fileID: 1054029990}
   - {fileID: 626905743}
+  - {fileID: 691995107}
   - {fileID: 1054029985}

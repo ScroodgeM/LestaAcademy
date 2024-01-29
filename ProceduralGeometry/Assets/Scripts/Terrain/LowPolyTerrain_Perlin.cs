@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace Battlegrounds
@@ -9,6 +8,7 @@ namespace Battlegrounds
         [Serializable]
         private struct TerrainLayer
         {
+            public bool enabled;
             public AnimationCurve heightsAffected;
             public float density;
             public float minMapping;
@@ -25,6 +25,11 @@ namespace Battlegrounds
 
             foreach (TerrainLayer terrainLayer in terrainLayers)
             {
+                if (terrainLayer.enabled == false)
+                {
+                    continue;
+                }
+
                 float multiplier = terrainLayer.heightsAffected.Evaluate(height);
 
                 float layerValue = Mathf.PerlinNoise(x * terrainLayer.density * terrainScale.x, z * terrainLayer.density * terrainScale.z);
