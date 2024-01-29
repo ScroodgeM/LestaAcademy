@@ -33,11 +33,19 @@ namespace Battlegrounds
             triangles[4] = 2;
             triangles[5] = 3;
 
+            Vector2[] uv = new Vector2[4];
+
+            uv[0] = new Vector2(0f, 0f);
+            uv[1] = new Vector2(0f, size.y);
+            uv[2] = new Vector2(size.x, size.y);
+            uv[3] = new Vector2(size.x, 0f);
+
             Mesh mesh = new Mesh
             {
                 name = "FlatTerrain",
                 vertices = vertices,
                 triangles = triangles,
+                uv = uv,
             };
 
             mesh.RecalculateBounds();
