@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Battlegrounds
@@ -39,6 +38,7 @@ namespace Battlegrounds
                     DestroyImmediate(chunk.gameObject);
                 }
             }
+
             chunks.Clear();
         }
 
@@ -107,32 +107,17 @@ namespace Battlegrounds
             MeshFilter meshFilter = chunkGO.AddComponent<MeshFilter>();
             MeshCollider meshCollider = chunkGO.AddComponent<MeshCollider>();
 
-            if (weldVertices == true)
-            {
-                return new LowPolyTerrainChunk_WeldingOn(
-                    gameObject: chunkGO,
-                    meshFilter: meshFilter,
-                    meshCollider: meshCollider,
-                    terrainScale: terrainScale,
-                    chunkIndexX: chunkIndexX,
-                    chunkIndexZ: chunkIndexZ,
-                    chunkSize: chunkSize,
-                    totalCellsX: totalCellsX,
-                    totalCellsZ: totalCellsZ);
-            }
-            else
-            {
-                return new LowPolyTerrainChunk_WeldingOff(
-                    gameObject: chunkGO,
-                    meshFilter: meshFilter,
-                    meshCollider: meshCollider,
-                    terrainScale: terrainScale,
-                    chunkIndexX: chunkIndexX,
-                    chunkIndexZ: chunkIndexZ,
-                    chunkSize: chunkSize,
-                    totalCellsX: totalCellsX,
-                    totalCellsZ: totalCellsZ);
-            }
+            return new LowPolyTerrainChunk_Base(
+                gameObject: chunkGO,
+                meshFilter: meshFilter,
+                meshCollider: meshCollider,
+                terrainScale: terrainScale,
+                chunkIndexX: chunkIndexX,
+                chunkIndexZ: chunkIndexZ,
+                chunkSize: chunkSize,
+                totalCellsX: totalCellsX,
+                totalCellsZ: totalCellsZ,
+                weldVertices);
 
             Vector3 GetChunkPosition()
             {
