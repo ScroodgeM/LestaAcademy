@@ -87,8 +87,8 @@ namespace Battlegrounds
 
                         vertices[vertex00index] = vertex00;
                         vertices[vertex01index] = vertex01;
-                        vertices[vertex11index] = vertex10;
-                        vertices[vertex10index] = vertex11;
+                        vertices[vertex11index] = vertex11;
+                        vertices[vertex10index] = vertex10;
 
                         if (!trianglesApplied)
                         {
