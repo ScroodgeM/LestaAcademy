@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 1
-  boomPower: 5
+  boomPower: 2
   startSpeed: 50
 --- !u!54 &-8809934358132188533
 Rigidbody:
