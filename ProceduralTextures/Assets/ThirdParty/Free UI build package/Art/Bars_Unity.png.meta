@@ -120,7 +120,7 @@ TextureImporter:
       213: 21300076
     second: Bars_Unity_38
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -137,10 +137,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -149,9 +151,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -172,11 +174,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -188,6 +194,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -200,6 +207,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -212,6 +220,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -224,6 +233,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -236,6 +246,20 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
@@ -1070,9 +1094,48 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Bars_Unity_0: 21300000
+      Bars_Unity_1: 21300002
+      Bars_Unity_10: 21300020
+      Bars_Unity_11: 21300022
+      Bars_Unity_12: 21300024
+      Bars_Unity_13: 21300026
+      Bars_Unity_14: 21300028
+      Bars_Unity_15: 21300030
+      Bars_Unity_16: 21300032
+      Bars_Unity_17: 21300034
+      Bars_Unity_18: 21300036
+      Bars_Unity_19: 21300038
+      Bars_Unity_2: 21300004
+      Bars_Unity_20: 21300040
+      Bars_Unity_21: 21300042
+      Bars_Unity_22: 21300044
+      Bars_Unity_23: 21300046
+      Bars_Unity_24: 21300048
+      Bars_Unity_25: 21300050
+      Bars_Unity_26: 21300052
+      Bars_Unity_27: 21300054
+      Bars_Unity_28: 21300056
+      Bars_Unity_29: 21300058
+      Bars_Unity_3: 21300006
+      Bars_Unity_30: 21300060
+      Bars_Unity_31: 21300062
+      Bars_Unity_32: 21300064
+      Bars_Unity_33: 21300066
+      Bars_Unity_34: 21300068
+      Bars_Unity_35: 21300070
+      Bars_Unity_36: 21300072
+      Bars_Unity_37: 21300074
+      Bars_Unity_38: 21300076
+      Bars_Unity_4: 21300008
+      Bars_Unity_5: 21300010
+      Bars_Unity_6: 21300012
+      Bars_Unity_7: 21300014
+      Bars_Unity_8: 21300016
+      Bars_Unity_9: 21300018
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
