@@ -25,6 +25,8 @@ public class VehicleController : MonoBehaviour
 
     private void Awake()
     {
+        GetComponent<Rigidbody>().centerOfMass = Vector3.zero;
+
         wheelsRotationsX = new float[wheels.Length];
     }
 
