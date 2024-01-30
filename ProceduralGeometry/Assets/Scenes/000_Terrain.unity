@@ -2332,7 +2332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311d286c15d7c4947a8084199caa5db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraOffset: {x: 10, y: 10, z: -10}
+  cameraOffset: {x: 15, y: 15, z: -15}
   cameraRotationRelative: {x: -10, y: 0, z: 0}
   target: {fileID: 1243788065}
   followSpeed: 1
