@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using UnityEngine;
 
 namespace LestaAcademyDemo.Pillars.Abstraction
@@ -28,8 +29,8 @@ namespace LestaAcademyDemo.Pillars.Abstraction
     public interface IBattleUnit
     {
         int UnitType { get; }
-        float Health { get;  }
-        float MaxHealth { get;  }
+        float Health { get; }
+        float MaxHealth { get; }
         string Faction { get; }
     }
 }

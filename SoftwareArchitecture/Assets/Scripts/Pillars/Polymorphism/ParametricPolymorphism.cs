@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using System.Collections.Generic;
 
@@ -19,7 +20,7 @@ namespace LestaAcademyDemo.Pillars.Polymorphism
 
     public class ParametricPolymorphism
     {
-        private static readonly DateTime wgAcademyDeadLine = new DateTime(2023, 06, 15, 18, 0, 0);
+        private static readonly DateTime lestaAcademyDeadLine = new DateTime(2024, 05, 30, 18, 0, 0);
 
         public void DoSomeJob()
         {
@@ -31,14 +32,14 @@ namespace LestaAcademyDemo.Pillars.Polymorphism
 
             List<string> values2 = new List<string>()
             {
-                "WG",
+                "Lesta",
                 "Academy",
             };
 
             List<DateTime> values3 = new List<DateTime>()
             {
                 DateTime.Now,
-                wgAcademyDeadLine,
+                lestaAcademyDeadLine,
             };
 
             List<MyData> values4 = new List<MyData>()

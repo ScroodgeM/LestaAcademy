@@ -22,11 +22,12 @@ namespace LestaAcademyDemo.Pillars.Encapsulation
 
     public class ScoreManager : IScoreManager
     {
-        private long score = 0;
-        private float scoreMultiplier = 1.0f;
-        private IScoreConfig scoreConfig;
+        private readonly float scoreMultiplier = 1.0f;
+        private readonly IScoreConfig scoreConfig;
 
-        public ScoreManager(IScoreConfig scoreConfig, float scoreMultiplier)
+        private long score = 0;
+
+        internal ScoreManager(IScoreConfig scoreConfig, float scoreMultiplier)
         {
             this.scoreConfig = scoreConfig;
             this.scoreMultiplier = scoreMultiplier;

@@ -1,11 +1,12 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System.Collections.Generic;
 
 namespace LestaAcademyDemo.Pillars.Polymorphism
 {
     public abstract class UnitBase
     {
-        public void HandleImcomingDamage(/*some data about damage here*/)
+        public void HandleIncomingDamage(/*some data about damage here*/)
         {
             //some magic here
         }
