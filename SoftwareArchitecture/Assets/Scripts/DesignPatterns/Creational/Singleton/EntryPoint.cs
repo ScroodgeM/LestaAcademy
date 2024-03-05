@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
@@ -9,6 +10,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
         [SerializeField] private GameObject gameControllerGameObject;
 
         private static EntryPoint _instance;
+
         private static EntryPoint instance
         {
             get
@@ -17,6 +19,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Singleton
                 {
                     Debug.LogError($"instance of {nameof(EntryPoint)} not exists, attach component to some scene GameObject");
                 }
+
                 return _instance;
             }
         }

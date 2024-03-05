@@ -2,7 +2,7 @@
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.ObjectPool
 {
-    public interface IObjectPoolMember<TI>
+    public interface IObjectPoolMember<in TI>
     {
         bool TypeMatches(TI type);
         bool InUse { get; }

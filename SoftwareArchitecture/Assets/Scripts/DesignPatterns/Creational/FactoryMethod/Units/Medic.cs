@@ -1,7 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
 
-using System;
-
 namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod.Units
 {
     public class Medic : IUnit

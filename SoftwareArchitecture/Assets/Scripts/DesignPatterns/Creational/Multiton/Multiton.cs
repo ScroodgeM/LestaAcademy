@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using System.Collections.Generic;
 
@@ -16,13 +17,12 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 
         public T GetMember(TI id)
         {
-            if (members.TryGetValue(id, out T member) == true)
+            if (members.TryGetValue(id, out T member) == false)
             {
-                return member;
+                member = newMemberCreator();
+                members.Add(id, member);
             }
 
-            member = newMemberCreator();
-            members.Add(id, member);
             return member;
         }
     }

@@ -8,7 +8,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
     {
         private readonly Func<TI, T> newObjectConstructor;
 
-        private readonly Multiton<List<T>, TI> poolsMultitone = new Multiton<List<T>, TI>(() => { return new List<T>(); });
+        private readonly Multiton<List<T>, TI> poolsMultitone = new Multiton<List<T>, TI>(() => new List<T>());
 
         public ObjectPool(Func<TI, T> newObjectConstructor)
         {
