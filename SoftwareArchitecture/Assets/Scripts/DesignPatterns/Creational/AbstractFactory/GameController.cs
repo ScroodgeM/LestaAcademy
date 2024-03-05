@@ -1,11 +1,12 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System.Collections.Generic;
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory
 {
     public class GameController
     {
-        private IFactory factory;
+        private readonly IFactory factory;
 
         private readonly List<IUnit> units = new List<IUnit>();
 

@@ -6,7 +6,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.AbstractFactory.Weapons
     {
         public void Fire()
         {
-            // do fire here
+            /* some actions here */
         }
     }
 }

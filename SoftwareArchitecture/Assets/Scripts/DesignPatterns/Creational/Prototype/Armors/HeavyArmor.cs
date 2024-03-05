@@ -1,5 +1,4 @@
 ﻿//this empty line for UTF-8 BOM header
-using System;
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype.Armors
 {
@@ -7,7 +6,8 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Prototype.Armors
     {
         public int ProcessIncomingDamage(int incomingDamage)
         {
-            throw new NotImplementedException();
+            /* some actions here */
+            return incomingDamage;
         }
     }
 }
