@@ -10,7 +10,7 @@ namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter
         public enum SocialNetworkType
         {
             VK,
-            FB,
+            NonVK,
         }
 
         public enum PlayerUnitType
@@ -33,9 +33,9 @@ namespace LestaAcademyDemo.DesignPatterns.Structural.Adapter
                     ISocialNetworkAPI vkontakteAdapter = new VkontakteAdapter(vkontakteAPI);
                     return vkontakteAdapter;
 
-                case SocialNetworkType.FB:
-                    ISocialNetworkAPI facebookAPI = null; // resolve facebook implementation here
-                    return facebookAPI;
+                case SocialNetworkType.NonVK:
+                    ISocialNetworkAPI nonVkAPI = null; // resolve non-vk implementation here
+                    return nonVkAPI;
 
                 default:
                     throw new System.NotSupportedException();

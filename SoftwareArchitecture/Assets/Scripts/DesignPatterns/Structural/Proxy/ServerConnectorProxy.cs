@@ -35,7 +35,6 @@ namespace LestaAcademyDemo.DesignPatterns.Structural.Proxy
             GameSaver gameSaver = new GameSaver(realConnector, playerState);
 
             Thread saveGameThread = new Thread(gameSaver.Run);
-
             saveGameThread.Start();
 
             result(true);
@@ -43,8 +42,8 @@ namespace LestaAcademyDemo.DesignPatterns.Structural.Proxy
 
         private class GameSaver
         {
-            private IServerConnector connector;
-            private PlayerState playerState;
+            private readonly IServerConnector connector;
+            private readonly PlayerState playerState;
             private int attemptsLeft = 5;
 
             public GameSaver(IServerConnector connector, PlayerState playerState)
