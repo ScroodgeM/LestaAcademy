@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using System.Collections.Generic;
 using LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod.Units;
@@ -25,7 +26,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod
             }
         }
 
-        public static IUnit CreateUnit(UnitType unitType)
+        private static IUnit CreateUnit(UnitType unitType)
         {
             switch (unitType)
             {

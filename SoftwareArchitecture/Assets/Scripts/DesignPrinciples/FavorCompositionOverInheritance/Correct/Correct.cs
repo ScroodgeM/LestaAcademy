@@ -22,7 +22,7 @@ namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Corr
     {
         public void Move()
         {
-            //move with legs
+            // move with legs
         }
     }
 
@@ -30,7 +30,7 @@ namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Corr
     {
         public void Move()
         {
-            //move with wheels
+            // move with wheels
         }
     }
 

@@ -4,7 +4,10 @@ namespace LestaAcademyDemo.DesignPrinciples.OpenClosed.Wrong
 {
     public enum DamageType
     {
-        Physical, Magic, Fire, Ice
+        Physical,
+        Magic,
+        Fire,
+        Ice
     }
 
     public class Armor

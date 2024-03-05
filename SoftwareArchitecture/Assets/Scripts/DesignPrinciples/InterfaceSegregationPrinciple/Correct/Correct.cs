@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System.Collections.Generic;
 
 namespace LestaAcademyDemo.DesignPrinciples.InterfaceSegregationPrinciple.Correct
@@ -25,7 +26,6 @@ namespace LestaAcademyDemo.DesignPrinciples.InterfaceSegregationPrinciple.Correc
 
     public interface IUnit
     {
-
     }
 
     public interface IUnitMovable : IUnit

@@ -60,7 +60,7 @@ namespace LestaAcademyDemo.DesignPrinciples.SingleResponsibility.Correct
         private bool canMove;
 
         public event Action OnItemPickedUp = () => { };
-        public event Action OnInventoryOverloaed = () => { };
+        public event Action OnInventoryOverloaded = () => { };
 
         public PlayerInventory Inventory => inventory;
 
@@ -74,7 +74,7 @@ namespace LestaAcademyDemo.DesignPrinciples.SingleResponsibility.Correct
 
             if (inventory.IsOveloaded == true)
             {
-                OnInventoryOverloaed();
+                OnInventoryOverloaded();
             }
         }
     }
@@ -120,7 +120,7 @@ namespace LestaAcademyDemo.DesignPrinciples.SingleResponsibility.Correct
 
         public Scenario()
         {
-            playerCharacter.OnInventoryOverloaed += () =>
+            playerCharacter.OnInventoryOverloaded += () =>
             {
                 userInterface.PlayPopup("Too many items, can't move", Color.red);
             };

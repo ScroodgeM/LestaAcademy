@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace LestaAcademyDemo.DesignPrinciples.DelegationPrinciples.Wrong
         public int skin;
     }
 
-    public class GameControiller
+    public class GameController
     {
         private UnitViewPool unitViewPool;
 
@@ -60,10 +61,23 @@ namespace LestaAcademyDemo.DesignPrinciples.DelegationPrinciples.Wrong
             for (int i = 0; i < unitViews.Count; i++)
             {
                 UnitView unitView = unitViews[i];
+
                 // bad solution here
-                if (unitView.UnitType.type != unitType.type) { continue; }
-                if (unitView.UnitType.level != unitType.level) { continue; }
-                if (unitView.UnitType.skin != unitType.skin) { continue; }
+                if (unitView.UnitType.type != unitType.type)
+                {
+                    continue;
+                }
+
+                if (unitView.UnitType.level != unitType.level)
+                {
+                    continue;
+                }
+
+                if (unitView.UnitType.skin != unitType.skin)
+                {
+                    continue;
+                }
+
                 unitViews.RemoveAt(i);
                 return unitView;
             }

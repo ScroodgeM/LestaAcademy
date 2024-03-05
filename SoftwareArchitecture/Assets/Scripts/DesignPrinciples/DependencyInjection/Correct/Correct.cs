@@ -1,4 +1,6 @@
 ﻿//this empty line for UTF-8 BOM header
+
+using System;
 using System.Collections.Generic;
 
 namespace LestaAcademyDemo.DesignPrinciples.DependencyInjection.Correct
@@ -38,13 +40,20 @@ namespace LestaAcademyDemo.DesignPrinciples.DependencyInjection.Correct
 
     public class GameController
     {
+        private readonly Func<IUnit> spawnUnitFunction;
+
+        public GameController(Func<IUnit> spawnUnitFunction)
+        {
+            this.spawnUnitFunction = spawnUnitFunction;
+        }
+
         public List<IUnit> SpawnArmy(int unitCount)
         {
             List<IUnit> army = new List<IUnit>();
 
             for (int i = 0; i < unitCount; i++)
             {
-                IUnit unit = DependencyContainer.CreateUnit();
+                IUnit unit = spawnUnitFunction();
                 army.Add(unit);
             }
 
@@ -54,7 +63,13 @@ namespace LestaAcademyDemo.DesignPrinciples.DependencyInjection.Correct
 
     public static class DependencyContainer
     {
-        public static IUnit CreateUnit()
+        public static void SpawnArmy()
+        {
+            GameController gameController = new GameController(CreateUnit);
+            List<IUnit> army = gameController.SpawnArmy(100);
+        }
+
+        private static IUnit CreateUnit()
         {
             IGameConfig gameConfig = GameConfig.GetConfig();
             return new Unit(gameConfig);

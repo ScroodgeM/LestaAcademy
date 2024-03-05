@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,16 +14,28 @@ namespace LestaAcademyDemo.DesignPrinciples.DelegationPrinciples.Correct
 
         public static bool operator ==(UnitType a, UnitType b)
         {
-            if (a.type != b.type) { return false; }
-            if (a.level != b.level) { return false; }
-            if (a.skin != b.skin) { return false; }
+            if (a.type != b.type)
+            {
+                return false;
+            }
+
+            if (a.level != b.level)
+            {
+                return false;
+            }
+
+            if (a.skin != b.skin)
+            {
+                return false;
+            }
+
             return true;
         }
 
         public static bool operator !=(UnitType a, UnitType b) => (a == b) == false;
     }
 
-    public class GameControiller
+    public class GameController
     {
         private UnitViewPool unitViewPool;
 

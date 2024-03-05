@@ -8,14 +8,15 @@ namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Wron
         void Attack();
     }
 
-    public abstract class Unit
+    public abstract class Unit : IUnit
     {
-
+        public abstract void Move();
+        public abstract void Attack();
     }
 
     public abstract class RangeUnit : Unit
     {
-        public void Attack()
+        public override void Attack()
         {
             // range attack here
         }
@@ -23,39 +24,39 @@ namespace LestaAcademyDemo.DesignPrinciples.FavorCompositionOverInheritance.Wron
 
     public abstract class MeleeUnit : Unit
     {
-        public void Attack()
+        public override void Attack()
         {
             // melee attack here
         }
     }
 
-    public class RangeUnitOnLegs : RangeUnit, IUnit
+    public class RangeUnitOnLegs : RangeUnit
     {
-        public void Move()
+        public override void Move()
         {
             //move with legs
         }
     }
 
-    public class RangeUnitOnWheels : RangeUnit, IUnit
+    public class RangeUnitOnWheels : RangeUnit
     {
-        public void Move()
+        public override void Move()
         {
             //move with wheels
         }
     }
 
-    public class MeleeUnitOnLegs : MeleeUnit, IUnit
+    public class MeleeUnitOnLegs : MeleeUnit
     {
-        public void Move()
+        public override void Move()
         {
             //move with legs
         }
     }
 
-    public class MeleeUnitOnWheels : MeleeUnit, IUnit
+    public class MeleeUnitOnWheels : MeleeUnit
     {
-        public void Move()
+        public override void Move()
         {
             //move with wheels
         }

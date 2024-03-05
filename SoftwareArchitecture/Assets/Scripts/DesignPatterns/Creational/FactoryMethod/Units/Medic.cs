@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 
 namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod.Units
@@ -7,12 +8,12 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.FactoryMethod.Units
     {
         public void UseSkill()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
 
         public void Move()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
     }
 }
