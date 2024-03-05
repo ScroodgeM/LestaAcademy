@@ -1,7 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
 
-using System;
-
 namespace LestaAcademyDemo.Pillars.Abstraction
 {
     public class CoffeeMachine
@@ -38,27 +36,27 @@ namespace LestaAcademyDemo.Pillars.Abstraction
 
         private void BoilWater()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
 
         private void GrindGrains()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
 
         private void TurnOnPump()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
 
         private void TurnOffPump()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
 
         private void CleanBrewingUnit()
         {
-            throw new NotImplementedException();
+            /* some actions here */
         }
     }
 }

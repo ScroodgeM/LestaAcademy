@@ -4,7 +4,9 @@ namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 {
     public enum UnitType
     {
-        Healer, Builder, Soldier,
+        Healer,
+        Builder,
+        Soldier,
     }
 
     public interface ISkill
@@ -14,29 +16,29 @@ namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 
     public class Unit
     {
-        private ISkill skill;
+        private readonly ISkill skill;
 
         public Unit(UnitType unitType)
         {
-            switch (unitType)
-            {
-                case UnitType.Healer:
-                    skill = new HealSkill();
-                    break;
-
-                case UnitType.Builder:
-                    skill = new BuildSkill();
-                    break;
-
-                case UnitType.Soldier:
-                    skill = new AttackSkill();
-                    break;
-            }
+            skill = GetSkillByUnitType(unitType);
         }
 
         public void UseSkill()
         {
             skill.UseSkill(this);
+        }
+
+        private static ISkill GetSkillByUnitType(UnitType unitType)
+        {
+            switch (unitType)
+            {
+                case UnitType.Healer: return new HealSkill();
+                case UnitType.Builder: return new BuildSkill();
+                case UnitType.Soldier: return new AttackSkill();
+                default:
+                    /* print error about missing skill */
+                    return default;
+            }
         }
     }
 
@@ -50,16 +52,25 @@ namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Correct
 
     public class HealSkill : ISkill
     {
-        public void UseSkill(Unit unit) { }
+        public void UseSkill(Unit unit)
+        {
+            /* some actions here */
+        }
     }
 
     public class BuildSkill : ISkill
     {
-        public void UseSkill(Unit unit) { }
+        public void UseSkill(Unit unit)
+        {
+            /* some actions here */
+        }
     }
 
     public class AttackSkill : ISkill
     {
-        public void UseSkill(Unit unit) { }
+        public void UseSkill(Unit unit)
+        {
+            /* some actions here */
+        }
     }
 }

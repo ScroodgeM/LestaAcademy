@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System.Collections.Generic;
 
 namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Correct
@@ -14,7 +15,10 @@ namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Correct
         public void HandleHeal(float healthPoints)
         {
             health += healthPoints;
-            if (health > MaxHealth) { health = MaxHealth; }
+            if (health > MaxHealth)
+            {
+                health = MaxHealth;
+            }
         }
 
         public void HandleAttack(float damagePoints)
@@ -43,6 +47,8 @@ namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Correct
 
     public class AttackUnitBehaviour : UnitBehaviour
     {
+        private const float AttackDamage = 10f;
+
         public void UseSkill(List<Unit> allEnemies)
         {
             Unit lowestHealthUnit = GetLowestHealthUnit(allEnemies);
@@ -52,12 +58,14 @@ namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Correct
 
         private void Attack(Unit unit)
         {
-            unit.HandleAttack(10f);
+            unit.HandleAttack(AttackDamage);
         }
     }
 
     public class HealerUnitBehaviour : UnitBehaviour
     {
+        private const float HealPower = 10f;
+
         public void UseSkill(List<Unit> allAllies)
         {
             Unit lowestHealthUnit = GetLowestHealthUnit(allAllies);
@@ -70,7 +78,7 @@ namespace LestaAcademyDemo.DesignPrinciples.DontRepeatYourself.Correct
 
         private void Heal(Unit unit)
         {
-            unit.HandleHeal(10f);
+            unit.HandleHeal(HealPower);
         }
     }
 }

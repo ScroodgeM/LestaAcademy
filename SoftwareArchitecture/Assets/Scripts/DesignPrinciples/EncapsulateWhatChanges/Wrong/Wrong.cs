@@ -4,7 +4,9 @@ namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Wrong
 {
     public enum UnitType
     {
-        Healer, Builder, Soldier,
+        Healer,
+        Builder,
+        Soldier,
     }
 
     public class Unit
@@ -13,11 +15,20 @@ namespace LestaAcademyDemo.DesignPrinciples.EncapsulateWhatChanges.Wrong
 
         public UnitType GetUnitType() => unitType;
 
-        public void UseHealSkill() { }
+        public void UseHealSkill()
+        {
+            /* some actions here */
+        }
 
-        public void UseBuildSkill() { }
+        public void UseBuildSkill()
+        {
+            /* some actions here */
+        }
 
-        public void UseAttackSkill() { }
+        public void UseAttackSkill()
+        {
+            /* some actions here */
+        }
     }
 
     public class UnitBehaviour
