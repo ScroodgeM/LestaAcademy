@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Strategy
@@ -21,7 +22,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Strategy
                 Attack(enemyPosition);
             }
 
-            if (shouldAttackEnemy == false /* or can attack and move simulatenously */)
+            if (shouldAttackEnemy == false /* or can attack and move simultaneously */)
             {
                 Vector3 moveGoal = currentStrategy.GetMoveGoal(this, enemyPosition);
                 MoveToGoal(moveGoal);
@@ -32,7 +33,7 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Strategy
 
         public float GetLongRangeWeaponRange() => 10f; // replace it with number from config
 
-        public float GetShortRangeWeaponRange() => 2f;// replace it with number from config
+        public float GetShortRangeWeaponRange() => 2f; // replace it with number from config
 
         public void NotifyAboutEnemyAttack(Vector3 enemyPosition)
         {

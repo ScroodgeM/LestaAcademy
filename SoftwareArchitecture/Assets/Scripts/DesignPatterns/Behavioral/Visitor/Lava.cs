@@ -1,7 +1,4 @@
 ﻿//this empty line for UTF-8 BOM header
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace LestaAcademyDemo.DesignPatterns.Behavioral.Visitor
 {

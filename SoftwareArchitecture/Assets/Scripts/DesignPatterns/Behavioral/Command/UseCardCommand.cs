@@ -14,12 +14,14 @@ namespace LestaAcademyDemo.DesignPatterns.Behavioral.Command
         public void DoCommand()
         {
             // remove card from inventory
+
             card.DoCommand();
         }
 
         public void UndoCommand()
         {
             card.UndoCommand();
+
             // add card to inventory
         }
     }
