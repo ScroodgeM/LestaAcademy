@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 //#define USE_THREAD
 
 #if USE_THREAD
@@ -14,7 +15,12 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
     public class WorldController : MonoBehaviour
     {
 #if USE_THREAD
-        private enum State { Idle, ReadyForCalculation, CalculationDone }
+        private enum State
+        {
+            Idle,
+            ReadyForCalculation,
+            CalculationDone
+        }
 #endif
 
         [SerializeField] private Text statisticsText;
@@ -29,6 +35,7 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
         private readonly List<Link> links = new List<Link>();
 
         private ForceCalculator forceCalculator;
+
         private readonly ForceCalculator.Input inputCache = new ForceCalculator.Input()
         {
             positions = new List<Vector3>(),
@@ -70,13 +77,6 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
 #if USE_THREAD
             thread = new Thread(ThreadWork);
             thread.Start();
-#endif
-        }
-
-        private void OnDestroy()
-        {
-#if USE_THREAD
-            thread.Abort();
 #endif
         }
 
@@ -208,5 +208,12 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
             }
         }
 #endif
+
+        private void OnDestroy()
+        {
+#if USE_THREAD
+            thread.Abort();
+#endif
+        }
     }
 }

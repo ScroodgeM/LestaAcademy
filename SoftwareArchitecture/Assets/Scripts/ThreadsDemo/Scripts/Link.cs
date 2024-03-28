@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using System;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
 
         private void OnMouseOver()
         {
-            if (Input.GetMouseButton(0) == true)
+            if (Input.GetMouseButton(0) == true && Input.GetKey(KeyCode.LeftShift) == true)
             {
                 OnCut(Joints);
             }

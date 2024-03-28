@@ -1,4 +1,5 @@
 ﻿//this empty line for UTF-8 BOM header
+
 using UnityEngine;
 
 namespace LestaAcademyDemo.ThreadsDemo.Scripts
@@ -27,7 +28,7 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
                 Vector3 mouseDelta = Input.mousePosition - lastKnownMousePosition;
                 lastKnownMousePosition = Input.mousePosition;
 
-                angleX = Mathf.Clamp(angleX - scrollSensitivity * mouseDelta.y, -90f, 90f);
+                angleX = Mathf.Clamp(angleX - scrollSensitivity * mouseDelta.y, -80f, 80f);
                 angleY += scrollSensitivity * mouseDelta.x;
             }
 
@@ -36,10 +37,8 @@ namespace LestaAcademyDemo.ThreadsDemo.Scripts
 
         private void LateUpdate()
         {
-            Quaternion rotation = Quaternion.Euler(angleX, angleY, 0f);
-
-            transform.position = focusPoint + rotation * Vector3.back * distance;
-            transform.rotation = rotation;
+            transform.position = focusPoint + Quaternion.Euler(angleX, angleY, 0f) * Vector3.back * distance;
+            transform.LookAt(focusPoint);
         }
     }
 }
