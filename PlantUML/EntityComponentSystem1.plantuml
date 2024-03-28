@@ -1,0 +1,52 @@
+@startuml
+
+package Input <<Frame>> {
+	class InputHandler
+	class InputCatcher
+}
+
+package Spawner <<Frame>> {
+	class EntitySpawner
+}
+
+package Health <<Frame>> {
+	class HealthTracker
+	class HealthAffector
+}
+
+package Path <<Frame>> {
+	class PathObstacle
+	class PathBuilder
+}
+
+package Physics <<Frame>> {
+	class Collider
+	class Rigidbody
+}
+
+package NPCAI <<Frame>> {
+	class MonsterTarget
+	class MonsterDecisionMaker
+}
+
+package Render <<Frame>> {
+	class MeshFilter
+	class Mesh
+	class Camera
+}
+
+InputHandler <-- PlayerBehaviour
+PathBuilder <-- PlayerBehaviour
+EntitySpawner <-- PlayerBehaviour
+EntityMover <-left- PlayerBehaviour
+HealthTracker <-- PlayerBehaviour
+
+PathBuilder <-- EntityMover
+Rigidbody <-- EntityMover
+
+MonsterDecisionMaker <-- MonsterBehaviour
+PathBuilder <-- MonsterBehaviour
+EntityMover <-right- MonsterBehaviour
+HealthTracker <-- MonsterBehaviour
+
+@enduml
