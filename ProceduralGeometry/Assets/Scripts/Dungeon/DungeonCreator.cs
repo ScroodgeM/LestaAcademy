@@ -5,13 +5,21 @@ namespace Battlegrounds
 {
     public class DungeonCreator : MonoBehaviour
     {
+        [System.Serializable]
+        private struct GeometryTilePrefab
+        {
+            public Transform tilePrefab;
+            public float scaleMultiplier;
+        }
+
         [SerializeField] private Vector2Int size;
         [SerializeField] private int steps;
         [SerializeField] private int seed;
         [SerializeField] private float cellRealSize;
-        [SerializeField] private Rect[] floorRects;
         [SerializeField] private Rect[] wallRects;
-        [SerializeField] private Rect[] roofRects;
+        [SerializeField] private GeometryTilePrefab[] floorTilePrefabs;
+
+        private readonly List<GameObject> generatedInstances = new List<GameObject>();
 
         private void Awake()
         {
@@ -56,39 +64,57 @@ namespace Battlegrounds
                 {
                     for (int z = 0; z < cellsCountZ; z++)
                     {
+                        Vector3 geometricCenter = cellRealSize * (new Vector3(x + 0.5f, 0.5f, z + 0.5f) - new Vector3(size.x, 0, size.y) * 0.5f);
+
                         if (map[x, z] == false)
                         {
                             continue;
                         }
 
-                        AddSurface(x, z, floorRects[Random.Range(0, floorRects.Length)], Quaternion.identity);
-
                         if (IsWalkable(x + 1, z) == false)
                         {
-                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 90f));
+                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 90f));
                         }
 
                         if (IsWalkable(x - 1, z) == false)
                         {
-                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, -90f));
+                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, -90f));
                         }
 
                         if (IsWalkable(x, z + 1) == false)
                         {
-                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 0f));
+                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 0f));
                         }
 
                         if (IsWalkable(x, z - 1) == false)
                         {
-                            AddSurface(x, z, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 180f));
+                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 180f));
                         }
 
-                        AddSurface(x, z, roofRects[Random.Range(0, roofRects.Length)], Quaternion.Euler(0f, 0f, -180f));
+                        {
+                            GeometryTilePrefab floorTilePrefab = floorTilePrefabs[Random.Range(0, floorTilePrefabs.Length)];
+                            Transform floorTile = Instantiate(floorTilePrefab.tilePrefab, transform);
+                            floorTile.position = geometricCenter - cellRealSize * 0.5f * Vector3.up;
+                            floorTile.rotation = Quaternion.AngleAxis(90 * Random.Range(0, 4), Vector3.up);
+                            floorTile.localScale = cellRealSize * floorTilePrefab.scaleMultiplier * Vector3.one;
+                            floorTile.gameObject.hideFlags = HideFlags.DontSave;
+                            generatedInstances.Add(floorTile.gameObject);
+                        }
+
+                        {
+                            GeometryTilePrefab roofTilePrefab = floorTilePrefabs[Random.Range(0, floorTilePrefabs.Length)];
+                            Transform roofTile = Instantiate(roofTilePrefab.tilePrefab, transform);
+                            roofTile.position = geometricCenter + cellRealSize * 0.5f * Vector3.up;
+                            roofTile.rotation = Quaternion.AngleAxis(180, Vector3.right) * Quaternion.AngleAxis(90 * Random.Range(0, 4), Vector3.up);
+                            roofTile.localScale = cellRealSize * roofTilePrefab.scaleMultiplier * Vector3.one;
+                            roofTile.gameObject.hideFlags = HideFlags.DontSave;
+                            generatedInstances.Add(roofTile.gameObject);
+                        }
                     }
                 }
             }
 
-            void AddSurface(int x, int z, Rect uvRect, Quaternion rotation)
+            void AddSurface(Vector3 geometricCenter, Rect uvRect, Quaternion rotation)
             {
                 int i0 = vertices.Count;
                 int i1 = i0 + 1;
@@ -96,8 +122,6 @@ namespace Battlegrounds
                 int i3 = i0 + 3;
                 int i4 = i0 + 4;
                 int i5 = i0 + 5;
-
-                Vector3 geometricCenter = cellRealSize * (new Vector3(x + 0.5f, 0.5f, z + 0.5f) - new Vector3(size.x, 0, size.y) * 0.5f);
 
                 Vector3 v3_00 = rotation * new Vector3(-0.5f, -0.5f, -0.5f) * cellRealSize + geometricCenter;
                 Vector3 v3_01 = rotation * new Vector3(-0.5f, -0.5f, +0.5f) * cellRealSize + geometricCenter;
@@ -135,7 +159,10 @@ namespace Battlegrounds
 
             bool IsWalkable(int x, int z)
             {
-                if (x < 0 || x >= size.x || z < 0 || z >= size.y) { return false; }
+                if (x < 0 || x >= size.x || z < 0 || z >= size.y)
+                {
+                    return false;
+                }
 
                 return map[x, z];
             }
@@ -152,6 +179,11 @@ namespace Battlegrounds
 
             GetComponent<MeshFilter>().sharedMesh = null;
             GetComponent<MeshCollider>().sharedMesh = null;
+
+            foreach (GameObject generatedInstance in generatedInstances)
+            {
+                DestroyImmediate(generatedInstance);
+            }
         }
     }
 }
