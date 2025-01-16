@@ -314,6 +314,32 @@ MonoBehaviour:
   - tilePrefab: {fileID: 1666406721082384174, guid: d9a0b42eac1e85945b5365f098bfa41c,
       type: 3}
     scaleMultiplier: 0.75
+  wallTilePrefabs:
+  - tilePrefab: {fileID: 2246476785693314369, guid: d8a1d6abb84d14144a2d7e22d37d6e4e,
+      type: 3}
+    scaleMultiplier: 0.25
+  - tilePrefab: {fileID: 1115043424607764301, guid: b0531724187f291488882edcc7ecac1b,
+      type: 3}
+    scaleMultiplier: 0.25
+  - tilePrefab: {fileID: 8962970290674345260, guid: 46e5649dc733688429e25684e8b029a1,
+      type: 3}
+    scaleMultiplier: 0.25
+  - tilePrefab: {fileID: 1906827576675450534, guid: af114b50f70c5c84199c4fff895f164d,
+      type: 3}
+    scaleMultiplier: 0.25
+  roofTilePrefabs:
+  - tilePrefab: {fileID: 8173746148612110432, guid: 732f901be6361bd45989cb8196f683d2,
+      type: 3}
+    scaleMultiplier: 0.375
+  - tilePrefab: {fileID: 5819569817690653172, guid: dd67638cac61f0241b71c5e56e9738c8,
+      type: 3}
+    scaleMultiplier: 0.375
+  - tilePrefab: {fileID: 5554048763047175482, guid: e479aa5cee22ae74b96a11c61f704355,
+      type: 3}
+    scaleMultiplier: 0.75
+  - tilePrefab: {fileID: 1666406721082384174, guid: d9a0b42eac1e85945b5365f098bfa41c,
+      type: 3}
+    scaleMultiplier: 0.75
 --- !u!4 &1054029985
 Transform:
   m_ObjectHideFlags: 0

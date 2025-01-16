@@ -18,6 +18,8 @@ namespace Battlegrounds
         [SerializeField] private float cellRealSize;
         [SerializeField] private Rect[] wallRects;
         [SerializeField] private GeometryTilePrefab[] floorTilePrefabs;
+        [SerializeField] private GeometryTilePrefab[] wallTilePrefabs;
+        [SerializeField] private GeometryTilePrefab[] roofTilePrefabs;
 
         private readonly List<GameObject> generatedInstances = new List<GameObject>();
 
@@ -71,47 +73,43 @@ namespace Battlegrounds
                             continue;
                         }
 
+                        AddSurface(geometricCenter + cellRealSize * 3 * Vector3.down, wallRects[0], Quaternion.identity);
+
                         if (IsWalkable(x + 1, z) == false)
                         {
-                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 90f));
+                            CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.right, wallTilePrefabs, Quaternion.AngleAxis(90, Vector3.forward));
                         }
 
                         if (IsWalkable(x - 1, z) == false)
                         {
-                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, -90f));
+                            CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.left, wallTilePrefabs, Quaternion.AngleAxis(90, Vector3.back));
                         }
 
                         if (IsWalkable(x, z + 1) == false)
                         {
-                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 0f));
+                            CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.forward, wallTilePrefabs, Quaternion.AngleAxis(90, Vector3.left));
                         }
 
                         if (IsWalkable(x, z - 1) == false)
                         {
-                            AddSurface(geometricCenter, wallRects[Random.Range(0, wallRects.Length)], Quaternion.Euler(-90f, 0f, 180f));
+                            CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.back, wallTilePrefabs, Quaternion.AngleAxis(90, Vector3.right));
                         }
 
-                        {
-                            GeometryTilePrefab floorTilePrefab = floorTilePrefabs[Random.Range(0, floorTilePrefabs.Length)];
-                            Transform floorTile = Instantiate(floorTilePrefab.tilePrefab, transform);
-                            floorTile.position = geometricCenter - cellRealSize * 0.5f * Vector3.up;
-                            floorTile.rotation = Quaternion.AngleAxis(90 * Random.Range(0, 4), Vector3.up);
-                            floorTile.localScale = cellRealSize * floorTilePrefab.scaleMultiplier * Vector3.one;
-                            floorTile.gameObject.hideFlags = HideFlags.DontSave;
-                            generatedInstances.Add(floorTile.gameObject);
-                        }
-
-                        {
-                            GeometryTilePrefab roofTilePrefab = floorTilePrefabs[Random.Range(0, floorTilePrefabs.Length)];
-                            Transform roofTile = Instantiate(roofTilePrefab.tilePrefab, transform);
-                            roofTile.position = geometricCenter + cellRealSize * 0.5f * Vector3.up;
-                            roofTile.rotation = Quaternion.AngleAxis(180, Vector3.right) * Quaternion.AngleAxis(90 * Random.Range(0, 4), Vector3.up);
-                            roofTile.localScale = cellRealSize * roofTilePrefab.scaleMultiplier * Vector3.one;
-                            roofTile.gameObject.hideFlags = HideFlags.DontSave;
-                            generatedInstances.Add(roofTile.gameObject);
-                        }
+                        CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.down, floorTilePrefabs, Quaternion.identity);
+                        CreateTile(geometricCenter + cellRealSize * 0.5f * Vector3.up, roofTilePrefabs, Quaternion.AngleAxis(180, Vector3.right));
                     }
                 }
+            }
+
+            void CreateTile(Vector3 position, GeometryTilePrefab[] tilesBank, Quaternion baseRotation)
+            {
+                GeometryTilePrefab tilePrefab = tilesBank[Random.Range(0, tilesBank.Length)];
+                Transform tileInstance = Instantiate(tilePrefab.tilePrefab, transform);
+                tileInstance.position = position;
+                tileInstance.rotation = baseRotation * Quaternion.AngleAxis(90 * Random.Range(0, 4), Vector3.up);
+                tileInstance.localScale = cellRealSize * tilePrefab.scaleMultiplier * Vector3.one;
+                tileInstance.gameObject.hideFlags = HideFlags.DontSave;
+                generatedInstances.Add(tileInstance.gameObject);
             }
 
             void AddSurface(Vector3 geometricCenter, Rect uvRect, Quaternion rotation)
