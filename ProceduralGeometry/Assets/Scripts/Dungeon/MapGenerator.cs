@@ -2,11 +2,11 @@ using UnityEngine;
 
 public static class MapGenerator
 {
-    public static bool[,] Create2DMap(Vector2Int size, int steps, int seed)
+    public static bool[,] Create2DMap(Vector2Int size, int steps, int seed, out Vector2Int cursor)
     {
         bool[,] result = new bool[size.x, size.y];
 
-        Vector2Int cursor = size / 2;
+        cursor = size / 2;
 
         result[cursor.x, cursor.y] = true;
 

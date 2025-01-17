@@ -31,7 +31,7 @@ namespace Battlegrounds
 
         public void GenerateDungeon()
         {
-            bool[,] map = MapGenerator.Create2DMap(size, steps, seed);
+            bool[,] map = MapGenerator.Create2DMap(size, steps, seed, out Vector2Int cursor);
 
             int cellsCountX = size.x;
             int cellsCountZ = size.y;
@@ -83,6 +83,40 @@ namespace Battlegrounds
                 tileInstance.gameObject.hideFlags = HideFlags.DontSave;
                 generatedInstances.Add(tileInstance.gameObject);
             }
+
+            bool IsWalkable(int x, int z)
+            {
+                if (x < 0 || x >= size.x || z < 0 || z >= size.y)
+                {
+                    return false;
+                }
+
+                return map[x, z];
+            }
+        }
+
+        public Texture2D DebugDungeon()
+        {
+            bool[,] map = MapGenerator.Create2DMap(size, steps, seed, out Vector2Int cursor);
+
+            int cellsCountX = size.x;
+            int cellsCountZ = size.y;
+
+            Texture2D texture = new Texture2D(cellsCountX, cellsCountZ, TextureFormat.RGB24, false);
+
+            for (int x = 0; x < cellsCountX; x++)
+            {
+                for (int z = 0; z < cellsCountZ; z++)
+                {
+                    texture.SetPixel(x, z, IsWalkable(x, z) ? Color.black : Color.gray);
+                }
+            }
+
+            texture.SetPixel(cursor.x, cursor.y, Color.blue);
+
+            texture.Apply();
+            texture.filterMode = FilterMode.Point;
+            return texture;
 
             bool IsWalkable(int x, int z)
             {
