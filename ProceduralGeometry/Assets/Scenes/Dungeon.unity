@@ -147,13 +147,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087824}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.043619405, z: 0, w: 0.9990483}
   m_LocalPosition: {x: -0.364, y: -0, z: 0.403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 159806762}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -5, z: 0}
 --- !u!114 &1087826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,9 +188,9 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3000
-  m_Range: 100
-  m_SpotAngle: 48.44658
+  m_Intensity: 700
+  m_Range: 50
+  m_SpotAngle: 50
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -291,10 +291,10 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 40
+    FieldOfView: 90
     OrthographicSize: 10
     NearClipPlane: 0.1
-    FarClipPlane: 5000
+    FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
     PhysicalProperties:
@@ -318,8 +318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176171097}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.054923546, y: -0.116361685, z: 0.006444705, w: 0.99166626}
-  m_LocalPosition: {x: 0, y: 3, z: -6}
+  m_LocalRotation: {x: 0.08248054, y: -0.00000002209529, z: 0.000000001828662, w: 0.9965927}
+  m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Composition:
-    ScreenPosition: {x: 0.25, y: 0}
+    ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -372,7 +372,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 3, z: -6}
+  FollowOffset: {x: 0, y: 3, z: -3}
 --- !u!1001 &966205034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86597d3070f12d641acb6668120f6b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 50, y: 50}
-  steps: 300
-  seed: 1169728470
+  size: {x: 101, y: 101}
+  steps: 500
+  seed: 2078684047
   cellRealSize: 5
   floorTilePrefabs:
   - tilePrefab: {fileID: 8173746148612110432, guid: 732f901be6361bd45989cb8196f683d2,
@@ -606,8 +606,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 40
+  far clip plane: 100
+  field of view: 90
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -633,8 +633,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2048475224}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.054923557, y: -0.1163617, z: 0.0064447066, w: 0.9916662}
-  m_LocalPosition: {x: 0, y: 3, z: -6}
+  m_LocalRotation: {x: 0.08248054, y: -0.00000002209529, z: 0.0000000018286622, w: 0.9965927}
+  m_LocalPosition: {x: 0, y: 3, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
