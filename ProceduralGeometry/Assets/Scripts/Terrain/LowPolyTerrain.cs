@@ -1,35 +1,48 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Battlegrounds
 {
+    [ExecuteInEditMode]
     public class LowPolyTerrain : MonoBehaviour
     {
-        [SerializeField] private float cellSize = 0.5f;
-        [SerializeField] private Vector2 terrainSize;
+        [SerializeField] protected float cellSize = 1f;
+        [SerializeField] protected int cellsCount = 25;
+        [SerializeField] private float uvScale = 1f;
         [SerializeField] private Material terrainMaterial;
         [SerializeField] private bool weldVertices;
 
         protected List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
 
-        protected int totalCellsX;
-        protected int totalCellsZ;
-
-        protected Vector3 terrainScale;
+        [Obsolete] protected int totalCellsX => cellsCount;
+        [Obsolete] protected int totalCellsZ => cellsCount;
+        [Obsolete] protected Vector3 terrainScale => cellSize * Vector3.one;
 
         protected float[,] heights;
         protected Color[,] colorMapPixels;
 
         private void Awake()
         {
-            GenerateTerrain();
+            if (Application.isPlaying == true)
+            {
+                GenerateTerrain();
+            }
+        }
+
+        private void Update()
+        {
+            if (Application.isPlaying == false)
+            {
+                GenerateTerrain();
+            }
         }
 
         public void Clear()
         {
             foreach (LowPolyTerrainChunk chunk in chunks)
             {
-                if (Application.isPlaying)
+                if (Application.isPlaying == true)
                 {
                     Destroy(chunk.gameObject);
                 }
@@ -51,20 +64,12 @@ namespace Battlegrounds
 
         private void GenerateMap()
         {
-            totalCellsX = Mathf.FloorToInt(terrainSize.x / cellSize);
-            totalCellsZ = Mathf.FloorToInt(terrainSize.y / cellSize);
+            heights = new float[cellsCount + 1, cellsCount + 1];
+            colorMapPixels = new Color[cellsCount + 1, cellsCount + 1];
 
-            terrainScale = new Vector3(
-                terrainSize.x / totalCellsX,
-                0f,
-                terrainSize.y / totalCellsZ);
-
-            heights = new float[totalCellsX + 1, totalCellsZ + 1];
-            colorMapPixels = new Color[totalCellsX + 1, totalCellsZ + 1];
-
-            for (int x = 0; x <= totalCellsX; x++)
+            for (int x = 0; x <= cellsCount; x++)
             {
-                for (int z = 0; z <= totalCellsZ; z++)
+                for (int z = 0; z <= cellsCount; z++)
                 {
                     GetDataAtCell(x, z, out float height, out Color color);
 
@@ -83,8 +88,9 @@ namespace Battlegrounds
 
         protected virtual void GetDataAtCell(int x, int z, out float height, out Color color)
         {
-            height = Mathf.Max((Mathf.Abs(x - totalCellsX / 2) + Mathf.Abs(z - totalCellsZ / 2)) * 3f - 20f, 0f);
-            color = new Color((float)x / totalCellsX, (float)z / totalCellsZ, height / 50f, 1f);
+            Vector2 worldPosition2D = HeightIndexToWorldPosition2D(x, z);
+            height = worldPosition2D.sqrMagnitude * 0.005f;
+            color = new Color((float)x / cellsCount, (float)z / cellsCount, height / 50f, 1f);
         }
 
         protected LowPolyTerrainChunk CreateChunk(int chunkIndexX, int chunkIndexZ, int chunkSize)
@@ -96,8 +102,10 @@ namespace Battlegrounds
                 hideFlags = HideFlags.DontSave,
             };
 
+            Vector2 chunkPosition2D = HeightIndexToWorldPosition2D(chunkIndexX * chunkSize, chunkIndexZ * chunkSize);
+
             chunkGO.transform.SetParent(transform, false);
-            chunkGO.transform.localPosition = GetChunkPosition();
+            chunkGO.transform.localPosition = new Vector3(chunkPosition2D.x, 0f, chunkPosition2D.y);
             chunkGO.transform.localRotation = Quaternion.identity;
             chunkGO.transform.localScale = Vector3.one;
 
@@ -111,18 +119,24 @@ namespace Battlegrounds
                 gameObject: chunkGO,
                 meshFilter: meshFilter,
                 meshCollider: meshCollider,
-                terrainScale: terrainScale,
+                cellSize: cellSize,
+                cellsCount: cellsCount,
+                uvScale: uvScale,
                 chunkIndexX: chunkIndexX,
                 chunkIndexZ: chunkIndexZ,
                 chunkSize: chunkSize,
-                totalCellsX: totalCellsX,
-                totalCellsZ: totalCellsZ,
-                weldVertices);
+                weldVertices: weldVertices,
+                heightIndexToWorldPosition2D: HeightIndexToWorldPosition2D);
+        }
 
-            Vector3 GetChunkPosition()
-            {
-                return new Vector3(chunkIndexX * terrainScale.x, 0f, chunkIndexZ * terrainScale.z) * chunkSize;
-            }
+        protected Vector2 HeightIndexToWorldPosition2D(int heightIndexX, int heightIndexZ)
+        {
+            return HeightIndexToWorldPosition2D(new Vector2Int(heightIndexX, heightIndexZ));
+        }
+
+        protected Vector2 HeightIndexToWorldPosition2D(Vector2Int heightIndex)
+        {
+            return new Vector2(heightIndex.x - cellsCount * 0.5f, heightIndex.y - cellsCount * 0.5f) * cellSize;
         }
     }
 }

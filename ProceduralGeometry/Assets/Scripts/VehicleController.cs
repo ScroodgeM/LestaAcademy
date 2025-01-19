@@ -17,6 +17,7 @@ public class VehicleController : MonoBehaviour
     [SerializeField] private float enginePower;
     [SerializeField] private Transform gunTransform;
     [SerializeField] private float gunFireCooldown;
+    [SerializeField] private float bulletInitialSpeed;
     [SerializeField] private Bullet bullet1;
     [SerializeField] private Bullet bullet2;
 
@@ -65,7 +66,8 @@ public class VehicleController : MonoBehaviour
         if (Time.time > nextGunFirePossibleTime)
         {
             nextGunFirePossibleTime = Time.time + gunFireCooldown;
-            Instantiate(bullet, gunTransform.position, gunTransform.rotation);
+            Bullet bulletInstance = Instantiate(bullet, gunTransform.position, gunTransform.rotation);
+            bulletInstance.Init(GetComponent<Rigidbody>().linearVelocity + gunTransform.forward * bulletInitialSpeed);
         }
     }
 

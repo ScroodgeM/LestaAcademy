@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Battlegrounds
@@ -13,8 +14,10 @@ namespace Battlegrounds
         private readonly int mapIndexZTo;
 
         private readonly MeshCollider meshCollider;
-        private readonly Vector3 terrainScale;
-        private bool weldVertices;
+        private readonly float cellSize;
+        private readonly float uvScale;
+        private readonly bool weldVertices;
+        private readonly Func<int, int, Vector2> heightIndexToWorldPosition2D;
 
         private readonly Mesh mesh;
         private readonly Vector3[] vertices;
@@ -30,24 +33,27 @@ namespace Battlegrounds
         internal LowPolyTerrainChunk(GameObject gameObject,
             MeshFilter meshFilter,
             MeshCollider meshCollider,
-            Vector3 terrainScale,
+            float cellSize,
+            int cellsCount,
+            float uvScale,
             int chunkIndexX,
             int chunkIndexZ,
             int chunkSize,
-            int totalCellsX,
-            int totalCellsZ,
-            bool weldVertices)
+            bool weldVertices,
+            Func<int, int, Vector2> heightIndexToWorldPosition2D)
         {
             this.gameObject = gameObject;
 
             this.mapIndexXFrom = chunkIndexX * chunkSize;
-            this.mapIndexXTo = Mathf.Min((chunkIndexX + 1) * chunkSize, totalCellsX);
+            this.mapIndexXTo = Mathf.Min((chunkIndexX + 1) * chunkSize, cellsCount);
             this.mapIndexZFrom = chunkIndexZ * chunkSize;
-            this.mapIndexZTo = Mathf.Min((chunkIndexZ + 1) * chunkSize, totalCellsZ);
+            this.mapIndexZTo = Mathf.Min((chunkIndexZ + 1) * chunkSize, cellsCount);
 
             this.meshCollider = meshCollider;
-            this.terrainScale = terrainScale;
+            this.cellSize = cellSize;
+            this.uvScale = uvScale;
             this.weldVertices = weldVertices;
+            this.heightIndexToWorldPosition2D = heightIndexToWorldPosition2D;
 
             mesh = new Mesh { name = $"Chunk x{chunkIndexX} z{chunkIndexZ}", hideFlags = HideFlags.DontSave, };
             meshFilter.mesh = mesh;
@@ -73,10 +79,10 @@ namespace Battlegrounds
                     int localX = x - mapIndexXFrom;
                     int localZ = z - mapIndexZFrom;
 
-                    Vector3 vertex00 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 0], (localZ + 0) * terrainScale.z);
-                    Vector3 vertex01 = new Vector3((localX + 0) * terrainScale.x, heights[x + 0, z + 1], (localZ + 1) * terrainScale.z);
-                    Vector3 vertex10 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 0], (localZ + 0) * terrainScale.z);
-                    Vector3 vertex11 = new Vector3((localX + 1) * terrainScale.x, heights[x + 1, z + 1], (localZ + 1) * terrainScale.z);
+                    Vector3 vertex00 = new Vector3((localX + 0) * cellSize, heights[x + 0, z + 0], (localZ + 0) * cellSize);
+                    Vector3 vertex01 = new Vector3((localX + 0) * cellSize, heights[x + 0, z + 1], (localZ + 1) * cellSize);
+                    Vector3 vertex10 = new Vector3((localX + 1) * cellSize, heights[x + 1, z + 0], (localZ + 0) * cellSize);
+                    Vector3 vertex11 = new Vector3((localX + 1) * cellSize, heights[x + 1, z + 1], (localZ + 1) * cellSize);
 
                     if (weldVertices == true)
                     {
@@ -102,10 +108,10 @@ namespace Battlegrounds
                             triangles[index + 4] = vertex11index;
                             triangles[index + 5] = vertex10index;
 
-                            uv[vertex00index] = new Vector2(x + 0, z + 0);
-                            uv[vertex01index] = new Vector2(x + 0, z + 1);
-                            uv[vertex11index] = new Vector2(x + 1, z + 1);
-                            uv[vertex10index] = new Vector2(x + 1, z + 0);
+                            uv[vertex00index] = heightIndexToWorldPosition2D(x + 0, z + 0) * uvScale;
+                            uv[vertex01index] = heightIndexToWorldPosition2D(x + 0, z + 1) * uvScale;
+                            uv[vertex11index] = heightIndexToWorldPosition2D(x + 1, z + 1) * uvScale;
+                            uv[vertex10index] = heightIndexToWorldPosition2D(x + 1, z + 0) * uvScale;
                         }
 
                         colors[vertex00index] = colorMap[x + 0, z + 0];

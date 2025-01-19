@@ -10,6 +10,7 @@ namespace Battlegrounds
         {
             public bool enabled;
             public AnimationCurve heightsAffected;
+            public Vector2 offset;
             public float density;
             public float minMapping;
             public float maxMapping;
@@ -32,7 +33,7 @@ namespace Battlegrounds
 
                 float multiplier = terrainLayer.heightsAffected.Evaluate(height);
 
-                float layerValue = Mathf.PerlinNoise(x * terrainLayer.density * terrainScale.x, z * terrainLayer.density * terrainScale.z);
+                float layerValue = Mathf.PerlinNoise(x * terrainLayer.density * terrainScale.x + terrainLayer.offset.x, z * terrainLayer.density * terrainScale.z + terrainLayer.offset.y);
                 height += Mathf.Lerp(terrainLayer.minMapping, terrainLayer.maxMapping, layerValue * multiplier);
 
                 Color newColor = terrainLayer.color.Evaluate(layerValue);

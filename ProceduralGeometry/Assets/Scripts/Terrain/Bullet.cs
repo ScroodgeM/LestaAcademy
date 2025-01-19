@@ -5,11 +5,10 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private DeformationModes mode;
     [SerializeField] private float boomPower;
-    [SerializeField] private float startSpeed;
 
-    private void Start()
+    public void Init(Vector3 initialSpeed)
     {
-        GetComponent<Rigidbody>().AddForce(transform.forward * startSpeed, ForceMode.VelocityChange);
+        GetComponent<Rigidbody>().linearVelocity = initialSpeed;
     }
 
     private void Update()
