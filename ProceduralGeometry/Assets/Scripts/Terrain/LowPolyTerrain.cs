@@ -13,7 +13,7 @@ namespace Battlegrounds
         [SerializeField] private Material terrainMaterial;
         [SerializeField] private bool weldVertices;
 
-        protected List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
+        protected readonly List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
 
         [Obsolete] protected int totalCellsX => cellsCount;
         [Obsolete] protected int totalCellsZ => cellsCount;

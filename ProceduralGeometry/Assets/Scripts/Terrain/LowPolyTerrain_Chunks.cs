@@ -27,7 +27,7 @@ namespace Battlegrounds
             {
                 for (int z = 0; z < totalChunksZ; z++)
                 {
-                    var chunk = CreateChunk(x, z, chunkSize);
+                    LowPolyTerrainChunk chunk = CreateChunk(x, z, chunkSize);
                     chunk.ApplyColorsAndGeometry(colorMapPixels, heights);
                     chunks.Add(chunk);
                 }

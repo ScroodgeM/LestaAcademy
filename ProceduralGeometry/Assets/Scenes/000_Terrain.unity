@@ -1003,7 +1003,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSize: 1
-  terrainSize: {x: 500, y: 500}
+  cellsCount: 200
+  uvScale: 0.025
   terrainMaterial: {fileID: 2100000, guid: 673615c9f081d0547ab6c184f8091cd1, type: 2}
   weldVertices: 1
   terrainLayers:
@@ -1023,9 +1024,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    density: 0.01
+    offset: {x: 0, y: 2.47}
+    density: 0.015
     minMapping: -10
-    maxMapping: 40
+    maxMapping: 20
     color:
       serializedVersion: 2
       key0: {r: 0.4528302, g: 0.43507215, b: 0, a: 1}
@@ -1061,7 +1063,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.31883067
+        time: -4.980875
         value: 1.000117
         inSlope: 0
         outSlope: 0
@@ -1070,8 +1072,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 9.991867
-        value: -0.002814591
+        time: 5.0580597
+        value: 0.007164657
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1081,13 +1083,14 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    density: 0.05
+    offset: {x: 0, y: 0}
+    density: 0.1
     minMapping: 0
-    maxMapping: 5
+    maxMapping: -5
     color:
       serializedVersion: 2
       key0: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
-      key1: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
+      key1: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
       key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
       key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
@@ -1103,7 +1106,7 @@ MonoBehaviour:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 43369
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -1111,9 +1114,9 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
   - enabled: 1
     heightsAffected:
       serializedVersion: 2
@@ -1128,8 +1131,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.265915
-        value: -0.0059625376
+        time: 14.788086
+        value: -0.0019647349
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1139,9 +1142,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    density: 0.29
-    minMapping: -3
-    maxMapping: 0
+    offset: {x: 0, y: 0}
+    density: 0.6
+    minMapping: 0
+    maxMapping: 3
     color:
       serializedVersion: 2
       key0: {r: 0.003921577, g: 0.58431375, b: 0.0041593076, a: 1}
@@ -1177,8 +1181,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0071154474
-        value: 0.49861532
+        time: -0.6978099
+        value: 0.01627733
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1186,33 +1190,34 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 10.039032
-        value: 0.49789506
-        inSlope: -0.00014384714
-        outSlope: -0.00014384714
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 20.035667
-        value: 0.20127228
+        time: 1.6639099
+        value: 0.98880845
         inSlope: 0
         outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 6.2188187
+        value: -0.010000914
+        inSlope: -0.000054071097
+        outSlope: -0.000054071097
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
         outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    density: 0.25
-    minMapping: -1
+    offset: {x: -1.02, y: 0}
+    density: 0.13
+    minMapping: 0
     maxMapping: 1
     color:
       serializedVersion: 2
-      key0: {r: 0.2830189, g: 0.08331965, b: 0.012014948, a: 1}
-      key1: {r: 0.98783034, g: 1, b: 0.0141509175, a: 0}
+      key0: {r: 1, g: 0.3534872, b: 0, a: 0}
+      key1: {r: 0.98783034, g: 1, b: 0.0141509175, a: 1}
       key2: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 1}
       key3: {r: 0.5849056, g: 0.16945183, b: 0.0027589954, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
@@ -1228,7 +1233,7 @@ MonoBehaviour:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 32575
+      atime1: 33539
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -1236,7 +1241,7 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 3
   - enabled: 1
@@ -1244,8 +1249,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 10.499688
-        value: 0.103061736
+        time: 2.5298471
+        value: 0.023929656
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1253,8 +1258,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 20.352146
-        value: 1.0016224
+        time: 14.2215
+        value: 0.9660237
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1264,9 +1269,10 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    density: 0.05
-    minMapping: 10
-    maxMapping: -2
+    offset: {x: 0, y: 0}
+    density: -0.13
+    minMapping: 0
+    maxMapping: 25
     color:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 0}
@@ -1286,7 +1292,7 @@ MonoBehaviour:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 13493
       atime2: 65535
       atime3: 0
       atime4: 0
@@ -1296,7 +1302,7 @@ MonoBehaviour:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
   chunkSize: 6
 --- !u!4 &973169974
 Transform:
@@ -1307,7 +1313,7 @@ Transform:
   m_GameObject: {fileID: 973169972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -250, y: -1, z: -250}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
