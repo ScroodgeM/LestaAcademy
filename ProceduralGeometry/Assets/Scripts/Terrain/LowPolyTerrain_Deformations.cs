@@ -13,24 +13,21 @@ namespace Battlegrounds
             center = transform.InverseTransformPoint(center);
             radius /= (transform.lossyScale.magnitude / Mathf.Sqrt(3f));
 
-            int xMin = Mathf.CeilToInt((center.x - radius) / terrainScale.x);
-            int xMax = Mathf.FloorToInt((center.x + radius) / terrainScale.x);
-            int zMin = Mathf.CeilToInt((center.z - radius) / terrainScale.z);
-            int zMax = Mathf.FloorToInt((center.z + radius) / terrainScale.z);
+            Vector2Int min = WorldPosition2DToHeightIndex(new Vector2(center.x - radius, center.z - radius));
+            Vector2Int max = WorldPosition2DToHeightIndex(new Vector2(center.x + radius, center.z + radius));
 
-            for (int x = xMin; x <= xMax; x++)
+            for (int x = min.x; x <= max.x; x++)
             {
-                if (x >= 0 && x <= totalCellsX)
+                if (x >= 0 && x <= cellsCount)
                 {
-                    float worldX = x * terrainScale.x;
-                    for (int z = zMin; z <= zMax; z++)
+                    for (int z = min.y; z <= max.y; z++)
                     {
-                        if (z >= 0 && z <= totalCellsZ)
+                        if (z >= 0 && z <= cellsCount)
                         {
-                            float worldZ = z * terrainScale.z;
+                            Vector2 worldPosition2D = HeightIndexToWorldPosition2D(x, z);
                             float r2 = radius * radius;
-                            float x2 = (center.x - worldX) * (center.x - worldX);
-                            float z2 = (center.z - worldZ) * (center.z - worldZ);
+                            float x2 = (center.x - worldPosition2D.x) * (center.x - worldPosition2D.x);
+                            float z2 = (center.z - worldPosition2D.y) * (center.z - worldPosition2D.y);
                             if (r2 > x2 + z2)
                             {
                                 float oldWorldHeightInPoint = heights[x, z];
@@ -47,6 +44,7 @@ namespace Battlegrounds
                                         deltaHeight = Mathf.Min(Mathf.Max(center.y - oldWorldHeightInPoint, 0f) - maxDeltaHeight, 0f);
                                         break;
                                 }
+
                                 if (!Mathf.Approximately(deltaHeight, 0f))
                                 {
                                     // 1 for zero height, 0.5 for -1m, 0.33 for -2m, etc
@@ -59,7 +57,8 @@ namespace Battlegrounds
                     }
                 }
             }
-            UpdateChunks(xMin, xMax, zMin, zMax);
+
+            UpdateChunks(min.x, max.x, min.y, max.y);
         }
 
         private void UpdateChunks(int xMin, int xMax, int zMin, int zMax)

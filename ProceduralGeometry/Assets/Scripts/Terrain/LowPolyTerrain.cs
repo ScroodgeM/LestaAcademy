@@ -139,5 +139,10 @@ namespace Battlegrounds
         {
             return new Vector2(heightIndex.x - cellsCount * 0.5f, heightIndex.y - cellsCount * 0.5f) * cellSize;
         }
+
+        protected Vector2Int WorldPosition2DToHeightIndex(Vector2 worldPosition2D)
+        {
+            return Vector2Int.RoundToInt(worldPosition2D / cellSize + cellsCount * 0.5f * Vector2.one);
+        }
     }
 }
