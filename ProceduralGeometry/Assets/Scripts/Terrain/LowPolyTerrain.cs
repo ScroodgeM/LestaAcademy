@@ -12,6 +12,7 @@ namespace Battlegrounds
         [SerializeField] private float uvScale = 1f;
         [SerializeField] private Material terrainMaterial;
         [SerializeField] private bool weldVertices;
+        [SerializeField] private bool continuousGenerationInEditor;
 
         protected readonly List<LowPolyTerrainChunk> chunks = new List<LowPolyTerrainChunk>();
 
@@ -32,7 +33,7 @@ namespace Battlegrounds
 
         private void Update()
         {
-            if (Application.isPlaying == false)
+            if (continuousGenerationInEditor == true && Application.isPlaying == false)
             {
                 GenerateTerrain();
             }
