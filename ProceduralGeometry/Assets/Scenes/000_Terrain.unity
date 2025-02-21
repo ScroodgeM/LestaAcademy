@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 691995107}
   - component: {fileID: 691995106}
   m_Layer: 0
-  m_Name: 020_LPT_Perlin
+  m_Name: 020_LPT_Perlin_HSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 1054029985}
   - component: {fileID: 1054029984}
   m_Layer: 0
-  m_Name: 080_LPT_Terraforming
+  m_Name: 080_LPT_Terraforming_HSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1800,7 +1800,7 @@ GameObject:
   - component: {fileID: 1518005542}
   - component: {fileID: 1518005541}
   m_Layer: 0
-  m_Name: 070_LPWater
+  m_Name: 070_LPWater_HSE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

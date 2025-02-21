@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 2
-  boomPower: 2
+  boomPower: 10
 --- !u!54 &8561221495321542639
 Rigidbody:
   m_ObjectHideFlags: 0

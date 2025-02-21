@@ -20,7 +20,7 @@ namespace LestaAcademyDemo.Pillars.Polymorphism
 
     public class ParametricPolymorphism
     {
-        private static readonly DateTime lestaAcademyDeadLine = new DateTime(2024, 05, 30, 18, 0, 0);
+        private static readonly DateTime lestaAcademyDeadLine = new DateTime(2025, 05, 30, 18, 0, 0);
 
         public void DoSomeJob()
         {

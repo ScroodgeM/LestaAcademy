@@ -488,9 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86597d3070f12d641acb6668120f6b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 101, y: 101}
-  steps: 500
-  seed: 2078684047
+  size: {x: 25, y: 25}
+  steps: 18
+  seed: 534681496
   cellRealSize: 5
   floorTilePrefabs:
   - tilePrefab: {fileID: 8173746148612110432, guid: 732f901be6361bd45989cb8196f683d2,

@@ -8,7 +8,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
     {
         private readonly Func<TI, T> newObjectConstructor;
 
-        private readonly Multiton<List<T>, TI> poolsMultitone = new Multiton<List<T>, TI>(() => new List<T>());
+        private readonly Multiton<List<T>, TI> poolsMultiton = new Multiton<List<T>, TI>(() => new List<T>());
 
         public ObjectPool(Func<TI, T> newObjectConstructor)
         {
@@ -17,7 +17,7 @@ namespace LestaAcademyDemo.DesignPatterns.Creational.Multiton
 
         public T GetObject(TI typeIdentifier)
         {
-            List<T> members = poolsMultitone.GetMember(typeIdentifier);
+            List<T> members = poolsMultiton.GetMember(typeIdentifier);
 
             foreach (T member in members)
             {
